@@ -1,0 +1,166 @@
+[
+  {
+    "date": "2018-02-02",
+    "count": {
+      "JavaScript": {
+        "nFiles": 73,
+        "blank": 10562,
+        "comment": 16752,
+        "code": 50166
+      },
+      "CSS": {
+        "nFiles": 6,
+        "blank": 1024,
+        "comment": 45,
+        "code": 4430
+      },
+      "Sass": {
+        "nFiles": 24,
+        "blank": 214,
+        "comment": 3,
+        "code": 1171
+      },
+      "Markdown": {
+        "nFiles": 1,
+        "blank": 19,
+        "comment": 0,
+        "code": 70
+      },
+      "HTML": {
+        "nFiles": 4,
+        "blank": 0,
+        "comment": 0,
+        "code": 35
+      },
+      "SUM": {
+        "blank": 11819,
+        "comment": 16800,
+        "code": 55872,
+        "nFiles": 108
+      }
+    }
+  },
+  {
+    "date": "2018-3-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 79,
+        "blank": 10624,
+        "comment": 16557,
+        "code": 51141
+      },
+      "CSS": {
+        "nFiles": 6,
+        "blank": 1024,
+        "comment": 45,
+        "code": 4430
+      },
+      "Sass": {
+        "nFiles": 25,
+        "blank": 300,
+        "comment": 5,
+        "code": 1571
+      },
+      "Markdown": {
+        "nFiles": 3,
+        "blank": 9,
+        "comment": 0,
+        "code": 12
+      },
+      "HTML": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 0,
+        "code": 4
+      },
+      "SUM": {
+        "blank": 11957,
+        "comment": 16607,
+        "code": 57158,
+        "nFiles": 114
+      }
+    }
+  },
+  {
+    "date": "2018-4-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 56,
+        "blank": 10986,
+        "comment": 16750,
+        "code": 53270
+      },
+      "CSS": {
+        "nFiles": 9,
+        "blank": 1038,
+        "comment": 45,
+        "code": 4523
+      },
+      "Sass": {
+        "nFiles": 5,
+        "blank": 107,
+        "comment": 0,
+        "code": 457
+      },
+      "Markdown": {
+        "nFiles": 7,
+        "blank": 32,
+        "comment": 0,
+        "code": 63
+      },
+      "HTML": {
+        "nFiles": 3,
+        "blank": 0,
+        "comment": 0,
+        "code": 26
+      },
+      "SUM": {
+        "blank": 12163,
+        "comment": 16795,
+        "code": 58339,
+        "nFiles": 80
+      }
+    }
+  },
+  {
+    "date": "2018-5-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 56,
+        "blank": 10986,
+        "comment": 16750,
+        "code": 53270
+      },
+      "CSS": {
+        "nFiles": 9,
+        "blank": 1038,
+        "comment": 45,
+        "code": 4523
+      },
+      "Sass": {
+        "nFiles": 5,
+        "blank": 107,
+        "comment": 0,
+        "code": 457
+      },
+      "Markdown": {
+        "nFiles": 7,
+        "blank": 32,
+        "comment": 0,
+        "code": 63
+      },
+      "HTML": {
+        "nFiles": 3,
+        "blank": 0,
+        "comment": 0,
+        "code": 26
+      },
+      "SUM": {
+        "blank": 12163,
+        "comment": 16795,
+        "code": 58339,
+        "nFiles": 80
+      }
+    }
+  }
+]

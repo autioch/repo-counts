@@ -1,0 +1,1942 @@
+[
+  {
+    "hash": "410a787474f3dd9182705c9b1e24c991a118b15e",
+    "date": "2017-02-15",
+    "text": "Added configuration loading",
+    "insertions": 43,
+    "deletions": 5,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9254a2de18cea6b5a0b4bf943e3238dc6fda694b",
+    "date": "2017-02-15",
+    "text": "Added dev webpack server container",
+    "insertions": 124,
+    "deletions": 17,
+    "filesChanged": 8,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b8beda7ef22fbe4ff91616815d7506396f589e03",
+    "date": "2017-02-15",
+    "text": "Added Vue handling",
+    "insertions": 79,
+    "deletions": 4,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "2b01eefa66c6d173ce17186562b2b8589c718e57",
+    "date": "2017-02-15",
+    "text": "Added better css handling",
+    "insertions": 62,
+    "deletions": 14,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "3158e6e316d6e2f5088dfeb7e03074747d576bdc",
+    "date": "2017-02-15",
+    "text": "Allows running from command line",
+    "insertions": 23,
+    "deletions": 4,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "bfe38279cce291e8cfe22c027d0f9d6ef54c2ea5",
+    "date": "2017-02-16",
+    "text": "Rendering visualization",
+    "insertions": 378,
+    "deletions": 68,
+    "filesChanged": 9,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c5882ab933d2aa4411b2fd762552d750b6e27b1f",
+    "date": "2017-02-16",
+    "text": "Refactoring - moved most vis-related function to runtime",
+    "insertions": 338,
+    "deletions": 56,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "27a41922fc34217214655f5847b0e92fee7c5793",
+    "date": "2017-02-17",
+    "text": "Changed approach with VDTRC Added state display",
+    "insertions": 213,
+    "deletions": 167,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9f74d3de9721768c873591ec75ef109de84afaf3",
+    "date": "2017-02-17",
+    "text": "Sticking side menu",
+    "insertions": 55,
+    "deletions": 15,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "33213f93b1371cc5a3b3c69114182b2ecfdaed1a",
+    "date": "2017-02-17",
+    "text": "Added ESC key handling",
+    "insertions": 13,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "cc0bb48a321b817a882d713dd588ee74063ddc38",
+    "date": "2017-02-17",
+    "text": "Better handling of absolute paths",
+    "insertions": 13,
+    "deletions": 3,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "74c7db24f647f23f2c61b4d552fb294b5708ce0a",
+    "date": "2017-02-17",
+    "text": "Added State Menu",
+    "insertions": 209,
+    "deletions": 12,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8925c2061a49744ea9afecfdcbd8f4e49667503e",
+    "date": "2017-02-20",
+    "text": "Added babel configuration support",
+    "insertions": 51,
+    "deletions": 21,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7a7c1c1c424f7a9c87bdb8d36ef9386b6a6f1ada",
+    "date": "2017-02-20",
+    "text": "Added readme and changelog Set NPM registry to SWX's registry",
+    "insertions": 124,
+    "deletions": 0,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "ac70966776c2f610899bf153d5c33fb236246f4d",
+    "date": "2017-02-24",
+    "text": "New stateOptions concept support",
+    "insertions": 15,
+    "deletions": 14,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8e1c1fdb4c70e93764df72f0a2ab74c9d91fcd0c",
+    "date": "2017-02-27",
+    "text": "Removed visualization entry to make sure that nice auto reload works Saving visualization's state between reloads",
+    "insertions": 9,
+    "deletions": 7,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "0efdacc570937010b791721ab51a2781cb7d30f7",
+    "date": "2017-02-28",
+    "text": "WiP Support for visual configuration",
+    "insertions": 397,
+    "deletions": 96,
+    "filesChanged": 10,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8b23ff6a3a12de14437129b00417d7a73b990e0f",
+    "date": "2017-02-28",
+    "text": "Support for visual configuration",
+    "insertions": 207,
+    "deletions": 32,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "6f537d77592f10d7aba47ff0cc23d0e59f7ee5c8",
+    "date": "2017-03-01",
+    "text": "Better resettable flag handling (+ spelling)",
+    "insertions": 3,
+    "deletions": 3,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "a628618667bed83b3909d92bcb16f9da720e9855",
+    "date": "2017-03-01",
+    "text": "Switched listeners to plugins",
+    "insertions": 58,
+    "deletions": 34,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "d438357d777aad1eda61d4966574a9f8acba85f9",
+    "date": "2017-03-01",
+    "text": "Added context-menu handlers",
+    "insertions": 116,
+    "deletions": 5,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "602cf9230bc508a6f2ab7550b89822a2b7d715d5",
+    "date": "2017-03-01",
+    "text": "1.0.0-1",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "587123cc9db2b74316235970a5ee0fbac5e581f8",
+    "date": "2017-03-01",
+    "text": "Fix for missing references",
+    "insertions": 2,
+    "deletions": 2,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "d893b6077a795ac1d200571a1997dbaf1e7afbda",
+    "date": "2017-03-02",
+    "text": "Add hiding context menu on any key",
+    "insertions": 9,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "aa132a68c2de2599c4715fc03ca2add2633d896e",
+    "date": "2017-03-02",
+    "text": "Added custom dataProvider support",
+    "insertions": 22,
+    "deletions": 2,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "5b7976a68f5ea5440821cbc8719dc7a30350f761",
+    "date": "2017-03-02",
+    "text": "Updated changelog, readme and dependencies",
+    "insertions": 38,
+    "deletions": 14,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "aae4bf8ef787481aadb160657154b6956b004e78",
+    "date": "2017-03-02",
+    "text": "1.0.0-2",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "2f0a0521b2a14726a0c3c6a36fbd02068a95a644",
+    "date": "2017-03-06",
+    "text": "Enforcing sourceDir for linting",
+    "insertions": 27,
+    "deletions": 33,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "fe89e2c9bad232895644e8155ea890bbcb763b51",
+    "date": "2017-03-06",
+    "text": "Resource handling Palette with featured map handling",
+    "insertions": 106,
+    "deletions": 30,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "38a986fc1389d6b17d271eac1148c79041fcceb0",
+    "date": "2017-03-06",
+    "text": "Added build command",
+    "insertions": 266,
+    "deletions": 74,
+    "filesChanged": 16,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "4c1e08a2df82fa3106d29b58e43426052abcc064",
+    "date": "2017-03-10",
+    "text": "Adopting runtime for changes in core",
+    "insertions": 29,
+    "deletions": 8,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "655eaf7c47a3509d55e5684181e0b7a28c5eb733",
+    "date": "2017-03-16",
+    "text": "Updated dependencies",
+    "insertions": 2,
+    "deletions": 2,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "ca5e0e437da399a728eef63ac57987b2124ff76c",
+    "date": "2017-03-16",
+    "text": "Handling of data responses",
+    "insertions": 10,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c8d877ff825d747ee5c1443cf7008f5465c46a3e",
+    "date": "2017-03-16",
+    "text": "Tiny refactoring + eslint improvements",
+    "insertions": 13,
+    "deletions": 19,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "88bacf88973b8471384a5d825e5799a94c7470bf",
+    "date": "2017-03-16",
+    "text": "Removed object around svg elements for regions",
+    "insertions": 0,
+    "deletions": 3,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "e8c90c7eeb9bc68aa049e2228d77599e6a5202d9",
+    "date": "2017-03-16",
+    "text": "Actions provides event first",
+    "insertions": 3,
+    "deletions": 3,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "74999dedc77fdcac5686a2fa2a92fbaeec59e4ff",
+    "date": "2017-03-20",
+    "text": "Adopt to changes in API",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "148d73aa749ac3c1b8ec2d35c2d0463e21474994",
+    "date": "2017-03-20",
+    "text": "Updated readme and changelog",
+    "insertions": 96,
+    "deletions": 21,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "da86632d17bfa1d33e28a42340423eca2d4f9cd6",
+    "date": "2017-03-20",
+    "text": "1.0.0-3",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "74387d46c6c64e37bafde83e091764099fe20797",
+    "date": "2017-03-22",
+    "text": "CompileDirs support",
+    "insertions": 2,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "d38491a746a834765e1ab018585d337fcc5baa72",
+    "date": "2017-03-22",
+    "text": "Better support for visual options",
+    "insertions": 92,
+    "deletions": 56,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "ae56df46ba7dc22e1b8a9b3e1397c8e980504304",
+    "date": "2017-03-22",
+    "text": "Extracted state to separate Vue component",
+    "insertions": 67,
+    "deletions": 43,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "0eccc7018ce77880cc301e3a1e1df8672144ad67",
+    "date": "2017-03-23",
+    "text": "Improved config watchers for visualization",
+    "insertions": 8,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "525aeb11ebf453057ee070b11ec02939ea98622d",
+    "date": "2017-03-23",
+    "text": "Added tabs",
+    "insertions": 232,
+    "deletions": 75,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "d1ab4f38efca97b39efd6c914acf02abd373898d",
+    "date": "2017-03-23",
+    "text": "Added data browser",
+    "insertions": 35,
+    "deletions": 8,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "499b762fd27a1869805eb20b4ddc3dbeae9f0520",
+    "date": "2017-03-23",
+    "text": "WiP Resource Manager",
+    "insertions": 92,
+    "deletions": 0,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "59d4d404443dce26740505e8fbdcea58c6f55862",
+    "date": "2017-03-23",
+    "text": "WiP Resource Manager",
+    "insertions": 153,
+    "deletions": 51,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7d4b2efdaee2ceca117ee4d967bf20b9c527aeca",
+    "date": "2017-03-23",
+    "text": "WiP Resource Manager",
+    "insertions": 253,
+    "deletions": 228,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "dac6d72b5c87a58c6930f82c3c365b58224305cd",
+    "date": "2017-03-24",
+    "text": "Resource Manager",
+    "insertions": 236,
+    "deletions": 127,
+    "filesChanged": 10,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9d695a9eabdd7d1a28ea0d13e5f09efe023fcd28",
+    "date": "2017-03-24",
+    "text": "Updated changelog",
+    "insertions": 8,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "439aacecffe8081d20acd42ca02e053267ca0101",
+    "date": "2017-03-24",
+    "text": "1.0.0-4",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "621b6025b2361b8c9c9baa81f37c19d6676884be",
+    "date": "2017-03-24",
+    "text": "Restored selection update",
+    "insertions": 26,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "0c8363f28a79789cf3eef4656da10c34eba5038e",
+    "date": "2017-03-27",
+    "text": "AN-688 [VDT] Create text handler for visual options",
+    "insertions": 42,
+    "deletions": 3,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "f4402f8fcfc76b1cb8fb36d5f8dd87e1bff69e29",
+    "date": "2017-03-27",
+    "text": "AN-688 [VDT] Create text handler for visual options",
+    "insertions": 5,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "a60a9815ef7cd7f44888ad502c2cda550c6e7f09",
+    "date": "2017-03-27",
+    "text": "AN-690 [VDT] Create palette picker for visual options",
+    "insertions": 144,
+    "deletions": 77,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "21c0c32246fdbcbd44a255822acf7c239ac796ac",
+    "date": "2017-03-28",
+    "text": "AN-690 [VDT] Create palette picker for visual options",
+    "insertions": 95,
+    "deletions": 36,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "6d87c0b1e3642a91dd5531764034375ff7d56d46",
+    "date": "2017-03-28",
+    "text": "Updated dependencies",
+    "insertions": 14,
+    "deletions": 14,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "825f2137523a156a88b567eeaaf45ae18e9a8c0e",
+    "date": "2017-03-28",
+    "text": "Improvements & fixes:",
+    "insertions": 65,
+    "deletions": 61,
+    "filesChanged": 11,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "d29895619712bb462f779fd386ba86960fa262ff",
+    "date": "2017-03-28",
+    "text": "Updated changelog",
+    "insertions": 5,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "a304fd2b2ef30ccf96eb19ded1a3d536f540f446",
+    "date": "2017-03-28",
+    "text": "Updated changelog #2",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "a6d5845fc940f7c5f03b1b449680ef0bc796f642",
+    "date": "2017-03-28",
+    "text": "1.0.0-5",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c65624181a467cfe348eff6857b859f220fc5c8c",
+    "date": "2017-03-29",
+    "text": "Fixes & improvements",
+    "insertions": 68,
+    "deletions": 36,
+    "filesChanged": 10,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "e76ced9090d931e91a46d56637fdb7ad58d14dad",
+    "date": "2017-03-29",
+    "text": "Updated changelog",
+    "insertions": 8,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b9974a1a10807fac84ad01c437517f22d48c0c1e",
+    "date": "2017-03-29",
+    "text": "1.0.0-6",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "781c4f1e50361e75c5d7df8d61f40b9174c1a6ae",
+    "date": "2017-03-29",
+    "text": "Improvements:",
+    "insertions": 99,
+    "deletions": 16,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "79dcb2bef1bf1678bc039f6ac2746691823a61d4",
+    "date": "2017-03-29",
+    "text": "Fixes:",
+    "insertions": 13,
+    "deletions": 4,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "caa211cb6634ccbecf7382d407a9ef4b71c63d8c",
+    "date": "2017-03-29",
+    "text": "Fixes:",
+    "insertions": 9,
+    "deletions": 2,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "66a20a4e3ac645e48d9a5056f4c924b93de4d473",
+    "date": "2017-03-29",
+    "text": "AN-703 [VDT] Modal with category selection",
+    "insertions": 16,
+    "deletions": 0,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "cead1e7c7d714d6d9aa27765958bb0f51569250d",
+    "date": "2017-03-29",
+    "text": "AN-703 [VDT] Modal with category selection",
+    "insertions": 12,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "fc5472a56b87458ba75655c681e96a2e469d8418",
+    "date": "2017-03-30",
+    "text": "AN-703 [VDT] Modal with category selection",
+    "insertions": 341,
+    "deletions": 52,
+    "filesChanged": 10,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c58f3873d2cffa107be252469beb66a03de1fab5",
+    "date": "2017-03-31",
+    "text": "1.0.0-7",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "beb2456406f3ab8fa5a2d394dda08c4003cdfad9",
+    "date": "2017-04-07",
+    "text": "AN-703 [VDT] Modal with category selection",
+    "insertions": 299,
+    "deletions": 100,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7a3c1701be8be0e9f30b9d2c43148781b69417d7",
+    "date": "2017-04-13",
+    "text": "Added test runner",
+    "insertions": 142,
+    "deletions": 4,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "50631171a2254bb57930aefcdbd843b5855f4249",
+    "date": "2017-04-14",
+    "text": "Improvements in SelectionModal",
+    "insertions": 15,
+    "deletions": 17,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "fe8cca6e5e635d99238437e52532fe75eb5f345e",
+    "date": "2017-04-14",
+    "text": "Updated changelog and git repository reference",
+    "insertions": 8,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "983b5653ca28a687d4b11a42d87b59865e8ce2d7",
+    "date": "2017-04-15",
+    "text": "Data per scenario support",
+    "insertions": 74,
+    "deletions": 37,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "cede68fff3edb32586aa877659e80127dc4b3b6b",
+    "date": "2017-04-17",
+    "text": "New config structure",
+    "insertions": 448,
+    "deletions": 138,
+    "filesChanged": 12,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "0193362d75067aaab1d0901f16ed8847fe576324",
+    "date": "2017-04-17",
+    "text": "Extracted vendor bundle",
+    "insertions": 5,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "cb2e251f45a3fd6c91d00828f37ae9b695569fe2",
+    "date": "2017-04-17",
+    "text": "Using async scenarios",
+    "insertions": 236,
+    "deletions": 211,
+    "filesChanged": 12,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "afa7596d53166625a850d5f7b1481de610352fc4",
+    "date": "2017-04-17",
+    "text": "Refactoring",
+    "insertions": 40,
+    "deletions": 33,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "2f7b06e18d64f0da0cc84ad8413aef881431794a",
+    "date": "2017-04-17",
+    "text": "Warning for async resource providers",
+    "insertions": 70,
+    "deletions": 30,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "eb3b789192797159b33b293cc9cb41c19634a1f5",
+    "date": "2017-04-18",
+    "text": "Build VDT",
+    "insertions": 163,
+    "deletions": 0,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "2a99dad298fe0aeb58c197352cb85c073774197c",
+    "date": "2017-04-18",
+    "text": "Changed script",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "592c226642e72c748389c68cd6d47ae865229581",
+    "date": "2017-04-18",
+    "text": "VDT build - release and production mode",
+    "insertions": 95,
+    "deletions": 53,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8c15d1c8b4dc6593970f3879257ff98846fe331a",
+    "date": "2017-04-20",
+    "text": "Improvements",
+    "insertions": 266,
+    "deletions": 159,
+    "filesChanged": 20,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "244bd464c16979e96a2d50272d4f2195e18cf551",
+    "date": "2017-04-21",
+    "text": "Added version scripts to package.json",
+    "insertions": 15,
+    "deletions": 2,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "0d9adbe4f12d6a3f6c6cb65b65dec2919daa87c7",
+    "date": "2017-04-21",
+    "text": "Changed branch checking script",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "235384c24387bdd44e5829b4647330e362a403ba",
+    "date": "2017-04-21",
+    "text": "1.0.0-8",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "e0d466987d6e2fc4cea736e740138ea8095c2fc0",
+    "date": "2017-04-21",
+    "text": "Fixed handling when just one visualization is present",
+    "insertions": 5,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "52b52c843347608073c23507f3e4e5d6290f8723",
+    "date": "2017-04-21",
+    "text": "Improved mode handling + minor refactoring",
+    "insertions": 982,
+    "deletions": 991,
+    "filesChanged": 14,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "38662cb0a53b0242a3ecbaed0eceacbc5759901d",
+    "date": "2017-04-21",
+    "text": "Updated changelog",
+    "insertions": 76,
+    "deletions": 71,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "54ac392c65edee0f592906465b1b9e237c7ceca1",
+    "date": "2017-04-21",
+    "text": "Fixed package.json script",
+    "insertions": 2,
+    "deletions": 2,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c51d388a92fa856959444c5f886485fda0725628",
+    "date": "2017-04-21",
+    "text": "1.0.0-10",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "f4d747c39403ffacc31aba2f1c5c6ab36ad3b862",
+    "date": "2017-04-24",
+    "text": "Selection Modal changes",
+    "insertions": 327,
+    "deletions": 190,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "a78f069243d6065c4711373538ad5956953f0181",
+    "date": "2017-04-25",
+    "text": "Minor changes:",
+    "insertions": 65,
+    "deletions": 26,
+    "filesChanged": 17,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "69f0ce348606c6c044a4aa2562d105e0580e6ae2",
+    "date": "2017-04-25",
+    "text": "1.0.0-11",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "5e84246a726cc2fe23a69f3638df413339119dc2",
+    "date": "2017-04-28",
+    "text": "Restored color palettes selection in visual options",
+    "insertions": 16,
+    "deletions": 8,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "aa3561459da03b212e5620090c7a31b98042d066",
+    "date": "2017-05-21",
+    "text": "AN-714 [VDT] Modal with category replacers and values ordering",
+    "insertions": 33,
+    "deletions": 29,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "ba0c0ac89c35db9e9a1b0a5a8d10572b3fb97dd3",
+    "date": "2017-05-21",
+    "text": "AN-714 [VDT] Modal with category replacers and values ordering",
+    "insertions": 87,
+    "deletions": 5,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "bd38887259b32128b8fa5c7807466b0045c76b26",
+    "date": "2017-05-24",
+    "text": "refactor: removed unnecessary console.log",
+    "insertions": 0,
+    "deletions": 2,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "49931202f2380496c81b7a1631f07a19de462372",
+    "date": "2017-05-24",
+    "text": "feat(cli): Accepts direct config path via `--config` parameter",
+    "insertions": 43,
+    "deletions": 20,
+    "filesChanged": 8,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b9c91f9785fa5e8083eddf710689291284638344",
+    "date": "2017-05-24",
+    "text": "feat(config): Added support of multiple dataProviders",
+    "insertions": 141,
+    "deletions": 46,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c14f568278265a3bbba6c0cf0690b3793f537626",
+    "date": "2017-05-25",
+    "text": "1.0.0-12",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "58070b12182251c0faabb83faf002748ec9efd80",
+    "date": "2017-05-27",
+    "text": "refactor: Provide stack when throwing request error",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "0a1120e5c563d79f58a878dc89562cdc939d6f37",
+    "date": "2017-05-29",
+    "text": "refactor: Replaced find with isMatch for more freedom",
+    "insertions": 2,
+    "deletions": 4,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "639f24a7725ca496f859d9d68662b77ad2e2b988",
+    "date": "2017-05-30",
+    "text": "patch: fixed VDT's data provider dataset finding method",
+    "insertions": 2,
+    "deletions": 4,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "668bc4107a5c31ac9a7c91584421c6d8538e6130",
+    "date": "2017-05-30",
+    "text": "patch: finding datasets in data provider fix",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Lukasz Mokrski",
+    "emailName": "lukasz.mokrski@slideworx.com"
+  },
+  {
+    "hash": "87063b30c5a67c402638a46d83ffca5df037df39",
+    "date": "2017-05-30",
+    "text": "Added `config` to test command",
+    "insertions": 2,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "99af170545c50ae6fd2ae44ea48c30ac8aea8455",
+    "date": "2017-05-30",
+    "text": "feat(analyzer): Added Analyzer Data Provider from Analyzer.Web",
+    "insertions": 372,
+    "deletions": 0,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "1545d012b4b6a6d5044e7e3f5e9b57a42edbc631",
+    "date": "2017-05-30",
+    "text": "feat(cli): Added `prefetch` command",
+    "insertions": 194,
+    "deletions": 14,
+    "filesChanged": 5,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "bd68edef7cb0def530874807ca9303548525994a",
+    "date": "2017-05-30",
+    "text": "feat(prefetch): requesting data from cache if present",
+    "insertions": 61,
+    "deletions": 16,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "cd96a5b62d600981bd77f3d25ec90f8e02816c58",
+    "date": "2017-05-31",
+    "text": "feat(prefetch): refactoring",
+    "insertions": 71,
+    "deletions": 61,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "3096a6c0faf089cc35bf89e4ae33139cbc371636",
+    "date": "2017-05-31",
+    "text": "feat: removed data browser due to memory issues",
+    "insertions": 2,
+    "deletions": 13,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "19f0efe612b73c68828fd2765f929bd0c657703a",
+    "date": "2017-05-31",
+    "text": "patch(prefetch): fixed missing period level",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "3fd3ebdaef140581e087640a0334b233ed6e3202",
+    "date": "2017-06-01",
+    "text": "feat(analyzer): add periods handling",
+    "insertions": 221,
+    "deletions": 40,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9e1f3ef0220022074d715093de7ecc9cfafd5f72",
+    "date": "2017-06-02",
+    "text": "1.0.0-13",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "4f644b8d52fc80707e2eb0ac98e0fb7070cbd59d",
+    "date": "2017-06-07",
+    "text": "feat(front): Toggling config tabs",
+    "insertions": 193,
+    "deletions": 86,
+    "filesChanged": 11,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8d4b85417de2edde188eaf0055652beaf2ff8ce9",
+    "date": "2017-06-07",
+    "text": "feat(front): Resizable side menu",
+    "insertions": 115,
+    "deletions": 14,
+    "filesChanged": 8,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7eb8ab1b075ab8e8631ab45455e155e0b9958cda",
+    "date": "2017-06-07",
+    "text": "feat(front): Range type support",
+    "insertions": 64,
+    "deletions": 0,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "301200875e6dfc4270b07167fd5dcf788fbb3fb0",
+    "date": "2017-06-08",
+    "text": "refactor(front): Reorganized editors for StateMenu and VisualMenu",
+    "insertions": 375,
+    "deletions": 241,
+    "filesChanged": 14,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "3815a69867c8d71c249c8ab6e04b194c2f690d7b",
+    "date": "2017-06-08",
+    "text": "fix(cli): Fixes problem with running visualization with prebuilt VDT",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9645673f4fb6a01821c1a55cb24c2fb8191612b1",
+    "date": "2017-06-08",
+    "text": "feat(front): OpenSans as default font",
+    "insertions": 3,
+    "deletions": 5,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "ccc36d0272b799a4acbba34edd1d4fb1c7a00141",
+    "date": "2017-06-08",
+    "text": "feat(front): Added error overlay",
+    "insertions": 117,
+    "deletions": 23,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8a7827a01daea951f0c18d84466af09b73bb6335",
+    "date": "2017-06-08",
+    "text": "feat(front): Added loader overlay",
+    "insertions": 73,
+    "deletions": 2,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "27fcbb415a89c990ee1239097387fa07b49afb63",
+    "date": "2017-06-08",
+    "text": "fix(front): Problem with displaying inherited resource palettes",
+    "insertions": 3,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "12d135278bef6d33da485bc1a3572474bc8e60e6",
+    "date": "2017-06-08",
+    "text": "1.0.0-14",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7c7d3123d0a0f53f71fd79c7f75bf7cf20de8d05",
+    "date": "2017-06-12",
+    "text": "Fixed \"missing\" Boolean type",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "e7a6d4e8d83ad68d53c7fd9653235f6192c6f372",
+    "date": "2017-06-12",
+    "text": "add text type to state options",
+    "insertions": 4,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Lukasz Mokrski",
+    "emailName": "lukasz.mokrski@slideworx.com"
+  },
+  {
+    "hash": "a5c63b8221486eabaea283425c2f5ef66dfe4f6d",
+    "date": "2017-06-12",
+    "text": "fix(front): Micro improvements in displaying regions",
+    "insertions": 17,
+    "deletions": 11,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c404de69b22908dcdfd7caf0adb7a44d611864d9",
+    "date": "2017-06-21",
+    "text": "refactor(front): Moved visualization runtime to front directory refactor(config): Separated config in couple of files fix(build): Fixed issue with svg file loader when not in dev mode refactor(runtime): Runtime will be now exposed in window",
+    "insertions": 531,
+    "deletions": 503,
+    "filesChanged": 28,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "bdf5a551c28f7c64f748a0c00eb33c663ea3be13",
+    "date": "2017-06-22",
+    "text": "feature(cli): prompt for visualization if not preselected",
+    "insertions": 22,
+    "deletions": 3,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7c960d8854d48e656694274fe7aa46cf327ff181",
+    "date": "2017-06-23",
+    "text": "fix(front): refreshing visual options",
+    "insertions": 11,
+    "deletions": 4,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "df846dde306ac42efc880648aaa8cc0da8fcbe4e",
+    "date": "2017-06-23",
+    "text": "fix(cli): building VDT",
+    "insertions": 6,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "42f88b6d16300288203d98df76a96d8c4aa3aee0",
+    "date": "2017-06-23",
+    "text": "1.0.0-15",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "f707c08ced48912bc203c70620100377e0865566",
+    "date": "2017-06-25",
+    "text": "fix(analyzer): Wrong path to data provider",
+    "insertions": 5,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "1357aa1766026d852a3832f71c1ec76570b0829a",
+    "date": "2017-06-25",
+    "text": "1.0.0-16",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "643c642e16efc7c5e8d106850e9237109a4753cd",
+    "date": "2017-06-26",
+    "text": "fix(build): Including SVG files",
+    "insertions": 18,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c46e040dcca1e689818294aa0a6fe34e9d2a2cef",
+    "date": "2017-06-27",
+    "text": "feature(analyzer): Period dimension is no longer the top dimension but just above the measures",
+    "insertions": 28,
+    "deletions": 15,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9c6290edd09db1752ec62ee60e277df278524dff",
+    "date": "2017-07-04",
+    "text": "feature(front): Manual state changes can be either partial or complete feature(scenarios): Scenarios are applied from scratch - no merging with current state",
+    "insertions": 22,
+    "deletions": 17,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "bbe54da362b8847f7637bd69e062d9b9e4a9af2c",
+    "date": "2017-07-05",
+    "text": "feature(front): selection query is cleared when showing new modal",
+    "insertions": 4,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c81127fd90f8887f7f712e3f76db44afd9696407",
+    "date": "2017-07-05",
+    "text": "1.0.0-17",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "6170f513d372dc862056504dbae60c3cb6347170",
+    "date": "2017-07-06",
+    "text": "feature(front): new regions structure",
+    "insertions": 7,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7807c6526c1b09ef5aaec0331b5df175d6b4ef5a",
+    "date": "2017-07-06",
+    "text": "1.0.0-18",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "3a075e3981d4bf1404595367e6609c0b84f18192",
+    "date": "2017-07-07",
+    "text": "feature(cli): Preparing visualization for publishing with `vdt prepare`",
+    "insertions": 154,
+    "deletions": 2,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "69156ca8b3336804394fba998fdb84c0413d1d9f",
+    "date": "2017-07-07",
+    "text": "1.0.0-19",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "f3cdd9028c12ba91d2766554e612d94ab7f53a80",
+    "date": "2017-07-07",
+    "text": "feature(cli): Added publishConfig to template package.json for `prepare`",
+    "insertions": 15,
+    "deletions": 2,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "8ab7ad3c0106453f8b23ce2dd49849b43437517e",
+    "date": "2017-07-07",
+    "text": "1.0.0-20",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "93c2128fe97ed2ffa06b139e9b6e52924bbe726d",
+    "date": "2017-07-07",
+    "text": "feature(front): When changing scenario visualization is recreated",
+    "insertions": 37,
+    "deletions": 31,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "eb22de7fdc70535d37b69e320b17e116be0798ab",
+    "date": "2017-07-07",
+    "text": "1.0.0-21",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "209a2ec7bfc746c482f74b91ceb08f022e4224c3",
+    "date": "2017-07-07",
+    "text": "feature(provider): Filtering data takes place also on direct responses from data providers.",
+    "insertions": 21,
+    "deletions": 17,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "d6ac899ea708d957143a0572fe494d72f729fd83",
+    "date": "2017-07-07",
+    "text": "1.0.0-22",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7d1becf6e1570ac0a78654992ce3e8e9d556a0c3",
+    "date": "2017-07-26",
+    "text": "AN-1446 [VDT] Upgrade VDT to use new resourceProvider",
+    "insertions": 393,
+    "deletions": 165,
+    "filesChanged": 15,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "e7c03d2ef82a3481aed53769ebb8818ee2f59a79",
+    "date": "2017-08-02",
+    "text": "feat(core): Changed the way visualization is started (expecting synchronous `create`)",
+    "insertions": 6,
+    "deletions": 11,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "56fbe583ebf339dcd7b85bf3c91ae51d18f2917d",
+    "date": "2017-08-02",
+    "text": "1.0.0-23",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "9eb4b76dc439da72a0a2ca2d2ecda2cd9529f75b",
+    "date": "2017-08-03",
+    "text": "fix(front): Value in RangeEnum not updated on visualConfig change",
+    "insertions": 11,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "a497d4f138ac0db375548cc81c0bcaf773095bd2",
+    "date": "2017-08-04",
+    "text": "chore(front): Structure reorganization",
+    "insertions": 33,
+    "deletions": 20,
+    "filesChanged": 33,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "5a01440431ebccfa83e1a98121b834e4e2091374",
+    "date": "2017-08-04",
+    "text": "chore: Updated dependencies",
+    "insertions": 40,
+    "deletions": 29,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "3c125cb4fdbc4eba1647207b87aa26fc1275a080",
+    "date": "2017-08-04",
+    "text": "chore: Cleanup Vue warnings",
+    "insertions": 2,
+    "deletions": 7,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "80af8ba8bd384f050aa5770043f2014a301a2ae8",
+    "date": "2017-08-08",
+    "text": "feat(tooltip): Added Tooltip component",
+    "insertions": 242,
+    "deletions": 0,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b61d0bb623de5b9355c70c2366fe46b1d8935c93",
+    "date": "2017-08-08",
+    "text": "feat(tooltip): Changed parameters and updated changelog",
+    "insertions": 13,
+    "deletions": 11,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "5e5bc196ad7c34339c1a706485a71ea8bd9e896c",
+    "date": "2017-08-09",
+    "text": "AN-1512 [VDT] Support for external resource providers",
+    "insertions": 113,
+    "deletions": 652,
+    "filesChanged": 17,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "1f958fabe226d971844a0c5d994c227fc29e2af6",
+    "date": "2017-08-10",
+    "text": "AN-1512 [VDT] Support for external resource providers",
+    "insertions": 8,
+    "deletions": 12,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "68e701283bce75948e18ca31e01acf887d50a02d",
+    "date": "2017-08-14",
+    "text": "fix(build-vdt): fixed issue with self-building",
+    "insertions": 25,
+    "deletions": 5,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "1f749d693eb07efaa020736b3d3e0bc16e6efc4a",
+    "date": "2017-08-14",
+    "text": "fix(front): Fixed handling response when no period is given",
+    "insertions": 5,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "92259a5c5175ed87f8c3fa6a41b60a67160a5d0e",
+    "date": "2017-08-14",
+    "text": "chore(front): Improved animation handling on side menu",
+    "insertions": 6,
+    "deletions": 0,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "fc025fa297f0316e666a72dc534c5cc7d1e94f98",
+    "date": "2017-08-14",
+    "text": "chore: Updated dependencies",
+    "insertions": 8,
+    "deletions": 8,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "28568d83e27efdf581790b06e5e65887fe797f20",
+    "date": "2017-08-15",
+    "text": "feat(front): Added reloadScenario method",
+    "insertions": 10,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7f7fe4aec926950b799b16e779fb8facc976ac62",
+    "date": "2017-08-15",
+    "text": "feat(front):",
+    "insertions": 510,
+    "deletions": 420,
+    "filesChanged": 18,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "cdd44f2c5a400c2c0fbf13144f1e0cb9b2e80a2b",
+    "date": "2017-08-15",
+    "text": "feat(front): can select scenario via url",
+    "insertions": 59,
+    "deletions": 34,
+    "filesChanged": 6,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "6e746fa763a145bd160e5ae95c88245a39dee185",
+    "date": "2017-08-16",
+    "text": "1.0.0-24",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "466a00aa49b05310c67d864e83f7dbfe2a2e00b0",
+    "date": "2017-08-16",
+    "text": "Small improvement in vdt documentation",
+    "insertions": 3,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "filip.misiorek",
+    "emailName": "filip.misiorek@slideworx.com"
+  },
+  {
+    "hash": "51e680fadfa05764cd770381855f3361b5ae8b98",
+    "date": "2017-08-16",
+    "text": "Lint fixes",
+    "insertions": 5,
+    "deletions": 3,
+    "filesChanged": 4,
+    "authorName": "filip.misiorek",
+    "emailName": "filip.misiorek@slideworx.com"
+  },
+  {
+    "hash": "ffc8e0193eb0d9e0734232496bccf6d4f5f04aa8",
+    "date": "2017-08-16",
+    "text": "Lint style changed",
+    "insertions": 2,
+    "deletions": 2,
+    "filesChanged": 2,
+    "authorName": "filip.misiorek",
+    "emailName": "filip.misiorek@slideworx.com"
+  },
+  {
+    "hash": "4fdd0d4d83cdb5bf17d2a8558562e47df91e7bbd",
+    "date": "2017-08-16",
+    "text": "AN-1558 [VDT] Run actions from state options",
+    "insertions": 59,
+    "deletions": 20,
+    "filesChanged": 8,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "51a9b90c8042c1a92d45fddbe42ac3459b193aca",
+    "date": "2017-08-16",
+    "text": "* added vue eslint plugin * eslint fixes",
+    "insertions": 165,
+    "deletions": 135,
+    "filesChanged": 36,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "7bece5d02ad22f3c90477ad33de16bb46bb29a2c",
+    "date": "2017-08-17",
+    "text": "AN-1344 [VDT] Support for multi level dropdown",
+    "insertions": 215,
+    "deletions": 49,
+    "filesChanged": 14,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "567314ab5d5bf89056b27c03058ab0b071c10942",
+    "date": "2017-08-17",
+    "text": "1.0.0-25",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "5bea628b8f95db728ffb6029496cb0bb9bc3b74c",
+    "date": "2017-08-18",
+    "text": "fix(front): Problem with overflow in new Options bar when state/visual options are too long",
+    "insertions": 6,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "65dd0f04f44b239c7b09570cf38c58456fe809ba",
+    "date": "2017-08-18",
+    "text": "feat(cli): Added progress bar when running VDT",
+    "insertions": 13,
+    "deletions": 6,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b9afce445d6c1e9dc56319e8da560f2140af00a3",
+    "date": "2017-08-18",
+    "text": "feat(front): Selection modal is not aborted when tooltip is triggered",
+    "insertions": 17,
+    "deletions": 2,
+    "filesChanged": 3,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "298b1ab0b5dca6009234a13697e31a0a23f038bd",
+    "date": "2017-08-21",
+    "text": "feat(front): Benchmark visual option settings",
+    "insertions": 255,
+    "deletions": 7,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "02323be88f4d2eaba63a9a3b38af8f8a647f26ae",
+    "date": "2017-08-21",
+    "text": "fix(front): NestedEnum is improperly set when options are reloaded by calculated value remains unchanged",
+    "insertions": 4,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "52ab8eb0d33179d5cc6677ddfa734b315c43bdfc",
+    "date": "2017-08-22",
+    "text": "chore(front): Visual Options refactoring",
+    "insertions": 201,
+    "deletions": 153,
+    "filesChanged": 9,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "1603fabf28f24b92837636c5256d22ee83a718de",
+    "date": "2017-08-22",
+    "text": "fix(front): Minor fixes for visual options handling",
+    "insertions": 28,
+    "deletions": 4,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "c870ab4eb9237d1c40dd8eba3a391825a86116b8",
+    "date": "2017-08-22",
+    "text": "1.0.0-26",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "f7bc23e48c1b02e353417f66f4dd885c4188c781",
+    "date": "2017-08-25",
+    "text": "feat(cli): `build` adds babel polyfill",
+    "insertions": 7,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "596e1faec8ebe5629d452b2486ae9b34a8257ec8",
+    "date": "2017-08-30",
+    "text": "feat(front): * Changed the way data provider is used (similar to resource provider)",
+    "insertions": 65,
+    "deletions": 16,
+    "filesChanged": 7,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b823607d86bf54bae4e1be4b25e89312beae00f4",
+    "date": "2017-08-30",
+    "text": "feat(prefetch): * removed analyzer data provider (without parser) * implemented prefetch for new behavior",
+    "insertions": 246,
+    "deletions": 408,
+    "filesChanged": 11,
+    "authorName": "barcicki",
+    "emailName": "barcicki@gmail.com"
+  },
+  {
+    "hash": "390cfb6f62caedb8810ea5d2a640ef3a02a1f860",
+    "date": "2017-08-31",
+    "text": "feat(front): Non-development cached data is parsed",
+    "insertions": 31,
+    "deletions": 40,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b58a4f6b71f6ce9ae66f917712e6cd5f45ed1bfc",
+    "date": "2017-08-31",
+    "text": "chore(front): review fixes",
+    "insertions": 4,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "b9190d06ba01f45d5ecb0a68ac1b2a5b0cc39a74",
+    "date": "2017-08-31",
+    "text": "1.0.0-27",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "e007c7ebd578a3e2ce16f9d7fc9d92257d029fd5",
+    "date": "2017-08-31",
+    "text": "fix(prepare): When running `prepare`, `dist` directory cannot be deleted.",
+    "insertions": 6,
+    "deletions": 0,
+    "filesChanged": 2,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "ee7482e27f97fa90c0e4eccb0be42d0be5d30a88",
+    "date": "2017-09-05",
+    "text": "fix(front):   * Deep nesting with Sections   * Issues with displaying sections in Visual Options",
+    "insertions": 20,
+    "deletions": 2,
+    "filesChanged": 4,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  },
+  {
+    "hash": "494c994342e1792357ff62aee71e7e5651a82a3b",
+    "date": "2017-09-05",
+    "text": "1.0.0-28",
+    "insertions": 0,
+    "deletions": 0,
+    "filesChanged": 1,
+    "authorName": "Artur Barcicki",
+    "emailName": "artur.barcicki@slideworx.com"
+  }
+]

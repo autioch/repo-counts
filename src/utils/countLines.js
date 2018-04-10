@@ -2,14 +2,14 @@
 const { join } = require('path');
 const { execSync } = require('child_process');
 const { omit } = require('lodash');
+const ignored = require('../ignored');
 
-const clocPath = join(__dirname, '..', 'node_modules', 'cloc', 'lib', 'cloc');
+const clocPath = join(__dirname, '..', '..', 'node_modules', 'cloc', 'lib', 'cloc');
 
 const options = {
-  'exclude-dir': 'node_modules',
-  'exclude-ext': 'JSON',
-
-  // 'include-lang': ['JavaScript', 'CSS', 'HTML', 'Sass', 'Smarty', 'Markdown'].join(',')
+  'exclude-dir': ['node_modules', 'polyfills'].join(','),
+  'exclude-ext': ignored.join(','),
+  'exclude-lang': ignored.join(','),
   json: undefined
 };
 

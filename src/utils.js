@@ -5,11 +5,11 @@ const { join } = require('path');
 const fs = bluebird.promisifyAll(require('fs'));
 
 function writeFile(fileName, data) {
-  return fs.writeFileAsync(join(__dirname, '..', 'data', fileName), data, 'utf8');
+  return fs.writeFileAsync(join(__dirname, 'data', fileName), data, 'utf8');
 }
 
 function readFile(fileName) {
-  return fs.readFileAsync(join(__dirname, '..', 'data', fileName), 'utf8');
+  return fs.readFileAsync(join(__dirname, 'data', fileName), 'utf8');
 }
 
 function optionsToCli(options) {

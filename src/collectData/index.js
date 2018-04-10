@@ -1,7 +1,8 @@
 const getCommits = require('./getCommits');
 const { countCommit, getNthCommitInfo, clone, getNextMonthFirstDay, findFirstCommitInMonth } = require('./utils');
+const { writeFile } = require('../utils');
 
-module.exports = function collectData(folder) {
+function scanRepo(folder) {
   process.chdir(folder);
 
   const now = new Date().getTime();
@@ -29,4 +30,16 @@ module.exports = function collectData(folder) {
     counts,
     commits
   };
+}
+
+function gatherData(repo) {
+  const { folder, repoName } = repo;
+  const { counts, commits } = scanRepo(folder);
+
+  return writeFile(`${repoName}__counts.json`, JSON.stringify(counts, null, '  '))
+    .then(() => writeFile(`${repoName}__commits.json`, JSON.stringify(commits, null, '  ')));
+}
+
+module.exports = function collectData(repos) {
+  return repos.reduce((promise, repo) => promise.then(() => gatherData(repo)), Promise.resolve());
 };

@@ -7,25 +7,25 @@ module.exports = [{
 }, {
   folder: join('c:', 'Software', 'Slideworx', 'swx.vdt'),
   repoName: 'VDT',
-  color: '#f032e6'
+  color: '#e0e'
 }, {
   folder: join('c:', 'Software', 'Slideworx', 'swx-app-base'),
   repoName: 'App base',
-  color: '#ff0'
+  color: '#ee0'
 }, {
   folder: join('c:', 'Software', 'Slideworx', 'av-action-handlers'),
   repoName: 'Action handlers',
-  color: '#46f0f0'
+  color: '#0ee'
 }, {
   folder: join('c:', 'Software', 'Slideworx', 'Visualizations'),
   repoName: 'Visualizations',
-  color: '#f00'
+  color: '#e00'
 }, {
   folder: join('c:', 'Software', 'Slideworx', 'SlideWorx.Analyzer.Back'),
   repoName: 'Backend',
-  color: '#00f'
+  color: '#00e'
 }, {
   folder: join('c:', 'Software', 'Slideworx', 'SlideWorx.Analyzer.Web.Develop'),
   repoName: 'Frontend',
-  color: '#0f0'
+  color: '#0e0'
 }];

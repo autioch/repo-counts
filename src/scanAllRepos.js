@@ -1,17 +1,12 @@
 /* eslint-disable no-undefined */
 const { writeFile } = require('./utils');
-const getRepoHistory = require('./utils/getRepoHistory');
+const collectData = require('./collectData');
 
 const repos = require('./repos');
 
 function scanRepo(repo) {
   const { folder, repoName } = repo;
-
-  console.log('SCAN REPO', folder, repoName);
-
-  const { counts, commits } = getRepoHistory(folder);
-
-  console.log('REPO RESULT', counts.length, commits.length);
+  const { counts, commits } = collectData(folder);
 
   return writeFile(`${repoName}__counts.json`, JSON.stringify(counts, null, '  '))
     .then(() => writeFile(`${repoName}__commits.json`, JSON.stringify(commits, null, '  ')));

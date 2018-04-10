@@ -1,12 +1,9 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable max-len */
-const repos = require('./repos');
-const { readFile, writeFile } = require('./utils');
-const bluebird = require('bluebird');
-const { keyBy: indexBy, uniq, flatten } = require('lodash');
-const ignored = require('./ignored');
+const ignored = require('../ignored');
+const repos = require('../repos');
 
-function build(groups, types) {
+module.exports = function render(groups, types) {
   let maxBar = 0;
   const groupWidth = 90 / groups.length;
 
@@ -28,9 +25,12 @@ function build(groups, types) {
 
     const bars = group.bars.map((bar) => `<div class="bar" title="${bar.count}" style="height:${(bar.count / maxBar) * 100}%;background-color:${bar.color}"></div>`);
     const sumHeight = group.bars.reduce((sum, bar) => sum + (bar.count || 0), 0);
+    const { deletions, insertions } = group;
 
     return `<div class="group" style="width:${groupWidth}%" title="${sumHeight}">
       <div class="bars">
+        <div class="deletions" title="${deletions}" style="bottom:${(deletions / maxBar) * 100}%">-</div>
+        <div class="insertions" title="${insertions}" style="bottom:${(insertions / maxBar) * 100}%">+</div>
         <div class="bar--sum" title="${sumHeight}" style="height:${(sumHeight / maxBar) * 100}%"></div>
         ${bars.join('')}
       </div>
@@ -45,11 +45,14 @@ function build(groups, types) {
       html,body{padding:0;margin:0;border:0;width:100%;height:100%;font-size:10px;font-family:Verdana}
       .chart{width:100%;height:100%;display:flex;justify-content:space-around}
       .group{display:flex;flex-direction:column}
+      .group:hover{background:#def}
       .header{flex:none;transform-origin:center top;transform:rotate(-90deg) translate(-75%,-50%);white-space:nowrap;overflow:visible}
-      .bars{display:flex;align-items:flex-end;height:calc(100% - 7em);position:relative}
+      .bars{display:flex;align-items:flex-end;height:calc(100% - 7em);position:relative;z-index:1}
       .bar{flex-grow:1}
       .bar--sum{flex-grow:1;background:#bbb;position:absolute;bottom:0;left:0;right:0;z-index:-1}
       .types{position:absolute;top:1em;left:1em}
+      .deletions{position:absolute;left:.25em;border-radius:50%;width:1em;height:1em;background-color:#000;color:#fff;display:flex;align-items:center;justify-content:center}
+      .insertions{position:absolute;right:.25em;border-radius:50%;width:1em;height:1em;background-color:#000;color:#fff;display:flex;align-items:center;justify-content:center}
       .ignored{position:absolute;top:3em;left:1em}
       .legend{position:absolute;top:5em;left:1em}
       .legend__box{height:1vw;width:1vw;margin-right:1vw}
@@ -58,73 +61,9 @@ function build(groups, types) {
   </head>
   <body>
     <div class="legend">${legend.join('')}</div>
-    <div class="types">${types.join(', ')}</div>
-    <div class="ignored">${ignored.join(', ')}</div>
+    <div class="types">Included types: ${types.join(', ')}</div>
+    <div class="ignored">Ignored types: ${ignored.join(', ')}</div>
     <div class="chart">${els.join('')}</div>
   </body>
   </html>`;
-}
-
-function formatDate(date) {
-  const [year, month] = date.split('-');
-
-  return `${year}-${month.length < 2 ? `0${month}` : month}`;
-}
-
-function getReportedTypes(data) {
-  const types = [];
-
-  data.forEach((datum) => {
-    datum.counts.forEach((info) => {
-      types.push(Object.keys(info.count));
-    });
-  });
-
-  return uniq(flatten(types)).filter((type) => type !== 'SUM').sort();
-}
-
-function parse(data) {
-  data.forEach((datum) => {
-    datum.counts.forEach((info) => {
-      info.date = formatDate(info.date);
-    });
-    datum.dict = indexBy(datum.counts, 'date');
-  });
-
-  const allDates = uniq(data.reduce((dates, repo) => dates.concat(repo.counts.map((count) => count.date)), []));
-  const changed = allDates
-    .map((date) => formatDate(date))
-    .sort((a, b) => a.localeCompare(b));
-
-  const groups = changed.map((date) => ({
-    date,
-    bars: data.map((datum) => ({
-      repoName: datum.repo.repoName,
-      color: datum.repo.color,
-      count: datum.dict[date] ? datum.dict[date].count.SUM.code : undefined
-    }))
-  }));
-
-  groups.forEach((group, index) => group.bars.forEach((bar, barIndex) => {
-    if (bar.count) {
-      return;
-    }
-
-    bar.count = groups[index] ? groups[index].bars[barIndex].count : 0;
-  }));
-
-  const types = getReportedTypes(data);
-
-  const html = build(groups, types);
-
-  writeFile('chart.html', html);
-}
-
-bluebird
-  .map(repos, (repo) => readFile(`${repo.repoName}__counts.json`).then((raw) => ({
-    repo,
-    counts: JSON.parse(raw)
-  })), {
-    concurrency: 2
-  })
-  .then(parse);
+};

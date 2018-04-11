@@ -1,9 +1,8 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable max-len */
 const ignored = require('../ignored');
-const repos = require('../repos');
 
-module.exports = function render(groups, types) {
+module.exports = function render(groups, types, repos) {
   let maxBar = 0;
   const groupWidth = 90 / groups.length;
 
@@ -17,7 +16,7 @@ module.exports = function render(groups, types) {
 
   const legend = repos.map((repo) => `<div class="legend__item">
     <div class="legend__box" style="background-color:${repo.color}"></div>
-    <div>${repo.repoName}</div>
+    <div>${repo.repoName}: +${repo.insertions} -${repo.deletions} (${repo.diff})</div>
   </div>`);
 
   const els = groups.map((group) => {

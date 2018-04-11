@@ -1,5 +1,6 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable max-len */
+const repos = require('../repos');
 const { keyBy: indexBy, uniq, flatten, groupBy } = require('lodash');
 
 function formatDate(date) {
@@ -28,6 +29,14 @@ module.exports = function parse(data, commitsData) {
       insertions: commit.insertions
     }))
   ), []);
+
+  repos.forEach((repo) => {
+    const commits = commitsData.find((commitData) => commitData.repo.repoName === repo.repoName);
+
+    repo.insertions = commits.commits.reduce((sum, commit) => sum + commit.insertions, 0);
+    repo.deletions = commits.commits.reduce((sum, commit) => sum + commit.deletions, 0);
+    repo.diff = repo.insertions - repo.deletions;
+  });
 
   const changesInMonth = Object.entries(groupBy(dateChanges, 'date'));
 
@@ -78,6 +87,7 @@ module.exports = function parse(data, commitsData) {
 
   return {
     types,
-    groups
+    groups,
+    repos
   };
 };

@@ -18,8 +18,8 @@ module.exports = function chart(repos, skipMonths = 0) {
   return bluebird
     .join(readJson(repos, 'counts'), readJson(repos, 'commits'))
     .then(([counts, commits]) => {
-      const { groups, types } = parse(counts, commits);
-      const html = render(groups.slice(skipMonths), types);
+      const { groups, types, repos } = parse(counts, commits);
+      const html = render(groups.slice(skipMonths), types, repos);
 
       return writeFile('chart.html', html);
     });

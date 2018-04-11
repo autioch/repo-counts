@@ -32,7 +32,9 @@ body {
 
       .group {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  flex: auto;
+  margin: 0 1px;
 }
 
 .group:hover {
@@ -48,7 +50,8 @@ body {
 }
 
 .bar {
-  flex-grow: 1
+  flex: auto;
+  /* width: 2px; */
 }
 
 .bar--sum {
@@ -90,9 +93,11 @@ body {
 .header {
   flex: none;
   transform-origin: center top;
-  transform: rotate(-90deg) translate(-75%, -50%);
+  transform: rotate(90deg) translate(1em, -2em);
   white-space: nowrap;
-  overflow: visible
+  overflow: visible;
+  width: 1px;
+  height: 1px;
 }
 
       .serie {
@@ -113,25 +118,25 @@ body {
     <div>Ignored types: JSON, XML, CSON, XSD, XAML, YAML, Puppet</div>
     <div class="serie">
     <div class="serie__box" style="background-color:#777"></div>
-    <div>Tutorials</div>
+    <div>Tutorials: +9274 -3032 (6242)</div>
   </div><div class="serie">
     <div class="serie__box" style="background-color:#e0e"></div>
-    <div>VDT</div>
+    <div>VDT: +14554 -7200 (7354)</div>
   </div><div class="serie">
     <div class="serie__box" style="background-color:#ee0"></div>
-    <div>App base</div>
+    <div>App base: +45528 -23895 (21633)</div>
   </div><div class="serie">
     <div class="serie__box" style="background-color:#0ee"></div>
-    <div>Action handlers</div>
+    <div>Action handlers: +64224 -65972 (-1748)</div>
   </div><div class="serie">
     <div class="serie__box" style="background-color:#e00"></div>
-    <div>Visualizations</div>
+    <div>Visualizations: +206244 -70854 (135390)</div>
   </div><div class="serie">
     <div class="serie__box" style="background-color:#00e"></div>
-    <div>Backend</div>
+    <div>Backend: +988747 -535388 (453359)</div>
   </div><div class="serie">
     <div class="serie__box" style="background-color:#0e0"></div>
-    <div>Frontend</div>
+    <div>Frontend: +1053487 -989103 (64384)</div>
   </div></div>
       <div class="chart"><div class="group" title="3541">
       <div class="bars">

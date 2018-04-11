@@ -1,0 +1,154 @@
+[
+  {
+    "name": "S3",
+    "start": "2016-11-10",
+    "end": "2017-01-04",
+    "issueCount": 71,
+    "businessDays": 53,
+    "tasksPerDay": 1.34
+  },
+  {
+    "name": "S4",
+    "start": "2016-12-09",
+    "end": "2017-01-10",
+    "issueCount": 99,
+    "businessDays": 28,
+    "tasksPerDay": 3.536
+  },
+  {
+    "name": "S5",
+    "start": "2017-01-05",
+    "end": "2017-03-07",
+    "issueCount": 60,
+    "businessDays": 43,
+    "tasksPerDay": 1.395
+  },
+  {
+    "name": "S6",
+    "start": "2017-02-01",
+    "end": "2017-03-30",
+    "issueCount": 155,
+    "businessDays": 41,
+    "tasksPerDay": 3.78
+  },
+  {
+    "name": "S7",
+    "start": "2017-03-08",
+    "end": "2017-05-12",
+    "issueCount": 148,
+    "businessDays": 47,
+    "tasksPerDay": 3.149
+  },
+  {
+    "name": "S8",
+    "start": "2017-04-26",
+    "end": "2017-06-29",
+    "issueCount": 344,
+    "businessDays": 46,
+    "tasksPerDay": 7.478
+  },
+  {
+    "name": "S9",
+    "start": "2017-06-19",
+    "end": "2017-07-17",
+    "issueCount": 74,
+    "businessDays": 20,
+    "tasksPerDay": 3.7
+  },
+  {
+    "name": "S10",
+    "start": "2017-07-14",
+    "end": "2017-09-04",
+    "issueCount": 43,
+    "businessDays": 36,
+    "tasksPerDay": 1.194
+  },
+  {
+    "name": "S11",
+    "start": "2017-08-07",
+    "end": "2017-09-13",
+    "issueCount": 23,
+    "businessDays": 27,
+    "tasksPerDay": 0.852
+  },
+  {
+    "name": "S12",
+    "start": "2017-08-25",
+    "end": "2017-09-20",
+    "issueCount": 68,
+    "businessDays": 18,
+    "tasksPerDay": 3.778
+  },
+  {
+    "name": "S13",
+    "start": "2017-09-18",
+    "end": "2017-11-09",
+    "issueCount": 72,
+    "businessDays": 38,
+    "tasksPerDay": 1.895
+  },
+  {
+    "name": "S14",
+    "start": "2017-10-17",
+    "end": "2017-12-18",
+    "issueCount": 98,
+    "businessDays": 44,
+    "tasksPerDay": 2.227
+  },
+  {
+    "name": "S15",
+    "start": "2017-11-20",
+    "end": "2018-01-26",
+    "issueCount": 26,
+    "businessDays": 59,
+    "tasksPerDay": 0.441
+  },
+  {
+    "name": "S16",
+    "start": "2017-12-18",
+    "end": "2018-02-22",
+    "issueCount": 208,
+    "businessDays": 50,
+    "tasksPerDay": 4.16
+  },
+  {
+    "name": "VM",
+    "start": "2018-02-08",
+    "end": "2018-04-05",
+    "issueCount": 34,
+    "businessDays": 40,
+    "tasksPerDay": 0.85
+  },
+  {
+    "name": "S17",
+    "start": "2018-01-26",
+    "end": "2018-03-09",
+    "issueCount": 105,
+    "businessDays": 30,
+    "tasksPerDay": 3.5
+  },
+  {
+    "name": "S18",
+    "start": "2018-02-22",
+    "end": "2018-04-05",
+    "issueCount": 53,
+    "businessDays": 30,
+    "tasksPerDay": 1.767
+  },
+  {
+    "name": "S19",
+    "start": "2018-03-08",
+    "end": "2018-04-11",
+    "issueCount": 156,
+    "businessDays": 24,
+    "tasksPerDay": 6.5
+  },
+  {
+    "name": "S20",
+    "start": "2018-03-28",
+    "issueCount": 328,
+    "end": "2018-04-11",
+    "businessDays": 10,
+    "tasksPerDay": 32.8
+  }
+]

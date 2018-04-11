@@ -23,7 +23,7 @@ module.exports = function chart(repos, skipMonths = 0) {
     .join(readJsons(repos, 'counts'), readJsons(repos, 'commits'))
     .then(() => {
       const { groups, types } = parse(repos);
-      const html = render(groups.slice(skipMonths), types);
+      const html = render(groups.slice(skipMonths), types, repos);
 
       return writeFile('chart.html', html);
     });

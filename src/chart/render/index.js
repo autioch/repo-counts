@@ -9,9 +9,9 @@ function loadStyle(styleName) {
   return fs.readFileSync(`${join(__dirname, styleName)}.css`, 'utf8'); // eslint-disable-line no-sync
 }
 
-module.exports = function render(groups, types) {
+module.exports = function render(groups, types, repos) {
   const groupEls = groupsTemplate(groups);
-  const legendEls = legendsTemplate(types);
+  const legendEls = legendsTemplate(types, repos);
 
   return `<!doctype html>
   <html>

@@ -1,0 +1,10 @@
+.serie {
+  display: flex;
+  align-items: center;
+}
+
+.serie__box {
+  height: 1vw;
+  width: 1vw;
+  margin-right: .5vw;
+}

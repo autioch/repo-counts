@@ -1,5 +1,5 @@
 const { execSync } = require('child_process');
-const { optionsToCli } = require('../utils');
+const { optionsToCli } = require('./utils');
 
 const MILISECOND = 1000;
 

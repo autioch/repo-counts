@@ -1,5 +1,7 @@
 const getCommits = require('./getCommits');
-const { countCommit, getNthCommitInfo, clone, getNextMonthFirstDay, findFirstCommitInMonth } = require('./utils');
+const countLines = require('./countLines');
+const getNthCommitInfo = require('./getNthCommitInfo');
+const { clone, getNextMonthFirstDay, findFirstCommitInMonth } = require('./utils');
 const { writeFile } = require('../utils');
 
 function scanRepo(folder) {
@@ -12,7 +14,7 @@ function scanRepo(folder) {
   const commits = getCommits(hash).reverse();
   const counts = [{
     date,
-    count: countCommit(folder, hash)
+    count: countLines(folder, hash)
   }];
 
   while (new Date(currentDateString).getTime() < now) {
@@ -22,7 +24,7 @@ function scanRepo(folder) {
 
     counts.push({
       date: currentDateString,
-      count: commit ? countCommit(folder, commit.hash) : clone(counts[counts.length - 1].count)
+      count: commit ? countLines(folder, commit.hash) : clone(counts[counts.length - 1].count)
     });
   }
 

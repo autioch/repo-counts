@@ -1,8 +1,16 @@
 /* eslint-disable no-magic-numbers */
-const countLines = require('./countLines');
 const getCommits = require('./getCommits');
-const { execSync } = require('child_process');
-const { optionsToCli } = require('../utils');
+
+function optionsToCli(options) {
+  return Object
+    .entries(options)
+    .reduce((arr, [key, val]) => {
+      const value = val === undefined ? '' : `=${val}`; // eslint-disable-line no-undefined
+
+      return arr.concat(`--${key}${value}`);
+    }, [])
+    .join(' ');
+}
 
 function getNextMonthFirstDay(dateString) {
   const date = new Date(dateString);
@@ -27,33 +35,8 @@ function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-const nthCommitOptions = optionsToCli({
-  'max-count': 1,
-  pretty: 'format:"%H;%at"'
-});
-
-function getNthCommitInfo(commitNr) {
-  const totalCommits = execSync('git rev-list HEAD --count');
-  const skip = parseInt(totalCommits, 10) - commitNr;
-  const info = execSync(`git log --skip=${skip} ${nthCommitOptions}`).toString();
-  const [hash, date] = info.split(';');
-
-  return {
-    hash,
-    date: new Date(date * 1000).toISOString().split('T')[0]
-  };
-}
-
-function countCommit(folder, hash) {
-  execSync(`git reset --hard`);
-  execSync(`git checkout ${hash}`);
-
-  return countLines(folder);
-}
-
 module.exports = {
-  countCommit,
-  getNthCommitInfo,
+  optionsToCli,
   clone,
   getCommits,
   getNextMonthFirstDay,

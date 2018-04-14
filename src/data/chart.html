@@ -1,0 +1,331 @@
+<!doctype html>
+  <html>
+    <head>
+      <style type="text/css">
+      html,
+body {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: Verdana;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.legend {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+.legend > div {
+  margin-bottom: .5vw;
+}
+
+      .group {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  margin: 0 1px;
+}
+
+.group:hover {
+  background: #def
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  height: calc(100% - 7em);
+  position: relative;
+  z-index: 1
+}
+
+.bar {
+  flex: auto;
+  /* width: 2px; */
+}
+
+.bar--sum {
+  flex-grow: 1;
+  background: #bbb;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1
+}
+
+.deletions {
+  position: absolute;
+  left: .25em;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.insertions {
+  position: absolute;
+  right: .25em;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.header {
+  flex: none;
+  transform-origin: center top;
+  transform: rotate(90deg) translate(1em, -2em);
+  white-space: nowrap;
+  overflow: visible;
+  width: 1px;
+  height: 1px;
+}
+
+      .serie {
+  display: flex;
+  align-items: center;
+}
+
+.serie__box {
+  height: 1vw;
+  width: 1vw;
+  margin-right: .5vw;
+}
+
+      </style>
+    </head>
+    <body>
+      <div class="legend"><div>Included types: Ant, CSS, HTML, JSX, JavaScript, Markdown, Sass</div>
+    <div>Ignored types: JSON, XML, CSON, XSD, XAML, YAML, Puppet</div>
+    <div class="serie">
+    <div class="serie__box" style="background-color:#e00"></div>
+    <div>domGames: +11077 -16635 (-5558)</div>
+  </div><div class="serie">
+    <div class="serie__box" style="background-color:#0e0"></div>
+    <div>movie-collector: +267217 -254218 (12999)</div>
+  </div><div class="serie">
+    <div class="serie__box" style="background-color:#00e"></div>
+    <div>generator-qb: +1322 -703 (619)</div>
+  </div></div>
+      <div class="chart"><div class="group" title="513">
+      <div class="bars">
+        <div class="deletions" title="21" style="bottom:0.27400835073068897%">-</div>
+        <div class="insertions" title="29075" style="bottom:379.37108559498955%">+</div>
+        <div class="bar--sum" title="513" style="height:6.693632567849687%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="513" style="height:6.693632567849687%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-05</div>
+    </div><div class="group" title="1540">
+      <div class="bars">
+        <div class="deletions" title="90890" style="bottom:1185.9342379958246%">-</div>
+        <div class="insertions" title="135054" style="bottom:1762.186847599165%">+</div>
+        <div class="bar--sum" title="1540" style="height:20.093945720250524%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1540" style="height:20.093945720250524%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-06</div>
+    </div><div class="group" title="1540">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1540" style="height:20.093945720250524%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1540" style="height:20.093945720250524%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-07</div>
+    </div><div class="group" title="1540">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1540" style="height:20.093945720250524%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1540" style="height:20.093945720250524%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-08</div>
+    </div><div class="group" title="1540">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1540" style="height:20.093945720250524%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1540" style="height:20.093945720250524%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-09</div>
+    </div><div class="group" title="760">
+      <div class="bars">
+        <div class="deletions" title="73714" style="bottom:961.821503131524%">-</div>
+        <div class="insertions" title="1133" style="bottom:14.783402922755743%">+</div>
+        <div class="bar--sum" title="760" style="height:9.916492693110648%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="760" style="height:9.916492693110648%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-10</div>
+    </div><div class="group" title="760">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="760" style="height:9.916492693110648%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="760" style="height:9.916492693110648%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-11</div>
+    </div><div class="group" title="1972">
+      <div class="bars">
+        <div class="deletions" title="979" style="bottom:12.77400835073069%">-</div>
+        <div class="insertions" title="2591" style="bottom:33.80741127348643%">+</div>
+        <div class="bar--sum" title="1972" style="height:25.730688935281837%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1972" style="height:25.730688935281837%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2016-12</div>
+    </div><div class="group" title="1248">
+      <div class="bars">
+        <div class="deletions" title="1391" style="bottom:18.149791231732777%">-</div>
+        <div class="insertions" title="1017" style="bottom:13.26983298538622%">+</div>
+        <div class="bar--sum" title="1248" style="height:16.2839248434238%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1248" style="height:16.2839248434238%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-01</div>
+    </div><div class="group" title="1427">
+      <div class="bars">
+        <div class="deletions" title="245" style="bottom:3.1967640918580376%">-</div>
+        <div class="insertions" title="1198" style="bottom:15.63152400835073%">+</div>
+        <div class="bar--sum" title="1427" style="height:18.619519832985386%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1427" style="height:18.619519832985386%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-02</div>
+    </div><div class="group" title="1775">
+      <div class="bars">
+        <div class="deletions" title="1706" style="bottom:22.25991649269311%">-</div>
+        <div class="insertions" title="2794" style="bottom:36.45615866388309%">+</div>
+        <div class="bar--sum" title="1775" style="height:23.160229645093946%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1775" style="height:23.160229645093946%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-03</div>
+    </div><div class="group" title="1499">
+      <div class="bars">
+        <div class="deletions" title="177" style="bottom:2.309498956158664%">-</div>
+        <div class="insertions" title="224" style="bottom:2.9227557411273484%">+</div>
+        <div class="bar--sum" title="1499" style="height:19.558977035490603%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-04</div>
+    </div><div class="group" title="1499">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1499" style="height:19.558977035490603%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-05</div>
+    </div><div class="group" title="1499">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1499" style="height:19.558977035490603%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-06</div>
+    </div><div class="group" title="1499">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1499" style="height:19.558977035490603%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-07</div>
+    </div><div class="group" title="1499">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1499" style="height:19.558977035490603%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-08</div>
+    </div><div class="group" title="1499">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1499" style="height:19.558977035490603%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="0" style="height:0%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-09</div>
+    </div><div class="group" title="1741">
+      <div class="bars">
+        <div class="deletions" title="18" style="bottom:0.23486430062630478%">-</div>
+        <div class="insertions" title="590" style="bottom:7.698329853862212%">+</div>
+        <div class="bar--sum" title="1741" style="height:22.71659707724426%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="242" style="height:3.157620041753653%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-10</div>
+    </div><div class="group" title="1741">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1741" style="height:22.71659707724426%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="242" style="height:3.157620041753653%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-11</div>
+    </div><div class="group" title="1741">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="1741" style="height:22.71659707724426%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1499" style="height:19.558977035490603%;background-color:#0e0"></div><div class="bar" title="242" style="height:3.157620041753653%;background-color:#00e"></div>
+      </div>
+      <div class="header">2017-12</div>
+    </div><div class="group" title="2382">
+      <div class="bars">
+        <div class="deletions" title="68401" style="bottom:892.4973903966597%">-</div>
+        <div class="insertions" title="93263" style="bottom:1216.8971816283924%">+</div>
+        <div class="bar--sum" title="2382" style="height:31.080375782881003%"></div>
+        <div class="bar" title="0" style="height:0%;background-color:#e00"></div><div class="bar" title="1550" style="height:20.224425887265134%;background-color:#0e0"></div><div class="bar" title="832" style="height:10.855949895615867%;background-color:#00e"></div>
+      </div>
+      <div class="header">2018-01</div>
+    </div><div class="group" title="7664">
+      <div class="bars">
+        <div class="deletions" title="4541" style="bottom:59.25104384133611%">-</div>
+        <div class="insertions" title="4668" style="bottom:60.908141962421716%">+</div>
+        <div class="bar--sum" title="7664" style="height:100%"></div>
+        <div class="bar" title="5282" style="height:68.91962421711901%;background-color:#e00"></div><div class="bar" title="1550" style="height:20.224425887265134%;background-color:#0e0"></div><div class="bar" title="832" style="height:10.855949895615867%;background-color:#00e"></div>
+      </div>
+      <div class="header">2018-02</div>
+    </div><div class="group" title="4751">
+      <div class="bars">
+        <div class="deletions" title="12094" style="bottom:157.8027139874739%">-</div>
+        <div class="insertions" title="6409" style="bottom:83.62473903966597%">+</div>
+        <div class="bar--sum" title="4751" style="height:61.991127348643005%"></div>
+        <div class="bar" title="2369" style="height:30.910751565762006%;background-color:#e00"></div><div class="bar" title="1550" style="height:20.224425887265134%;background-color:#0e0"></div><div class="bar" title="832" style="height:10.855949895615867%;background-color:#00e"></div>
+      </div>
+      <div class="header">2018-03</div>
+    </div><div class="group" title="5396">
+      <div class="bars">
+        <div class="deletions" title="17379" style="bottom:226.76148225469728%">-</div>
+        <div class="insertions" title="1600" style="bottom:20.876826722338205%">+</div>
+        <div class="bar--sum" title="5396" style="height:70.4070981210856%"></div>
+        <div class="bar" title="2369" style="height:30.910751565762006%;background-color:#e00"></div><div class="bar" title="2195" style="height:28.640396659707722%;background-color:#0e0"></div><div class="bar" title="832" style="height:10.855949895615867%;background-color:#00e"></div>
+      </div>
+      <div class="header">2018-04</div>
+    </div><div class="group" title="5396">
+      <div class="bars">
+        <div class="deletions" title="undefined" style="bottom:NaN%">-</div>
+        <div class="insertions" title="undefined" style="bottom:NaN%">+</div>
+        <div class="bar--sum" title="5396" style="height:70.4070981210856%"></div>
+        <div class="bar" title="2369" style="height:30.910751565762006%;background-color:#e00"></div><div class="bar" title="2195" style="height:28.640396659707722%;background-color:#0e0"></div><div class="bar" title="832" style="height:10.855949895615867%;background-color:#00e"></div>
+      </div>
+      <div class="header">2018-05</div>
+    </div></div>
+    </body>
+  </html>

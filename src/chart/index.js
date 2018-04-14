@@ -18,12 +18,12 @@ function readJsons(repos, prop) {
   });
 }
 
-module.exports = function chart(repos, skipMonths = 0) {
+module.exports = function chart({ repos, ignored }) {
   return bluebird
     .join(readJsons(repos, 'counts'), readJsons(repos, 'commits'))
     .then(() => {
       const { groups, types } = parse(repos);
-      const html = render(groups.slice(skipMonths), types, repos);
+      const html = render(groups, types, repos, ignored);
 
       return writeFile('chart.html', html);
     });

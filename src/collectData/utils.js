@@ -13,7 +13,12 @@ function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+const execSyncOptions = {
+  stdio: ['ignore', 'pipe', 'pipe']
+};
+
 module.exports = {
   optionsToCli,
-  clone
+  clone,
+  execSyncOptions
 };

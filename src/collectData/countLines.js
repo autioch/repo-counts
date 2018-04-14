@@ -15,7 +15,7 @@ const options = optionsToCli({
 });
 
 module.exports = function countLines(folder, commitHash) {
-  execSync(`git reset --hard`);
+  // execSync(`git reset --hard`);
   execSync(`git checkout ${commitHash}`);
 
   const resultsJson = execSync(`perl ${clocPath} ${options} ${folder}`);

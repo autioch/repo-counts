@@ -1,31 +1,15 @@
 const { join } = require('path');
 
 module.exports = [{
-  folder: join('c:', 'Software', 'Slideworx', 'Modules.Tutorials'),
-  repoName: 'Tutorials',
-  color: '#777'
-}, {
-  folder: join('c:', 'Software', 'Slideworx', 'swx.vdt'),
-  repoName: 'VDT',
-  color: '#e0e'
-}, {
-  folder: join('c:', 'Software', 'Slideworx', 'swx-app-base'),
-  repoName: 'App base',
-  color: '#ee0'
-}, {
-  folder: join('c:', 'Software', 'Slideworx', 'av-action-handlers'),
-  repoName: 'Action handlers',
-  color: '#0ee'
-}, {
-  folder: join('c:', 'Software', 'Slideworx', 'Visualizations'),
-  repoName: 'Visualizations',
+  folder: join('e:', 'projects', 'domGames'),
+  repoName: 'domGames',
   color: '#e00'
 }, {
-  folder: join('c:', 'Software', 'Slideworx', 'SlideWorx.Analyzer.Back'),
-  repoName: 'Backend',
-  color: '#00e'
-}, {
-  folder: join('c:', 'Software', 'Slideworx', 'SlideWorx.Analyzer.Web.Develop'),
-  repoName: 'Frontend',
+  folder: join('e:', 'projects', 'movie-collector'),
+  repoName: 'movie-collector',
   color: '#0e0'
+}, {
+  folder: join('e:', 'projects', 'generator-qb'),
+  repoName: 'generator-qb',
+  color: '#00e'
 }];

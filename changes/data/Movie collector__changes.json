@@ -1,24 +1,24 @@
 {
   "changes": {
-    "2016-10-31": 239,
-    "2016-12-17": 348,
-    "2017-01-26": 272,
-    "2017-02-18": 807,
+    "2016-10-31": 233,
+    "2016-12-17": 347,
+    "2017-01-26": 270,
+    "2017-02-18": 413,
     "2017-01-28": 172,
-    "2017-03-30": 61,
-    "2017-01-29": 195,
+    "2017-03-30": 56,
+    "2017-01-29": 193,
     "2016-12-22": 6,
     "2017-02-03": 35,
     "2016-12-18": 84,
-    "2017-03-04": 2046,
+    "2017-03-04": 150,
     "2017-02-20": 12,
-    "2017-04-23": 211,
-    "2017-02-12": 9,
+    "2017-04-23": 210,
+    "2017-02-12": 2,
     "2017-01-30": 15,
     "2017-02-24": 36,
-    "2018-04-18": 5749,
-    "2016-05-14": 15,
-    "2015-11-22": 24,
+    "2018-04-18": 15,
+    "2016-05-14": 14,
+    "2015-11-22": 6,
     "2016-06-18": 1,
     "2016-05-15": 2
   },
@@ -33,7 +33,6 @@
     "e:/projects/movie-collector/app/tools/input/parseFile",
     "e:/projects/movie-collector/app/tools/list",
     "e:/projects/movie-collector/app/tools/list/parse",
-    "e:/projects/movie-collector/app/tools/list/schema",
     "e:/projects/movie-collector/app/tools/napiproject",
     "e:/projects/movie-collector/app/tools/napiproject/request",
     "e:/projects/movie-collector/app/tools/omdb",
@@ -47,7 +46,6 @@
     "e:/projects/movie-collector/app/tools/validate/workers",
     "e:/projects/movie-collector/app/utils",
     "e:/projects/movie-collector/app/utils/getTicker",
-    "e:/projects/movie-collector",
-    "e:/projects/movie-collector/tools"
+    "e:/projects/movie-collector"
   ]
 }

@@ -1,0 +1,2272 @@
+[
+  {
+    "date": "2014-07-21",
+    "count": {
+      "JavaScript": {
+        "nFiles": 471,
+        "blank": 20400,
+        "comment": 26138,
+        "code": 95060
+      },
+      "CSS": {
+        "nFiles": 83,
+        "blank": 1804,
+        "comment": 2287,
+        "code": 38669
+      },
+      "HTML": {
+        "nFiles": 73,
+        "blank": 2764,
+        "comment": 38,
+        "code": 12152
+      },
+      "Markdown": {
+        "nFiles": 11,
+        "blank": 454,
+        "comment": 0,
+        "code": 894
+      },
+      "Sass": {
+        "nFiles": 10,
+        "blank": 91,
+        "comment": 3,
+        "code": 454
+      },
+      "PHP": {
+        "nFiles": 22,
+        "blank": 28,
+        "comment": 4,
+        "code": 186
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 145
+      },
+      "CoffeeScript": {
+        "nFiles": 1,
+        "blank": 15,
+        "comment": 3,
+        "code": 25
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 25560,
+        "comment": 28496,
+        "code": 147600,
+        "nFiles": 673
+      }
+    }
+  },
+  {
+    "date": "2014-8-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 41,
+        "blank": 221,
+        "comment": 132,
+        "code": 1430
+      },
+      "Sass": {
+        "nFiles": 23,
+        "blank": 122,
+        "comment": 5,
+        "code": 771
+      },
+      "HTML": {
+        "nFiles": 13,
+        "blank": 12,
+        "comment": 6,
+        "code": 308
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 185
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 3,
+        "comment": 1,
+        "code": 57
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 362,
+        "comment": 167,
+        "code": 2766,
+        "nFiles": 80
+      }
+    }
+  },
+  {
+    "date": "2014-9-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 69,
+        "blank": 1008,
+        "comment": 325,
+        "code": 3649
+      },
+      "Sass": {
+        "nFiles": 28,
+        "blank": 208,
+        "comment": 5,
+        "code": 1141
+      },
+      "HTML": {
+        "nFiles": 28,
+        "blank": 40,
+        "comment": 19,
+        "code": 484
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 3,
+        "comment": 1,
+        "code": 369
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 231
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 1263,
+        "comment": 373,
+        "code": 5889,
+        "nFiles": 128
+      }
+    }
+  },
+  {
+    "date": "2014-10-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 102,
+        "blank": 1813,
+        "comment": 466,
+        "code": 6391
+      },
+      "Sass": {
+        "nFiles": 43,
+        "blank": 403,
+        "comment": 18,
+        "code": 2273
+      },
+      "HTML": {
+        "nFiles": 99,
+        "blank": 59,
+        "comment": 19,
+        "code": 1741
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 3,
+        "comment": 1,
+        "code": 369
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 358
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 2282,
+        "comment": 527,
+        "code": 11147,
+        "nFiles": 247
+      }
+    }
+  },
+  {
+    "date": "2014-11-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 133,
+        "blank": 2824,
+        "comment": 562,
+        "code": 9435
+      },
+      "Sass": {
+        "nFiles": 55,
+        "blank": 582,
+        "comment": 43,
+        "code": 3281
+      },
+      "HTML": {
+        "nFiles": 63,
+        "blank": 71,
+        "comment": 9,
+        "code": 1548
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 458
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 3481,
+        "comment": 637,
+        "code": 14737,
+        "nFiles": 253
+      }
+    }
+  },
+  {
+    "date": "2014-12-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 148,
+        "blank": 3535,
+        "comment": 682,
+        "code": 11435
+      },
+      "Sass": {
+        "nFiles": 57,
+        "blank": 869,
+        "comment": 98,
+        "code": 3643
+      },
+      "HTML": {
+        "nFiles": 74,
+        "blank": 83,
+        "comment": 6,
+        "code": 1760
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 484
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 4491,
+        "comment": 809,
+        "code": 17337,
+        "nFiles": 281
+      }
+    }
+  },
+  {
+    "date": "2015-1-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 197,
+        "blank": 4867,
+        "comment": 940,
+        "code": 17158
+      },
+      "Sass": {
+        "nFiles": 65,
+        "blank": 977,
+        "comment": 119,
+        "code": 4029
+      },
+      "HTML": {
+        "nFiles": 93,
+        "blank": 79,
+        "comment": 5,
+        "code": 2071
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 543
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 5932,
+        "comment": 1087,
+        "code": 23883,
+        "nFiles": 358
+      }
+    }
+  },
+  {
+    "date": "2015-2-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 209,
+        "blank": 6592,
+        "comment": 6658,
+        "code": 24908
+      },
+      "Sass": {
+        "nFiles": 83,
+        "blank": 1161,
+        "comment": 161,
+        "code": 4475
+      },
+      "HTML": {
+        "nFiles": 90,
+        "blank": 71,
+        "comment": 4,
+        "code": 2052
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 560
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 7833,
+        "comment": 6846,
+        "code": 32077,
+        "nFiles": 385
+      }
+    }
+  },
+  {
+    "date": "2015-3-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 227,
+        "blank": 6874,
+        "comment": 6663,
+        "code": 26776
+      },
+      "Sass": {
+        "nFiles": 86,
+        "blank": 1143,
+        "comment": 165,
+        "code": 4493
+      },
+      "HTML": {
+        "nFiles": 96,
+        "blank": 53,
+        "comment": 0,
+        "code": 1996
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 582
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 8074,
+        "comment": 6851,
+        "code": 33862,
+        "nFiles": 411
+      }
+    }
+  },
+  {
+    "date": "2015-4-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 251,
+        "blank": 7089,
+        "comment": 6626,
+        "code": 27634
+      },
+      "Sass": {
+        "nFiles": 87,
+        "blank": 1167,
+        "comment": 166,
+        "code": 4596
+      },
+      "HTML": {
+        "nFiles": 105,
+        "blank": 53,
+        "comment": 0,
+        "code": 2162
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 610
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 8313,
+        "comment": 6815,
+        "code": 35017,
+        "nFiles": 445
+      }
+    }
+  },
+  {
+    "date": "2015-5-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 257,
+        "blank": 7414,
+        "comment": 6716,
+        "code": 29359
+      },
+      "Sass": {
+        "nFiles": 90,
+        "blank": 1236,
+        "comment": 165,
+        "code": 4895
+      },
+      "HTML": {
+        "nFiles": 106,
+        "blank": 48,
+        "comment": 0,
+        "code": 2243
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 628
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 8702,
+        "comment": 6904,
+        "code": 37140,
+        "nFiles": 455
+      }
+    }
+  },
+  {
+    "date": "2015-6-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 281,
+        "blank": 7832,
+        "comment": 6693,
+        "code": 31346
+      },
+      "Sass": {
+        "nFiles": 93,
+        "blank": 1276,
+        "comment": 162,
+        "code": 5132
+      },
+      "HTML": {
+        "nFiles": 120,
+        "blank": 46,
+        "comment": 0,
+        "code": 2494
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 641
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 9163,
+        "comment": 6878,
+        "code": 39695,
+        "nFiles": 497
+      }
+    }
+  },
+  {
+    "date": "2015-7-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 259,
+        "blank": 7619,
+        "comment": 6719,
+        "code": 40432
+      },
+      "Sass": {
+        "nFiles": 98,
+        "blank": 1279,
+        "comment": 172,
+        "code": 5248
+      },
+      "HTML": {
+        "nFiles": 115,
+        "blank": 40,
+        "comment": 0,
+        "code": 2380
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 663
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "C#": {
+        "nFiles": 1,
+        "blank": 4,
+        "comment": 16,
+        "code": 15
+      },
+      "SUM": {
+        "blank": 8947,
+        "comment": 6914,
+        "code": 48805,
+        "nFiles": 475
+      }
+    }
+  },
+  {
+    "date": "2015-8-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 258,
+        "blank": 7609,
+        "comment": 6696,
+        "code": 40126
+      },
+      "Sass": {
+        "nFiles": 101,
+        "blank": 1284,
+        "comment": 175,
+        "code": 5294
+      },
+      "HTML": {
+        "nFiles": 114,
+        "blank": 40,
+        "comment": 0,
+        "code": 2359
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 636
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "SUM": {
+        "blank": 8938,
+        "comment": 6878,
+        "code": 48482,
+        "nFiles": 475
+      }
+    }
+  },
+  {
+    "date": "2015-9-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 264,
+        "blank": 7713,
+        "comment": 6730,
+        "code": 40589
+      },
+      "Sass": {
+        "nFiles": 105,
+        "blank": 1329,
+        "comment": 178,
+        "code": 5467
+      },
+      "HTML": {
+        "nFiles": 117,
+        "blank": 40,
+        "comment": 0,
+        "code": 2454
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 651
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "SUM": {
+        "blank": 9087,
+        "comment": 6915,
+        "code": 49228,
+        "nFiles": 488
+      }
+    }
+  },
+  {
+    "date": "2015-10-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 265,
+        "blank": 7781,
+        "comment": 6760,
+        "code": 41031
+      },
+      "Sass": {
+        "nFiles": 115,
+        "blank": 1358,
+        "comment": 188,
+        "code": 5577
+      },
+      "HTML": {
+        "nFiles": 117,
+        "blank": 46,
+        "comment": 8,
+        "code": 2529
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 663
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "SUM": {
+        "blank": 9190,
+        "comment": 6963,
+        "code": 49867,
+        "nFiles": 499
+      }
+    }
+  },
+  {
+    "date": "2015-11-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 266,
+        "blank": 7795,
+        "comment": 6758,
+        "code": 41097
+      },
+      "Sass": {
+        "nFiles": 115,
+        "blank": 1358,
+        "comment": 188,
+        "code": 5577
+      },
+      "HTML": {
+        "nFiles": 118,
+        "blank": 46,
+        "comment": 8,
+        "code": 2542
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 667
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "SUM": {
+        "blank": 9204,
+        "comment": 6961,
+        "code": 49950,
+        "nFiles": 501
+      }
+    }
+  },
+  {
+    "date": "2015-12-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 269,
+        "blank": 7816,
+        "comment": 6766,
+        "code": 41282
+      },
+      "Sass": {
+        "nFiles": 116,
+        "blank": 1364,
+        "comment": 188,
+        "code": 5599
+      },
+      "HTML": {
+        "nFiles": 121,
+        "blank": 46,
+        "comment": 8,
+        "code": 2586
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 671
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "SUM": {
+        "blank": 9231,
+        "comment": 6969,
+        "code": 50205,
+        "nFiles": 508
+      }
+    }
+  },
+  {
+    "date": "2016-1-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 269,
+        "blank": 7816,
+        "comment": 6766,
+        "code": 41285
+      },
+      "Sass": {
+        "nFiles": 116,
+        "blank": 1364,
+        "comment": 188,
+        "code": 5599
+      },
+      "HTML": {
+        "nFiles": 121,
+        "blank": 46,
+        "comment": 8,
+        "code": 2584
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 672
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "SUM": {
+        "blank": 9231,
+        "comment": 6969,
+        "code": 50207,
+        "nFiles": 508
+      }
+    }
+  },
+  {
+    "date": "2016-2-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 272,
+        "blank": 7852,
+        "comment": 6778,
+        "code": 41448
+      },
+      "Sass": {
+        "nFiles": 119,
+        "blank": 1337,
+        "comment": 191,
+        "code": 5625
+      },
+      "HTML": {
+        "nFiles": 125,
+        "blank": 50,
+        "comment": 8,
+        "code": 2613
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 679
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "Markdown": {
+        "nFiles": 1,
+        "blank": 9,
+        "comment": 0,
+        "code": 32
+      },
+      "SUM": {
+        "blank": 9253,
+        "comment": 6984,
+        "code": 50464,
+        "nFiles": 519
+      }
+    }
+  },
+  {
+    "date": "2016-3-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 272,
+        "blank": 7854,
+        "comment": 6779,
+        "code": 41549
+      },
+      "Sass": {
+        "nFiles": 119,
+        "blank": 1338,
+        "comment": 191,
+        "code": 5632
+      },
+      "HTML": {
+        "nFiles": 124,
+        "blank": 50,
+        "comment": 8,
+        "code": 2614
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 678
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "Markdown": {
+        "nFiles": 1,
+        "blank": 9,
+        "comment": 0,
+        "code": 32
+      },
+      "SUM": {
+        "blank": 9256,
+        "comment": 6985,
+        "code": 50572,
+        "nFiles": 518
+      }
+    }
+  },
+  {
+    "date": "2016-4-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 275,
+        "blank": 7833,
+        "comment": 6771,
+        "code": 41970
+      },
+      "Sass": {
+        "nFiles": 119,
+        "blank": 1339,
+        "comment": 191,
+        "code": 5635
+      },
+      "HTML": {
+        "nFiles": 125,
+        "blank": 34,
+        "comment": 8,
+        "code": 2626
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 678
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "Markdown": {
+        "nFiles": 1,
+        "blank": 9,
+        "comment": 0,
+        "code": 32
+      },
+      "SUM": {
+        "blank": 9220,
+        "comment": 6977,
+        "code": 51008,
+        "nFiles": 522
+      }
+    }
+  },
+  {
+    "date": "2016-5-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 279,
+        "blank": 7728,
+        "comment": 6737,
+        "code": 42015
+      },
+      "Sass": {
+        "nFiles": 119,
+        "blank": 1339,
+        "comment": 191,
+        "code": 5635
+      },
+      "HTML": {
+        "nFiles": 125,
+        "blank": 34,
+        "comment": 8,
+        "code": 2626
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 678
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "Markdown": {
+        "nFiles": 1,
+        "blank": 9,
+        "comment": 0,
+        "code": 32
+      },
+      "SUM": {
+        "blank": 9115,
+        "comment": 6943,
+        "code": 51053,
+        "nFiles": 526
+      }
+    }
+  },
+  {
+    "date": "2016-6-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 281,
+        "blank": 7600,
+        "comment": 6714,
+        "code": 32645
+      },
+      "Sass": {
+        "nFiles": 119,
+        "blank": 1334,
+        "comment": 186,
+        "code": 5658
+      },
+      "HTML": {
+        "nFiles": 125,
+        "blank": 30,
+        "comment": 8,
+        "code": 2646
+      },
+      "MSBuild script": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 7,
+        "code": 678
+      },
+      "Razor": {
+        "nFiles": 1,
+        "blank": 5,
+        "comment": 0,
+        "code": 67
+      },
+      "Markdown": {
+        "nFiles": 1,
+        "blank": 13,
+        "comment": 0,
+        "code": 47
+      },
+      "SUM": {
+        "blank": 8982,
+        "comment": 6915,
+        "code": 41741,
+        "nFiles": 528
+      }
+    }
+  },
+  {
+    "date": "2016-7-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 363,
+        "blank": 7896,
+        "comment": 7440,
+        "code": 37575
+      },
+      "Sass": {
+        "nFiles": 130,
+        "blank": 1337,
+        "comment": 71,
+        "code": 5928
+      },
+      "Smarty": {
+        "nFiles": 113,
+        "blank": 27,
+        "comment": 0,
+        "code": 2220
+      },
+      "Markdown": {
+        "nFiles": 4,
+        "blank": 111,
+        "comment": 0,
+        "code": 239
+      },
+      "HTML": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 0,
+        "code": 86
+      },
+      "SUM": {
+        "blank": 9371,
+        "comment": 7511,
+        "code": 46048,
+        "nFiles": 611
+      }
+    }
+  },
+  {
+    "date": "2016-8-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 501,
+        "blank": 5698,
+        "comment": 1575,
+        "code": 29958
+      },
+      "Sass": {
+        "nFiles": 160,
+        "blank": 1357,
+        "comment": 60,
+        "code": 6196
+      },
+      "Smarty": {
+        "nFiles": 130,
+        "blank": 24,
+        "comment": 0,
+        "code": 2423
+      },
+      "Markdown": {
+        "nFiles": 4,
+        "blank": 113,
+        "comment": 0,
+        "code": 242
+      },
+      "HTML": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 0,
+        "code": 86
+      },
+      "SUM": {
+        "blank": 7192,
+        "comment": 1635,
+        "code": 38905,
+        "nFiles": 796
+      }
+    }
+  },
+  {
+    "date": "2016-9-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 574,
+        "blank": 6067,
+        "comment": 1638,
+        "code": 31985
+      },
+      "Sass": {
+        "nFiles": 182,
+        "blank": 1487,
+        "comment": 71,
+        "code": 6871
+      },
+      "Smarty": {
+        "nFiles": 144,
+        "blank": 45,
+        "comment": 0,
+        "code": 2504
+      },
+      "Markdown": {
+        "nFiles": 4,
+        "blank": 113,
+        "comment": 0,
+        "code": 242
+      },
+      "HTML": {
+        "nFiles": 1,
+        "blank": 0,
+        "comment": 0,
+        "code": 65
+      },
+      "SUM": {
+        "blank": 7712,
+        "comment": 1709,
+        "code": 41667,
+        "nFiles": 905
+      }
+    }
+  },
+  {
+    "date": "2016-10-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 786,
+        "blank": 6443,
+        "comment": 1782,
+        "code": 36391
+      },
+      "Sass": {
+        "nFiles": 201,
+        "blank": 1574,
+        "comment": 68,
+        "code": 7331
+      },
+      "Smarty": {
+        "nFiles": 150,
+        "blank": 41,
+        "comment": 0,
+        "code": 2491
+      },
+      "Markdown": {
+        "nFiles": 5,
+        "blank": 109,
+        "comment": 0,
+        "code": 275
+      },
+      "HTML": {
+        "nFiles": 1,
+        "blank": 3,
+        "comment": 0,
+        "code": 65
+      },
+      "SUM": {
+        "blank": 8170,
+        "comment": 1850,
+        "code": 46553,
+        "nFiles": 1143
+      }
+    }
+  },
+  {
+    "date": "2016-11-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 785,
+        "blank": 5807,
+        "comment": 1492,
+        "code": 35554
+      },
+      "Sass": {
+        "nFiles": 222,
+        "blank": 1536,
+        "comment": 51,
+        "code": 7233
+      },
+      "Smarty": {
+        "nFiles": 161,
+        "blank": 40,
+        "comment": 0,
+        "code": 2601
+      },
+      "Markdown": {
+        "nFiles": 5,
+        "blank": 109,
+        "comment": 0,
+        "code": 275
+      },
+      "HTML": {
+        "nFiles": 2,
+        "blank": 3,
+        "comment": 0,
+        "code": 59
+      },
+      "SUM": {
+        "blank": 7495,
+        "comment": 1543,
+        "code": 45722,
+        "nFiles": 1175
+      }
+    }
+  },
+  {
+    "date": "2016-12-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 833,
+        "blank": 7529,
+        "comment": 1863,
+        "code": 37364
+      },
+      "Sass": {
+        "nFiles": 241,
+        "blank": 1538,
+        "comment": 42,
+        "code": 7311
+      },
+      "Smarty": {
+        "nFiles": 173,
+        "blank": 39,
+        "comment": 0,
+        "code": 2659
+      },
+      "Markdown": {
+        "nFiles": 5,
+        "blank": 109,
+        "comment": 0,
+        "code": 275
+      },
+      "HTML": {
+        "nFiles": 2,
+        "blank": 3,
+        "comment": 0,
+        "code": 59
+      },
+      "SUM": {
+        "blank": 9218,
+        "comment": 1905,
+        "code": 47668,
+        "nFiles": 1254
+      }
+    }
+  },
+  {
+    "date": "2017-1-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 855,
+        "blank": 8850,
+        "comment": 2675,
+        "code": 44846
+      },
+      "Sass": {
+        "nFiles": 248,
+        "blank": 1602,
+        "comment": 43,
+        "code": 7617
+      },
+      "Smarty": {
+        "nFiles": 171,
+        "blank": 40,
+        "comment": 0,
+        "code": 2641
+      },
+      "Markdown": {
+        "nFiles": 5,
+        "blank": 109,
+        "comment": 0,
+        "code": 275
+      },
+      "HTML": {
+        "nFiles": 2,
+        "blank": 3,
+        "comment": 0,
+        "code": 60
+      },
+      "SUM": {
+        "blank": 10604,
+        "comment": 2718,
+        "code": 55439,
+        "nFiles": 1281
+      }
+    }
+  },
+  {
+    "date": "2017-2-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 914,
+        "blank": 9357,
+        "comment": 2758,
+        "code": 46409
+      },
+      "Sass": {
+        "nFiles": 274,
+        "blank": 1677,
+        "comment": 42,
+        "code": 8159
+      },
+      "Smarty": {
+        "nFiles": 177,
+        "blank": 45,
+        "comment": 0,
+        "code": 2690
+      },
+      "Markdown": {
+        "nFiles": 7,
+        "blank": 195,
+        "comment": 0,
+        "code": 562
+      },
+      "HTML": {
+        "nFiles": 2,
+        "blank": 3,
+        "comment": 0,
+        "code": 61
+      },
+      "SUM": {
+        "blank": 11277,
+        "comment": 2800,
+        "code": 57881,
+        "nFiles": 1374
+      }
+    }
+  },
+  {
+    "date": "2017-3-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 937,
+        "blank": 9762,
+        "comment": 2956,
+        "code": 48155
+      },
+      "Sass": {
+        "nFiles": 285,
+        "blank": 1710,
+        "comment": 48,
+        "code": 8371
+      },
+      "Smarty": {
+        "nFiles": 179,
+        "blank": 56,
+        "comment": 0,
+        "code": 2765
+      },
+      "Markdown": {
+        "nFiles": 8,
+        "blank": 197,
+        "comment": 0,
+        "code": 594
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 8,
+        "comment": 1,
+        "code": 234
+      },
+      "HTML": {
+        "nFiles": 3,
+        "blank": 25,
+        "comment": 0,
+        "code": 209
+      },
+      "SUM": {
+        "blank": 11758,
+        "comment": 3005,
+        "code": 60328,
+        "nFiles": 1413
+      }
+    }
+  },
+  {
+    "date": "2017-4-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 946,
+        "blank": 10010,
+        "comment": 3044,
+        "code": 48906
+      },
+      "Sass": {
+        "nFiles": 278,
+        "blank": 1736,
+        "comment": 46,
+        "code": 8417
+      },
+      "Smarty": {
+        "nFiles": 177,
+        "blank": 57,
+        "comment": 0,
+        "code": 2997
+      },
+      "Markdown": {
+        "nFiles": 10,
+        "blank": 220,
+        "comment": 0,
+        "code": 699
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 15,
+        "comment": 1,
+        "code": 395
+      },
+      "HTML": {
+        "nFiles": 3,
+        "blank": 25,
+        "comment": 0,
+        "code": 338
+      },
+      "SUM": {
+        "blank": 12063,
+        "comment": 3091,
+        "code": 61752,
+        "nFiles": 1415
+      }
+    }
+  },
+  {
+    "date": "2017-5-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 979,
+        "blank": 9810,
+        "comment": 2883,
+        "code": 48935
+      },
+      "Sass": {
+        "nFiles": 279,
+        "blank": 1706,
+        "comment": 48,
+        "code": 8245
+      },
+      "Smarty": {
+        "nFiles": 182,
+        "blank": 51,
+        "comment": 0,
+        "code": 2992
+      },
+      "HTML": {
+        "nFiles": 7,
+        "blank": 105,
+        "comment": 2,
+        "code": 1854
+      },
+      "Markdown": {
+        "nFiles": 8,
+        "blank": 219,
+        "comment": 0,
+        "code": 615
+      },
+      "SUM": {
+        "blank": 11891,
+        "comment": 2933,
+        "code": 62641,
+        "nFiles": 1455
+      }
+    }
+  },
+  {
+    "date": "2017-6-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1012,
+        "blank": 10165,
+        "comment": 3034,
+        "code": 50391
+      },
+      "Sass": {
+        "nFiles": 288,
+        "blank": 1754,
+        "comment": 56,
+        "code": 8470
+      },
+      "Smarty": {
+        "nFiles": 185,
+        "blank": 51,
+        "comment": 0,
+        "code": 3025
+      },
+      "HTML": {
+        "nFiles": 8,
+        "blank": 105,
+        "comment": 2,
+        "code": 1911
+      },
+      "Markdown": {
+        "nFiles": 8,
+        "blank": 219,
+        "comment": 0,
+        "code": 615
+      },
+      "SUM": {
+        "blank": 12294,
+        "comment": 3092,
+        "code": 64412,
+        "nFiles": 1501
+      }
+    }
+  },
+  {
+    "date": "2017-7-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1026,
+        "blank": 10538,
+        "comment": 3179,
+        "code": 51123
+      },
+      "Sass": {
+        "nFiles": 298,
+        "blank": 1805,
+        "comment": 66,
+        "code": 8768
+      },
+      "Smarty": {
+        "nFiles": 187,
+        "blank": 60,
+        "comment": 0,
+        "code": 2980
+      },
+      "HTML": {
+        "nFiles": 8,
+        "blank": 126,
+        "comment": 2,
+        "code": 1937
+      },
+      "Markdown": {
+        "nFiles": 8,
+        "blank": 219,
+        "comment": 0,
+        "code": 615
+      },
+      "SUM": {
+        "blank": 12748,
+        "comment": 3247,
+        "code": 65423,
+        "nFiles": 1527
+      }
+    }
+  },
+  {
+    "date": "2017-8-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1071,
+        "blank": 11122,
+        "comment": 3334,
+        "code": 53510
+      },
+      "Sass": {
+        "nFiles": 306,
+        "blank": 1831,
+        "comment": 63,
+        "code": 8804
+      },
+      "Smarty": {
+        "nFiles": 192,
+        "blank": 64,
+        "comment": 0,
+        "code": 3005
+      },
+      "HTML": {
+        "nFiles": 10,
+        "blank": 113,
+        "comment": 2,
+        "code": 2042
+      },
+      "Markdown": {
+        "nFiles": 4,
+        "blank": 113,
+        "comment": 0,
+        "code": 365
+      },
+      "SUM": {
+        "blank": 13243,
+        "comment": 3399,
+        "code": 67726,
+        "nFiles": 1583
+      }
+    }
+  },
+  {
+    "date": "2017-9-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1103,
+        "blank": 11548,
+        "comment": 3523,
+        "code": 54929
+      },
+      "Sass": {
+        "nFiles": 309,
+        "blank": 1860,
+        "comment": 63,
+        "code": 8936
+      },
+      "Smarty": {
+        "nFiles": 197,
+        "blank": 65,
+        "comment": 0,
+        "code": 3027
+      },
+      "HTML": {
+        "nFiles": 11,
+        "blank": 120,
+        "comment": 2,
+        "code": 2131
+      },
+      "Markdown": {
+        "nFiles": 7,
+        "blank": 122,
+        "comment": 0,
+        "code": 410
+      },
+      "SUM": {
+        "blank": 13715,
+        "comment": 3588,
+        "code": 69433,
+        "nFiles": 1627
+      }
+    }
+  },
+  {
+    "date": "2017-10-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1238,
+        "blank": 11478,
+        "comment": 2855,
+        "code": 52774
+      },
+      "Sass": {
+        "nFiles": 339,
+        "blank": 1972,
+        "comment": 69,
+        "code": 9501
+      },
+      "Smarty": {
+        "nFiles": 213,
+        "blank": 66,
+        "comment": 0,
+        "code": 3198
+      },
+      "HTML": {
+        "nFiles": 11,
+        "blank": 120,
+        "comment": 2,
+        "code": 2131
+      },
+      "Markdown": {
+        "nFiles": 10,
+        "blank": 141,
+        "comment": 0,
+        "code": 490
+      },
+      "SUM": {
+        "blank": 13777,
+        "comment": 2926,
+        "code": 68094,
+        "nFiles": 1811
+      }
+    }
+  },
+  {
+    "date": "2017-11-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1265,
+        "blank": 11703,
+        "comment": 2761,
+        "code": 53876
+      },
+      "Sass": {
+        "nFiles": 345,
+        "blank": 2012,
+        "comment": 66,
+        "code": 9601
+      },
+      "Smarty": {
+        "nFiles": 222,
+        "blank": 73,
+        "comment": 0,
+        "code": 3247
+      },
+      "HTML": {
+        "nFiles": 11,
+        "blank": 120,
+        "comment": 2,
+        "code": 2131
+      },
+      "Markdown": {
+        "nFiles": 10,
+        "blank": 143,
+        "comment": 0,
+        "code": 494
+      },
+      "SUM": {
+        "blank": 14051,
+        "comment": 2829,
+        "code": 69349,
+        "nFiles": 1853
+      }
+    }
+  },
+  {
+    "date": "2017-12-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1328,
+        "blank": 12495,
+        "comment": 2988,
+        "code": 57374
+      },
+      "Sass": {
+        "nFiles": 362,
+        "blank": 2173,
+        "comment": 69,
+        "code": 10394
+      },
+      "Smarty": {
+        "nFiles": 239,
+        "blank": 87,
+        "comment": 0,
+        "code": 3615
+      },
+      "HTML": {
+        "nFiles": 13,
+        "blank": 122,
+        "comment": 2,
+        "code": 2228
+      },
+      "Markdown": {
+        "nFiles": 15,
+        "blank": 181,
+        "comment": 0,
+        "code": 661
+      },
+      "SUM": {
+        "blank": 15058,
+        "comment": 3059,
+        "code": 74272,
+        "nFiles": 1957
+      }
+    }
+  },
+  {
+    "date": "2018-1-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1414,
+        "blank": 13866,
+        "comment": 3254,
+        "code": 61722
+      },
+      "Sass": {
+        "nFiles": 358,
+        "blank": 2208,
+        "comment": 68,
+        "code": 10468
+      },
+      "Smarty": {
+        "nFiles": 250,
+        "blank": 105,
+        "comment": 0,
+        "code": 3550
+      },
+      "HTML": {
+        "nFiles": 14,
+        "blank": 126,
+        "comment": 2,
+        "code": 2254
+      },
+      "Markdown": {
+        "nFiles": 23,
+        "blank": 249,
+        "comment": 0,
+        "code": 967
+      },
+      "SUM": {
+        "blank": 16554,
+        "comment": 3324,
+        "code": 78961,
+        "nFiles": 2059
+      }
+    }
+  },
+  {
+    "date": "2018-2-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1381,
+        "blank": 14456,
+        "comment": 3058,
+        "code": 63568
+      },
+      "Sass": {
+        "nFiles": 374,
+        "blank": 2294,
+        "comment": 72,
+        "code": 10875
+      },
+      "Smarty": {
+        "nFiles": 257,
+        "blank": 123,
+        "comment": 0,
+        "code": 3808
+      },
+      "HTML": {
+        "nFiles": 14,
+        "blank": 126,
+        "comment": 2,
+        "code": 2254
+      },
+      "Markdown": {
+        "nFiles": 26,
+        "blank": 273,
+        "comment": 0,
+        "code": 1050
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 20,
+        "comment": 0,
+        "code": 135
+      },
+      "SUM": {
+        "blank": 17292,
+        "comment": 3132,
+        "code": 81690,
+        "nFiles": 2053
+      }
+    }
+  },
+  {
+    "date": "2018-3-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1395,
+        "blank": 14751,
+        "comment": 3126,
+        "code": 64792
+      },
+      "Sass": {
+        "nFiles": 379,
+        "blank": 2316,
+        "comment": 70,
+        "code": 11030
+      },
+      "HTML": {
+        "nFiles": 14,
+        "blank": 272,
+        "comment": 0,
+        "code": 4922
+      },
+      "Smarty": {
+        "nFiles": 261,
+        "blank": 122,
+        "comment": 0,
+        "code": 3863
+      },
+      "Markdown": {
+        "nFiles": 26,
+        "blank": 268,
+        "comment": 0,
+        "code": 1020
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 20,
+        "comment": 0,
+        "code": 135
+      },
+      "SUM": {
+        "blank": 17749,
+        "comment": 3196,
+        "code": 85762,
+        "nFiles": 2076
+      }
+    }
+  },
+  {
+    "date": "2018-4-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1414,
+        "blank": 15144,
+        "comment": 3048,
+        "code": 66399
+      },
+      "Sass": {
+        "nFiles": 382,
+        "blank": 2345,
+        "comment": 64,
+        "code": 11234
+      },
+      "HTML": {
+        "nFiles": 14,
+        "blank": 212,
+        "comment": 0,
+        "code": 4259
+      },
+      "Smarty": {
+        "nFiles": 265,
+        "blank": 117,
+        "comment": 0,
+        "code": 3898
+      },
+      "Markdown": {
+        "nFiles": 24,
+        "blank": 247,
+        "comment": 0,
+        "code": 929
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 20,
+        "comment": 0,
+        "code": 135
+      },
+      "SUM": {
+        "blank": 18085,
+        "comment": 3112,
+        "code": 86854,
+        "nFiles": 2100
+      }
+    }
+  },
+  {
+    "date": "2018-5-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1384,
+        "blank": 14978,
+        "comment": 2976,
+        "code": 65436
+      },
+      "Sass": {
+        "nFiles": 378,
+        "blank": 2305,
+        "comment": 65,
+        "code": 11106
+      },
+      "HTML": {
+        "nFiles": 16,
+        "blank": 242,
+        "comment": 1,
+        "code": 4396
+      },
+      "Smarty": {
+        "nFiles": 258,
+        "blank": 102,
+        "comment": 0,
+        "code": 3737
+      },
+      "Markdown": {
+        "nFiles": 24,
+        "blank": 247,
+        "comment": 0,
+        "code": 929
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 20,
+        "comment": 0,
+        "code": 135
+      },
+      "SUM": {
+        "blank": 17894,
+        "comment": 3042,
+        "code": 85739,
+        "nFiles": 2061
+      }
+    }
+  },
+  {
+    "date": "2018-6-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1381,
+        "blank": 15131,
+        "comment": 3032,
+        "code": 66222
+      },
+      "Sass": {
+        "nFiles": 377,
+        "blank": 2296,
+        "comment": 64,
+        "code": 11043
+      },
+      "HTML": {
+        "nFiles": 17,
+        "blank": 237,
+        "comment": 0,
+        "code": 4523
+      },
+      "Smarty": {
+        "nFiles": 262,
+        "blank": 101,
+        "comment": 0,
+        "code": 3810
+      },
+      "Markdown": {
+        "nFiles": 23,
+        "blank": 237,
+        "comment": 0,
+        "code": 896
+      },
+      "CSS": {
+        "nFiles": 1,
+        "blank": 20,
+        "comment": 0,
+        "code": 135
+      },
+      "SUM": {
+        "blank": 18022,
+        "comment": 3096,
+        "code": 86629,
+        "nFiles": 2061
+      }
+    }
+  },
+  {
+    "date": "2018-7-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1511,
+        "blank": 16342,
+        "comment": 3089,
+        "code": 72162
+      },
+      "Sass": {
+        "nFiles": 391,
+        "blank": 2422,
+        "comment": 64,
+        "code": 11748
+      },
+      "HTML": {
+        "nFiles": 17,
+        "blank": 237,
+        "comment": 0,
+        "code": 4521
+      },
+      "Smarty": {
+        "nFiles": 262,
+        "blank": 100,
+        "comment": 0,
+        "code": 3704
+      },
+      "Markdown": {
+        "nFiles": 24,
+        "blank": 251,
+        "comment": 0,
+        "code": 984
+      },
+      "SUM": {
+        "blank": 19352,
+        "comment": 3153,
+        "code": 93119,
+        "nFiles": 2205
+      }
+    }
+  },
+  {
+    "date": "2018-8-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1536,
+        "blank": 16607,
+        "comment": 3183,
+        "code": 73399
+      },
+      "Sass": {
+        "nFiles": 401,
+        "blank": 2516,
+        "comment": 68,
+        "code": 12162
+      },
+      "HTML": {
+        "nFiles": 17,
+        "blank": 237,
+        "comment": 0,
+        "code": 4521
+      },
+      "Smarty": {
+        "nFiles": 269,
+        "blank": 98,
+        "comment": 0,
+        "code": 3806
+      },
+      "Markdown": {
+        "nFiles": 23,
+        "blank": 250,
+        "comment": 0,
+        "code": 980
+      },
+      "SUM": {
+        "blank": 19708,
+        "comment": 3251,
+        "code": 94868,
+        "nFiles": 2246
+      }
+    }
+  },
+  {
+    "date": "2018-9-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1584,
+        "blank": 17473,
+        "comment": 3235,
+        "code": 77794
+      },
+      "Sass": {
+        "nFiles": 411,
+        "blank": 2545,
+        "comment": 72,
+        "code": 12362
+      },
+      "HTML": {
+        "nFiles": 17,
+        "blank": 237,
+        "comment": 0,
+        "code": 4521
+      },
+      "Smarty": {
+        "nFiles": 263,
+        "blank": 97,
+        "comment": 0,
+        "code": 3717
+      },
+      "Markdown": {
+        "nFiles": 23,
+        "blank": 252,
+        "comment": 0,
+        "code": 991
+      },
+      "SUM": {
+        "blank": 20604,
+        "comment": 3307,
+        "code": 99385,
+        "nFiles": 2298
+      }
+    }
+  },
+  {
+    "date": "2018-10-1",
+    "count": {
+      "JavaScript": {
+        "nFiles": 1584,
+        "blank": 17473,
+        "comment": 3235,
+        "code": 77794
+      },
+      "Sass": {
+        "nFiles": 411,
+        "blank": 2545,
+        "comment": 72,
+        "code": 12362
+      },
+      "HTML": {
+        "nFiles": 17,
+        "blank": 237,
+        "comment": 0,
+        "code": 4521
+      },
+      "Smarty": {
+        "nFiles": 263,
+        "blank": 97,
+        "comment": 0,
+        "code": 3717
+      },
+      "Markdown": {
+        "nFiles": 23,
+        "blank": 252,
+        "comment": 0,
+        "code": 991
+      },
+      "SUM": {
+        "blank": 20604,
+        "comment": 3307,
+        "code": 99385,
+        "nFiles": 2298
+      }
+    }
+  }
+]

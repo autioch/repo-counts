@@ -22,8 +22,16 @@ module.exports = function readDates(fileName, folder, index) {
         hash, // eslint-disable-line no-unused-vars
         author, // eslint-disable-line no-unused-vars
         date,
-        lineDetails // eslint-disable-line no-unused-vars
+        lineDetails = '' // eslint-disable-line no-unused-vars
       ] = text.split('\t');
+
+      const bracketIndex = lineDetails.indexOf(')');
+
+      if (bracketIndex > 0) {
+        const content = lineDetails.slice(bracketIndex + 1).trim();
+
+        return content.length ? date : false;
+      }
 
       return date;
     })

@@ -8,7 +8,7 @@ const { uniq } = require('lodash');
 function findFiles(dir) {
   return new Promise((res, rej) => {
     const absoluteRoot = resolve(dir);
-    const searchExpression = join(absoluteRoot, '**');
+    const searchExpression = join(absoluteRoot, '**', '*.{js,scss,sass,css,tpl,html,md}');
     const posixSearchExpression = searchExpression.replace(/\\/g, '/');
 
     qbLog.info(posixSearchExpression);

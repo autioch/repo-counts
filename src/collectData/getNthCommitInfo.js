@@ -1,5 +1,4 @@
-const { execSync } = require('child_process');
-const { optionsToCli, execSyncOptions } = require('./utils');
+const { optionsToCli, executeCommand } = require('./utils');
 const parseCommit = require('./parseCommit');
 
 const nthCommitOptions = optionsToCli({
@@ -8,9 +7,9 @@ const nthCommitOptions = optionsToCli({
 });
 
 module.exports = function getNthCommitInfo(commitNr) {
-  const totalCommits = execSync('git rev-list HEAD --count', execSyncOptions);
+  const totalCommits = executeCommand('git rev-list HEAD --count');
   const skip = parseInt(totalCommits, 10) - commitNr;
-  const commitText = execSync(`git log --skip=${skip} ${nthCommitOptions}`).toString();
+  const commitText = executeCommand(`git log --skip=${skip} ${nthCommitOptions}`).toString();
 
   return parseCommit(commitText);
 };

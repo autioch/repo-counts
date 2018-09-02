@@ -1,10 +1,7 @@
-/* eslint-disable no-undefined */
-const { join } = require('path');
-const { execSync } = require('child_process');
 const { omit } = require('lodash');
-const { optionsToCli, execSyncOptions } = require('./utils');
+const { optionsToCli, executeCommand } = require('./utils');
 
-module.exports = function countLines(folder, commitHash, ignored, clocPath) {
+module.exports = function createCounter(clocPath, ignored) {
   const options = optionsToCli({
     'exclude-dir': ['node_modules', 'polyfills'].join(','),
     'exclude-ext': ignored.join(','),
@@ -12,11 +9,10 @@ module.exports = function countLines(folder, commitHash, ignored, clocPath) {
     json: undefined
   });
 
-  execSync(`git reset --hard`, execSyncOptions);
-  execSync(`git checkout ${commitHash}`, execSyncOptions);
+  return function count(folder) {
+    const resultsJson = executeCommand(`perl ${clocPath} ${options} ${folder}`);
+    const results = JSON.parse(resultsJson);
 
-  const resultsJson = execSync(`perl ${clocPath} ${options} ${folder}`, execSyncOptions);
-  const results = JSON.parse(resultsJson);
-
-  return omit(results, ['header']);
+    return omit(results, ['header']);
+  };
 };

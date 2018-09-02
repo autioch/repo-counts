@@ -1,3 +1,5 @@
+const { execSync } = require('child_process');
+
 function optionsToCli(options) {
   return Object
     .entries(options)
@@ -17,8 +19,28 @@ const execSyncOptions = {
   stdio: ['ignore', 'pipe', 'pipe']
 };
 
+function executeCommand(...parts) {
+  const preparedParts = parts.map((part) => {
+    if (typeof part === 'string') {
+      return part;
+    }
+    if (typeof part === 'object') {
+      return optionsToCli(part);
+    }
+    throw Error('Unkown part type for executeCommand');
+  });
+
+  const command = preparedParts.join(' ');
+
+  const result = execSync(command, execSyncOptions);
+
+  // TODO Secure this
+
+  return result;
+}
+
 module.exports = {
   optionsToCli,
   clone,
-  execSyncOptions
+  executeCommand
 };

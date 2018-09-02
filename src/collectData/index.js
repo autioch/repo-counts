@@ -1,9 +1,10 @@
 const getCommits = require('./getCommits');
-const countLines = require('./countLines');
+const createCountLines = require('./countLines');
 const getNthCommitInfo = require('./getNthCommitInfo');
 const { clone } = require('./utils');
 const { writeFile } = require('../utils');
 const nextMonthCommit = require('./nextMonthCommit');
+const goToCommit = require('./goToCommit');
 const qbLog = require('qb-log');
 
 function scanRepo(folder, ignored, clocPath) {
@@ -11,18 +12,25 @@ function scanRepo(folder, ignored, clocPath) {
   qbLog.info(folder);
   process.chdir(folder);
 
+  const countLines = createCountLines(clocPath, ignored);
+
   const startCommit = getNthCommitInfo(3); // eslint-disable-line no-magic-numbers
   const commits = getCommits(startCommit.hash).reverse();
+
+  goToCommit(startCommit.hash);
+
   const counts = [{
     date: startCommit.date,
-    count: countLines(folder, startCommit.hash, ignored, clocPath)
+    count: countLines(folder)
   }];
 
   for (const { commit, date } of nextMonthCommit(commits, startCommit.date)) {
     qbLog.info(date, commit ? commit.text : '---');
+    goToCommit(commit.hash);
+
     counts.push({
       date,
-      count: commit ? countLines(folder, commit.hash, ignored, clocPath) : clone(counts[counts.length - 1].count)
+      count: commit ? countLines(folder) : clone(counts[counts.length - 1].count)
     });
   }
 

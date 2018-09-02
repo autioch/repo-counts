@@ -8,10 +8,10 @@ module.exports = {
     //   folder: join('e:', 'projects', 'charades'),
     //   repoName: 'Charades'
     // },
-    {
-      folder: join('e:', 'projects', 'serve-local'),
-      repoName: 'Serve local'
-    }
+    // {
+    //   folder: join('e:', 'projects', 'serve-local'),
+    //   repoName: 'Serve local'
+    // }
 
     // {
     //   folder: join('e:', 'projects', 'generator-qb'),
@@ -29,10 +29,10 @@ module.exports = {
     //   folder: join('e:', 'projects', 'movie-collector'),
     //   repoName: 'Movie collector'
     // },
-    // {
-    //   folder: join('e:', 'projects', 'Analyzer.Web'),
-    //   repoName: 'Analyzer Web',
-    //   color: '#0f0'
-    // }
+    {
+      folder: join('e:', 'projects', 'Analyzer.Web'),
+      repoName: 'Analyzer Web',
+      color: '#0f0'
+    }
   ]
 };

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-const colors = ['#faa', '#afa', '#aaf'];
+const colors = ['#5CBAE6', '#B6D957', '#E9707B', '#FAC364', '#98AAFB', '#80B877', '#D998CB', '#F2D249', '#93B9C6', '#CCC5A8'];
 
 function nextColor(index) {
   const next = index % colors.length;
@@ -38,6 +38,11 @@ function listTemplate(repoMonths, months) {
     .join('\n');
 }
 
+function foldersList(repo) {
+  // return `<ul class="list">${repo.folders.map((folder) => `<li>${folder}</li>`).join('')}</ul>`;
+  return '';
+}
+
 function groupTemplate(repo, parsedRepos) {
   const { allMonths, allQuarters, allYears, maxCount } = parsedRepos;
   const { months, quarters, years, repoName, totalLines } = repo;
@@ -45,7 +50,7 @@ function groupTemplate(repo, parsedRepos) {
   return `<div class="repo">
     <h3 class="repo__name">${repoName}</h3>
     <h4 class="repo__count">${totalLines} lines</h4>
-    <ul class="list">${repo.folders.map((folder) => `<li>${folder}</li>`).join('')}</ul>
+    ${foldersList(repo)}
     <ul class="list">
       ${listTemplate(months, allMonths)}
     </ul>

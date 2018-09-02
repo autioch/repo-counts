@@ -1,4 +1,5 @@
 const { uniq } = require('lodash');
+const { relative } = require('path');
 
 function getQuarter(month) {
   return Math.ceil(month / 3);
@@ -22,7 +23,7 @@ function setPandC(item, totalLines) {
 }
 
 function parseRepo(repo) {
-  const { changes: { changes, folders }, repoName } = repo;
+  const { changes: { changes, folders }, repoName, folder } = repo;
 
   let totalLines = 0;
   const months = {};
@@ -48,7 +49,7 @@ function parseRepo(repo) {
     months,
     quarters,
     years,
-    folders
+    folders: folders.map((subfolder) => relative(folder, subfolder)).sort()
   };
 }
 

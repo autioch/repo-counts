@@ -1,0 +1,37 @@
+{
+  "changes": {
+    "2018-05-12": 7327,
+    "2017-08-04": 3107,
+    "2018-05-31": 10436,
+    "2018-05-30": 644,
+    "2018-06-03": 362,
+    "2018-05-27": 6,
+    "2016-06-05": 13,
+    "2017-06-10": 29,
+    "2018-05-29": 28,
+    "2018-06-05": 15,
+    "2017-06-11": 115
+  },
+  "folders": [
+    "e:/projects/math/config",
+    "e:/projects/math/config/jest",
+    "e:/projects/math/dist/assets",
+    "e:/projects/math/dist",
+    "e:/projects/math",
+    "e:/projects/math/public",
+    "e:/projects/math/scripts",
+    "e:/projects/math/src",
+    "e:/projects/math/src/core/generate",
+    "e:/projects/math/src/core/generate/v1",
+    "e:/projects/math/src/core/generate/v2",
+    "e:/projects/math/src/core/getSteps",
+    "e:/projects/math/src/core/grammar",
+    "e:/projects/math/src/core",
+    "e:/projects/math/src/core/spec",
+    "e:/projects/math/src/generate",
+    "e:/projects/math/src/history/item",
+    "e:/projects/math/src/history",
+    "e:/projects/math/src/message",
+    "e:/projects/math/src/tree"
+  ]
+}

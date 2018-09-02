@@ -1,0 +1,35 @@
+{
+  "changes": {
+    "2017-10-07": 108,
+    "2017-10-08": 1942,
+    "2018-05-18": 785,
+    "2018-01-28": 437
+  },
+  "folders": [
+    "e:/projects/generator-qb/generators/app",
+    "e:/projects/generator-qb/generators/app/templates",
+    "e:/projects/generator-qb/generators/module",
+    "e:/projects/generator-qb/generators/module/templates",
+    "e:/projects/generator-qb/generators/module/templates/spec",
+    "e:/projects/generator-qb/generators/module/templates/src",
+    "e:/projects/generator-qb/generators/react",
+    "e:/projects/generator-qb/generators/react/templates",
+    "e:/projects/generator-qb/generators/react/templates/src/app",
+    "e:/projects/generator-qb/generators/react/templates/src",
+    "e:/projects/generator-qb/generators/react/templates/tools",
+    "e:/projects/generator-qb/generators/server",
+    "e:/projects/generator-qb/generators/server/templates",
+    "e:/projects/generator-qb/generators/server/templates/spec",
+    "e:/projects/generator-qb/generators/server/templates/src/controllers",
+    "e:/projects/generator-qb/generators/server/templates/src/controllers/list",
+    "e:/projects/generator-qb/generators/server/templates/src/errors",
+    "e:/projects/generator-qb/generators/server/templates/src",
+    "e:/projects/generator-qb/generators/server/templates/src/static",
+    "e:/projects/generator-qb/generators/server/templates/src/utils",
+    "e:/projects/generator-qb/generators/webapp",
+    "e:/projects/generator-qb/generators/webapp/templates",
+    "e:/projects/generator-qb/generators/webapp/templates/spec",
+    "e:/projects/generator-qb/generators/webapp/templates/src",
+    "e:/projects/generator-qb"
+  ]
+}

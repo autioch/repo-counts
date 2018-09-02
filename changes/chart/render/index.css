@@ -10,7 +10,6 @@ body {
 }
 
 .chart {
-  padding: .5em;
 }
 
 .bars {
@@ -24,8 +23,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1em 0;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .list {
@@ -37,11 +36,20 @@ body {
 }
 
 .repo__name {
-  font-weight: bold;
-  font-size: 1.2em;
+  /* font-weight: bold; */
+  /* font-size: 1.2em; */
 }
 
 .repo__count {
-  font-size: 1.1em;
+  /* font-size: 1.1em; */
   color: #aaa;
+}
+
+.repo {
+  margin: 1em;
+}
+
+.repo + .repo {
+  margin-top: 4em;
+  border-top: 1px solid #ccc;
 }

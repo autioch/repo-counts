@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable max-len */
 
 const colors = ['#faa', '#afa', '#aaf'];
 
@@ -17,7 +17,7 @@ function barsTemplate(repoMonths, months) {
         return false;
       }
 
-      return `<div class="bar" style="width:${repoMonth.percentage}%;background-color:${nextColor(index)}">
+      return `<div class="bar" style="width:${repoMonth.percentage}%;background-color:${nextColor(index)}" title="${month} - ${repoMonth.count}K - ${repoMonth.percentage}%">
       <div>${month}</div>
       <div>${repoMonth.count}K</div>
       <div>${repoMonth.percentage}%</div>
@@ -43,9 +43,9 @@ function groupTemplate(repo, parsedRepos) {
   const { months, quarters, years, repoName, totalLines } = repo;
 
   return `<div class="repo">
-    <div class="repo__name">${repoName}</div>
-    <div class="repo__count">${totalLines} lines</div>
-    <div><${repo.folders.join(',')}/div>
+    <h3 class="repo__name">${repoName}</h3>
+    <h4 class="repo__count">${totalLines} lines</h4>
+    <ul class="list">${repo.folders.map((folder) => `<li>${folder}</li>`).join('')}</ul>
     <ul class="list">
       ${listTemplate(months, allMonths)}
     </ul>

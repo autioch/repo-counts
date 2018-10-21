@@ -1,8 +1,5 @@
 module.exports = {
   extends: 'qb',
-  ecmaFeatures: {
-    experimentalObjectRestSpread: true
-  },
   "parserOptions": {
       "ecmaVersion": 2017
   },

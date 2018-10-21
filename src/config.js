@@ -11,7 +11,6 @@ if (!clocPath) {
   throw Error('Invalid `clocPath` in config. Please specify path to perl cloc.');
 }
 const { clone } = require('./utils');
-const path = require('path');
 
 const AVAILABLE_COLORS = [
   '#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff',

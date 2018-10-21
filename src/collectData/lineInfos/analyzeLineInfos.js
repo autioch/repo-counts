@@ -13,14 +13,12 @@ module.exports = function analyzeLineInfos(lineInfos, repoConfig) {
     repoConfig,
     totalLines: lineInfos.length,
     author: {},
-    date: {},
-    folderName: {}
+    date: {}
   };
 
-  lineInfos.forEach(({ author, date, folderName }) => {
+  lineInfos.forEach(({ author, date }) => {
     assignDict(stats.author, author);
     assignDict(stats.date, date);
-    assignDict(stats.folderName, folderName);
   });
 
   return stats;

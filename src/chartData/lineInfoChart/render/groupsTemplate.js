@@ -38,7 +38,7 @@ function listTemplate(repoMonths, months) {
     .join('\n');
 }
 
-function foldersList(repo) {
+function foldersList(/* repo */) {
   // return `<ul class="list">${repo.folders.map((folder) => `<li>${folder}</li>`).join('')}</ul>`;
   return '';
 }

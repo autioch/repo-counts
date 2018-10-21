@@ -3,6 +3,7 @@ const countLines = require('./countLines');
 const getNthCommitInfo = require('./getNthCommitInfo');
 const nextMonthCommit = require('./nextMonthCommit');
 const { clone, executeCommand } = require('../../utils');
+const qbLog = require('qb-log');
 
 function goToCommit(commitHash) {
   executeCommand('git reset --hard');
@@ -22,6 +23,7 @@ module.exports = function getLineCounts(repoConfig) {
   }];
 
   for (const { commit, date } of nextMonthCommit(commits, startCommit.date)) {
+    qbLog.info('Line count', date);
     if (commit) {
       goToCommit(commit.hash);
     }

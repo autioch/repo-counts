@@ -2,8 +2,7 @@ const { groupBy } = require('lodash');
 const dateToYearMonth = require('./dateToYearMonth');
 
 function prepareRepoCommits(repo) {
-  return repo.commits.map((commit) => ({
-    ...commit,
+  return repo.commits.map((commit) => Object.assign({}, commit, {
     date: dateToYearMonth(commit.date)
   }));
 }

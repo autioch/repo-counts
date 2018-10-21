@@ -1,7 +1,7 @@
-const { optionsToCli, executeCommand } = require('./utils');
 const parseCommit = require('./parseCommit');
+const { objToCli, executeCommand } = require('../../utils');
 
-const options = optionsToCli({
+const options = objToCli({
   'no-merges': undefined,
   branches: undefined,
   pretty: parseCommit.PRETTY,

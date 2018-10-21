@@ -2,8 +2,11 @@ const { join } = require('path');
 
 module.exports = {
   clocPath: join(__dirname, 'node_modules', 'cloc', 'lib', 'cloc'),
-  ignored: ['JSON', 'XML', 'CSON', 'XSD', 'XAML', 'YAML', 'Puppet'],
+  clocIgnored: ['JSON', 'XML', 'CSON', 'XSD', 'XAML', 'YAML', 'Puppet'],
+  invertSelection: false,
   repos: [
+    join('e:', 'projects', 'serve-local')
+
     // {
     //   folder: join('e:', 'projects', 'charades'),
     //   repoName: 'Charades'
@@ -11,8 +14,7 @@ module.exports = {
     // {
     //   folder: join('e:', 'projects', 'serve-local'),
     //   repoName: 'Serve local'
-    // }
-
+    // },
     // {
     //   folder: join('e:', 'projects', 'generator-qb'),
     //   repoName: 'Generator QB'
@@ -29,10 +31,10 @@ module.exports = {
     //   folder: join('e:', 'projects', 'movie-collector'),
     //   repoName: 'Movie collector'
     // },
-    {
-      folder: join('e:', 'projects', 'Analyzer.Web'),
-      repoName: 'Analyzer Web',
-      color: '#0f0'
-    }
+    // {
+    //   folder: join('e:', 'projects', 'Analyzer.Web'),
+    //   repoName: 'Analyzer Web',
+    //   color: '#0f0'
+    // }
   ]
 };

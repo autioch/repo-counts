@@ -1,56 +1,65 @@
-const getCommitList = require('./getCommitList');
-const createCountLines = require('./countLines');
-const getNthCommitInfo = require('./getNthCommitInfo');
-const { clone, executeCommand } = require('./utils');
-const { writeFile } = require('../utils');
-const nextMonthCommit = require('./nextMonthCommit');
-const goToCommit = require('./goToCommit');
+const { writeFile, executeCommand, logRepoError } = require('../utils');
+const lineCounts = require('./lineCounts');
+const lineInfos = require('./lineInfos');
 const qbLog = require('qb-log');
 
-function scanRepo(folder, ignored, clocPath) {
-  qbLog.empty();
-  qbLog.info(folder);
-  process.chdir(folder);
+const preparationStep = {
+  header: 'Scan repo',
+  fn: (repoConfig) => process.chdir(repoConfig.folder)
+};
 
-  const countLines = createCountLines(clocPath, ignored);
+const collectInfoStep = {
+  header: 'Lines info',
+  async fn(repoConfig) {
+    const linesInfo = await lineInfos(repoConfig);
 
-  const startCommit = getNthCommitInfo(3); // eslint-disable-line no-magic-numbers
-  const commits = getCommitList(startCommit.hash).reverse();
+    await writeFile(`${repoConfig.repoName}__linesInfo.json`, linesInfo);
+  }
+};
 
-  goToCommit(startCommit.hash);
+const collectCountStep = {
+  header: 'Lines count',
+  async fn(repoConfig) {
+    const { counts, commits } = lineCounts(repoConfig);
 
-  const counts = [{
-    date: startCommit.date,
-    count: countLines(folder)
-  }];
+    await writeFile(`${repoConfig.repoName}__counts.json`, counts);
+    await writeFile(`${repoConfig.repoName}__commits.json`, commits);
+  }
+};
 
-  for (const { commit, date } of nextMonthCommit(commits, startCommit.date)) {
-    qbLog.info(date, commit ? commit.text : '---');
-    if (commit) {
-      goToCommit(commit.hash);
-    }
+const finishStep = {
+  header: 'Finish',
+  fn: () => executeCommand(`git checkout`)
+};
 
-    counts.push({
-      date,
-      count: commit ? countLines(folder) : clone(counts[counts.length - 1].count)
-    });
+async function runStep(step, repoConfig) {
+  qbLog.info(step.header, repoConfig.folder);
+
+  try {
+    await step.fn(repoConfig);
+  } catch (err) {
+    logRepoError(`${step.header} - FAIL`, err, repoConfig);
+
+    return false;
   }
 
-  return {
-    counts,
-    commits
-  };
+  return true;
 }
 
-function gatherData(repo, ignored, clocPath) {
-  const { folder, repoName } = repo;
-  const { counts, commits } = scanRepo(folder, ignored, clocPath);
+module.exports = async function collectData(repoConfig) {
+  const preparationSuccess = await runStep(preparationStep, repoConfig);
 
-  return writeFile(`${repoName}__counts.json`, JSON.stringify(counts, null, '  '))
-    .then(() => writeFile(`${repoName}__commits.json`, JSON.stringify(commits, null, '  ')))
-    .catch(() => executeCommand(`git checkout`));
-}
+  if (!preparationSuccess) {
+    return;
+  }
 
-module.exports = function collectData({ repos, ignored, clocPath }) {
-  return repos.reduce((promise, repo) => promise.then(() => gatherData(repo, ignored, clocPath)), Promise.resolve());
+  if (repoConfig.collectInfo) {
+    await runStep(collectInfoStep, repoConfig);
+  }
+
+  if (repoConfig.collectCount) {
+    await runStep(collectCountStep, repoConfig);
+  }
+
+  await runStep(finishStep, repoConfig);
 };

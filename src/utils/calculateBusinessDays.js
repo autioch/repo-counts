@@ -1,19 +1,6 @@
-/* eslint-disable no-magic-numbers */
-/* eslint-disable max-len */
 const moment = require('moment');
-const bluebird = require('bluebird');
-const { join } = require('path');
-const fs = bluebird.promisifyAll(require('fs'));
 
-function writeFile(fileName, data) {
-  return fs.writeFileAsync(join(__dirname, 'data', fileName), data, 'utf8');
-}
-
-function readFile(fileName) {
-  return fs.readFileAsync(join(__dirname, 'data', fileName), 'utf8');
-}
-
-function calculateBusinessDays(firstDate, secondDate) { // eslint-disable-line max-statements
+module.exports = function calculateBusinessDays(firstDate, secondDate) { // eslint-disable-line max-statements
   // Initiallize variables
   let day1 = moment(firstDate);
   let day2 = moment(secondDate);
@@ -62,10 +49,4 @@ function calculateBusinessDays(firstDate, secondDate) { // eslint-disable-line m
   }
 
   return day2.diff(day1, 'days') + adjust;
-}
-
-module.exports = {
-  writeFile,
-  readFile,
-  calculateBusinessDays
 };

@@ -12,6 +12,7 @@ module.exports = {
     'no-magic-numbers': ['off'],
     'line-comment-position': ['off'],
     'id-blacklist': ['off'],
+    'id-length': ['off'],
     'no-undefined': ['off']
   }
 };

@@ -1,9 +1,9 @@
-const chart = require('./chart');
+require('qb-log')('simple');
 const collectData = require('./collectData');
-const qbLog = require('qb-log')('simple');
+const chartData = require('./chartData');
+const { repos } = require('./config');
+const { waterfall } = require('./utils');
 
-module.exports = function repoHistory(config) {
-  return collectData(config)
-    .then(() => chart(config))
-    .catch((err) => qbLog.error(err.message));
-};
+const repoFns = repos.map((repo) => () => collectData(repo));
+
+waterfall(repoFns).then(() => chartData(repos));

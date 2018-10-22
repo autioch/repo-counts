@@ -1,6 +1,12 @@
 const { objToCli, executeCommand } = require('../../utils');
 const { startingCommitNr } = require('../../config');
 const parseCommit = require('./parseCommit');
+const qbLog = require('qb-log');
+
+qbLog._add('commitList', {
+  prefix: 'COMMIT LIST',
+  formatter: qbLog._chalk.green
+});
 
 const PRETTY = 'format:"%H;%at;%s;%an;%ae"';
 
@@ -33,7 +39,8 @@ function getCommitList(start, end = 'HEAD') {
   return parsedCommits;
 }
 
-module.exports = function getCommits() {
+module.exports = function getCommits(repoConfig) {
+  qbLog.commitList(repoConfig.folder);
   const startCommit = getNthCommitInfo(startingCommitNr);
   const commits = getCommitList(startCommit.hash).reverse();
 

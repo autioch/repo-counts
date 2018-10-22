@@ -7,7 +7,7 @@ module.exports = function parseLine(lineInfo) {
   const contents = bracketIndex > 0 ? lineDetails.slice(bracketIndex + 1).trim() : '';
 
   if (!date) {
-    qbLog.info('Failed to parse line');
+    qbLog.error('Line parse');
     qbLog.empty(lineInfo, [hash, authorWithBracket, date, lineDetails]);
   }
 

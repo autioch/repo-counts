@@ -10,6 +10,7 @@ module.exports = {
     'line-comment-position': ['off'],
     'id-blacklist': ['off'],
     'id-length': ['off'],
-    'no-undefined': ['off']
+    'no-undefined': ['off'],
+    'no-underscore-dangle': ['off']
   }
 };

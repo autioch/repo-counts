@@ -6,7 +6,8 @@ module.exports = function parseCommit(commitText) {
   const [, deletions = 0] = /([0-9]+) deletions/.exec(modifications) || [];
   const [, insertions = 0] = /([0-9]+) insertions/.exec(modifications) || [];
   const [date] = new Date(datetime * MILISECOND).toISOString().split('T');
-  const [year, month, day] = date.split('-');
+
+  // const [year, month, day] = date.split('-');
 
   return {
     hash,
@@ -14,9 +15,10 @@ module.exports = function parseCommit(commitText) {
     authorName,
     emailName,
     date,
-    year,
-    month: parseInt(month, 10).toString(),
-    day: parseInt(day, 10).toString(),
+
+    // year,
+    // month: parseInt(month, 10).toString(),
+    // day: parseInt(day, 10).toString(),
     insertions: parseInt(insertions, 10),
     deletions: parseInt(deletions, 10),
     filesChanged: parseInt(modifications, 10)

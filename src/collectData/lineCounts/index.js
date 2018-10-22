@@ -3,23 +3,38 @@ const commitList = require('./commitList');
 const { clone, executeCommand } = require('../../utils');
 const qbLog = require('qb-log');
 
+qbLog({
+  count: {
+    prefix: 'LINE COUNT',
+    formatter: qbLog._chalk.green
+  },
+  countDate: {
+    prefix: 'COUNT DATE',
+    formatter: qbLog._chalk.cyan
+  }
+});
+
 function getNextMonthFirstDay(dateString) {
   const date = new Date(dateString);
 
   date.setMonth(date.getMonth() + 1);
   date.setDate(1);
 
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
 
-function findFirstCommitInMonth(commits, dateString) {
-  const [chosenYear, chosenMonth] = dateString.split('-');
-
-  return commits.find(({ year, month }) => year === chosenYear && month === chosenMonth);
+function findFirstCommitInMonth(commits, yearAndMonth) {
+  return commits.find(({ date }) => yearAndMonth === date.slice(0, 7));
 }
 
 module.exports = function getLineCounts(repoConfig) {
-  const commits = commitList();
+  qbLog.count(repoConfig.folder);
+
+  const commits = commitList(repoConfig);
   const [startCommit] = commits;
 
   const endTime = new Date().getTime();
@@ -29,11 +44,10 @@ module.exports = function getLineCounts(repoConfig) {
   let commit;
 
   while (new Date(nextDate).getTime() < endTime) {
-    console.log(nextDate);
-    commit = findFirstCommitInMonth(commits, nextDate);
+    commit = findFirstCommitInMonth(commits, nextDate.slice(0, 7));
 
     if (commit) {
-      qbLog.info('Line count', commit.date);
+      qbLog.countDate(commit.date);
       executeCommand('git reset --hard');
       executeCommand(`git checkout ${commit.hash}`);
     }

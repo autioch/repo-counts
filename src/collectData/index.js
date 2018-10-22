@@ -47,9 +47,9 @@ async function runStep(step, repoConfig) {
 }
 
 module.exports = async function collectData(repoConfig) {
-  const preparationSuccess = await runStep(preparationStep, repoConfig);
+  const isPrepared = await runStep(preparationStep, repoConfig);
 
-  if (!preparationSuccess) {
+  if (!isPrepared) {
     return;
   }
 

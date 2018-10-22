@@ -1,37 +1,51 @@
-const getCommitList = require('./getCommitList');
 const countLines = require('./countLines');
-const getNthCommitInfo = require('./getNthCommitInfo');
-const nextMonthCommit = require('./nextMonthCommit');
+const commitList = require('./commitList');
 const { clone, executeCommand } = require('../../utils');
 const qbLog = require('qb-log');
 
-function goToCommit(commitHash) {
-  executeCommand('git reset --hard');
-  executeCommand(`git checkout ${commitHash}`);
+function getNextMonthFirstDay(dateString) {
+  const date = new Date(dateString);
+
+  date.setMonth(date.getMonth() + 1);
+  date.setDate(1);
+
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
+
+function findFirstCommitInMonth(commits, dateString) {
+  const [chosenYear, chosenMonth] = dateString.split('-');
+
+  return commits.find(({ year, month }) => year === chosenYear && month === chosenMonth);
 }
 
 module.exports = function getLineCounts(repoConfig) {
-  const { folder } = repoConfig;
-  const startCommit = getNthCommitInfo(3); // eslint-disable-line no-magic-numbers
-  const commits = getCommitList(startCommit.hash).reverse();
+  const commits = commitList();
+  const [startCommit] = commits;
 
-  goToCommit(startCommit.hash);
+  const endTime = new Date().getTime();
+  const counts = [];
 
-  const counts = [{
-    date: startCommit.date,
-    count: countLines(folder)
-  }];
+  let nextDate = startCommit.date;
+  let commit;
 
-  for (const { commit, date } of nextMonthCommit(commits, startCommit.date)) {
-    qbLog.info('Line count', date);
+  while (new Date(nextDate).getTime() < endTime) {
+    console.log(nextDate);
+    commit = findFirstCommitInMonth(commits, nextDate);
+
     if (commit) {
-      goToCommit(commit.hash);
+      qbLog.info('Line count', commit.date);
+      executeCommand('git reset --hard');
+      executeCommand(`git checkout ${commit.hash}`);
     }
 
+    const previous = counts[counts.length - 1];
+
     counts.push({
-      date,
-      count: commit ? countLines(folder) : clone(counts[counts.length - 1].count)
+      date: nextDate,
+      count: commit ? countLines(repoConfig) : clone(previous ? previous.count : {})
     });
+
+    nextDate = getNextMonthFirstDay(nextDate);
   }
 
   return {

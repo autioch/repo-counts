@@ -36,8 +36,8 @@ function objToCli(options) {
 
 function logRepoError(message, err, repo) {
   qbLog.error(message);
-  qbLog.emty(repo.folder);
-  qbLog.emty(err.message);
+  qbLog.empty(repo.folder);
+  qbLog.empty(err.message);
 }
 
 module.exports = {

@@ -4,6 +4,7 @@ const {
   chartData = true,
   collectData = true,
   invertSelection = false,
+  startingCommitNr = 3,
   repos
 } = require('../config');
 
@@ -82,5 +83,6 @@ module.exports = {
   clocIgnored,
   chartData,
   collectData,
+  startingCommitNr,
   repos: prepareRepos(repos)
 };

@@ -9,7 +9,8 @@ const options = objToCli({
   json: undefined
 });
 
-module.exports = function countLines(folder) {
+module.exports = function countLines(repoConfig) {
+  const { folder } = repoConfig;
   const resultsJson = executeCommand(`perl ${clocPath} ${options} ${folder}`);
   const results = JSON.parse(resultsJson);
 

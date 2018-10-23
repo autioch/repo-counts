@@ -22,7 +22,7 @@ function objToCli(options) {
     .join(' ');
 }
 
-const DATA_FOLDER = join(__dirname, '..', 'chart-data', 'data');
+const DATA_FOLDER = join(__dirname, '..', 'chart-data', 'src');
 
 function writeFile(fileName, data) {
   const serializedData = typeof data === 'string' ? data : JSON.stringify(data, null, '  ');

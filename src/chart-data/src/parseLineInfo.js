@@ -1,5 +1,4 @@
 const { uniq } = require('lodash');
-const { relative } = require('path');
 
 function getQuarter(month) {
   return Math.ceil(month / 3);
@@ -22,15 +21,14 @@ function setPandC(item, totalLines) {
   item.count = (item.count / 1000).toFixed(1);
 }
 
-function parseRepo(repo) {
-  const { changes: { changes, folders }, repoName, folder } = repo;
+function parseRepo([repoName, {lineInfo: {date}}]) {
 
   let totalLines = 0;
   const months = {};
   const quarters = {};
   const years = {};
 
-  Object.entries(changes).forEach(([day, count]) => {
+  Object.entries(date).forEach(([day, count]) => {
     const [year, month] = day.split('-');
 
     totalLines += count;
@@ -49,12 +47,11 @@ function parseRepo(repo) {
     months,
     quarters,
     years,
-    folders: folders.map((subfolder) => relative(folder, subfolder)).sort()
   };
 }
 
-module.exports = function parse(repos) {
-  const parsedRepos = repos.map((repo) => parseRepo(repo));
+export default function parseLineInfo(data) {
+  const parsedRepos = Object.entries(data).map(parseRepo);
   const maxCount = Math.max(...parsedRepos.map((repo) => repo.totalLines));
   const months = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.months)), []);
   const quarters = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.quarters)), []);

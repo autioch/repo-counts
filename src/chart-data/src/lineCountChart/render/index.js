@@ -23,8 +23,8 @@ module.exports = function render(groups, types, repos, ignored) {
       </style>
     </head>
     <body>
-      <div class="legend">${legendEls}</div>
-      <div class="chart">${groupEls.join('')}</div>
+      <div className="legend">${legendEls}</div>
+      <div className="chart">${groupEls.join('')}</div>
     </body>
   </html>`;
 };

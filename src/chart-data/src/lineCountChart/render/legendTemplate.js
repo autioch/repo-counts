@@ -1,6 +1,6 @@
 module.exports = function legendTemplate(types, repos, ignored) {
-  const serieEls = repos.map((repo) => `<div class="serie">
-    <div class="serie__box" style="background-color:${repo.color}"></div>
+  const serieEls = repos.map((repo) => `<div className="serie">
+    <div className="serie__box" style="background-color:${repo.color}"></div>
     <div>${repo.repoName}: +${repo.insertions} -${repo.deletions} (${repo.diff})</div>
   </div>`);
 

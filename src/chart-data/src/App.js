@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import parseLineInfo from './parseLineInfo';
-import data from './data.json';
+import rawData from './data.json';
+import LineInfoChart from './lineInfoChart';
 
-const parsedLines = parseLineInfo(data);
+const data = parseLineInfo(rawData);
 
-/* TODO Convert groupsTemplate */
-class App extends Component {
+console.log(data);
+
+export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <div class="chart">{groupEls.join('\n')}</div>
+        <div className="chart">
+          {data.repos.map((repo, index) => <LineInfoChart key={index} repo={repo} parsed={data}/>)}
+        </div>
       </div>
     );
   }
 }
-
-export default App;

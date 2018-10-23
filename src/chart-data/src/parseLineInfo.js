@@ -21,8 +21,7 @@ function setPandC(item, totalLines) {
   item.count = (item.count / 1000).toFixed(1);
 }
 
-function parseRepo([repoName, {lineInfo: {date}}]) {
-
+function parseRepo([repoName, { lineInfo: { date } }]) {
   let totalLines = 0;
   const months = {};
   const quarters = {};
@@ -46,7 +45,7 @@ function parseRepo([repoName, {lineInfo: {date}}]) {
     totalLines,
     months,
     quarters,
-    years,
+    years
   };
 }
 
@@ -64,4 +63,4 @@ export default function parseLineInfo(data) {
     allQuarters: uniq(quarters).sort(),
     allYears: uniq(years).sort()
   };
-};
+}

@@ -1,9 +1,6 @@
 const {
   clocPath = '',
   clocIgnored = [],
-  chartData = true,
-  collectData = true,
-  invertSelection = false,
   startingCommitNr = 3,
   repos
 } = require('../config');
@@ -24,8 +21,6 @@ function prepareRepos(rawRepos) {
     repoName: '',
     extensions: ['js', 'scss', 'sass', 'css', 'tpl', 'html', 'md'],
     ignoredFolderNames: ['node_modules'],
-    collectCount: true,
-    collectInfo: true,
     color: false
   };
 
@@ -43,7 +38,9 @@ function prepareRepos(rawRepos) {
     if (!config.repoName) {
       const separator = config.folder.includes('/') ? '/' : '\\';
 
-      config.repoName = config.folder.split(separator).pop().replace(/\./gi, ' ');
+      // path.dirname(filename).split(path.sep).pop()
+      // path.basename(path.dirname(filename))
+      config.repoName = config.folder.split(separator).pop();
     }
 
     return config;
@@ -68,21 +65,12 @@ function prepareRepos(rawRepos) {
     config.color = availableColors[index % availableCount];
   });
 
-  if (invertSelection) {
-    configs.forEach((config) => {
-      config.collectCount = !config.collectCount;
-      config.collectInfo = !config.collectInfo;
-    });
-  }
-
   return configs;
 }
 
 module.exports = {
   clocPath,
   clocIgnored,
-  chartData,
-  collectData,
   startingCommitNr,
   repos: prepareRepos(repos)
 };

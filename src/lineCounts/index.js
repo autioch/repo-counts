@@ -1,6 +1,5 @@
 const countLines = require('./countLines');
-const commitList = require('./commitList');
-const { clone, executeCommand } = require('../../utils');
+const { clone, executeCommand } = require('../utils');
 const qbLog = require('qb-log');
 
 qbLog({
@@ -31,10 +30,9 @@ function findFirstCommitInMonth(commits, yearAndMonth) {
   return commits.find(({ date }) => yearAndMonth === date.slice(0, 7));
 }
 
-module.exports = function getLineCounts(repoConfig) {
-  qbLog.count(repoConfig.folder);
+module.exports = function getLineCounts(repoConfig, commits) {
+  qbLog.count(repoConfig.repoName);
 
-  const commits = commitList(repoConfig);
   const [startCommit] = commits;
 
   const endTime = new Date().getTime();
@@ -62,8 +60,5 @@ module.exports = function getLineCounts(repoConfig) {
     nextDate = getNextMonthFirstDay(nextDate);
   }
 
-  return {
-    counts,
-    commits
-  };
+  return counts;
 };

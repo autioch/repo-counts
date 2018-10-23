@@ -1,5 +1,5 @@
-const { objToCli, executeCommand } = require('../../utils');
-const { startingCommitNr } = require('../../config');
+const { objToCli, executeCommand } = require('../utils');
+const { startingCommitNr } = require('../config');
 const parseCommit = require('./parseCommit');
 const qbLog = require('qb-log');
 
@@ -40,7 +40,7 @@ function getCommitList(start, end = 'HEAD') {
 }
 
 module.exports = function getCommits(repoConfig) {
-  qbLog.commitList(repoConfig.folder);
+  qbLog.commitList(repoConfig.repoName);
   const startCommit = getNthCommitInfo(startingCommitNr);
   const commits = getCommitList(startCommit.hash).reverse();
 

@@ -1,6 +1,6 @@
 const { omit } = require('lodash');
-const { objToCli, executeCommand } = require('../../utils');
-const { clocPath, clocIgnored } = require('../../config');
+const { objToCli, executeCommand } = require('../utils');
+const { clocPath, clocIgnored } = require('../config');
 
 const options = objToCli({
   'exclude-dir': ['node_modules', 'polyfills'].join(','),

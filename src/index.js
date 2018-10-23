@@ -1,9 +1,15 @@
-require('qb-log')('simple');
-const collectData = require('./collectData');
-const chartData = require('./chartData');
 const { repos } = require('./config');
-const { waterfall } = require('./utils');
+const { writeFile } = require('./utils');
+const gatherData = require('./gatherData');
+const qbLog = require('qb-log')('simple');
 
-const repoFns = repos.map((repo) => () => collectData(repo));
+const gatheredData = {};
 
-waterfall(repoFns).then(() => chartData(repos));
+(async () => {
+  for (const repoConfig of repos) {
+    const data = await gatherData(repoConfig); // eslint-disable-line no-await-in-loop
+
+    gatheredData[repoConfig.repoName] = data;
+  }
+})()
+  .then(() => writeFile('data.json', gatheredData).then(() => qbLog.empty('DONE')));

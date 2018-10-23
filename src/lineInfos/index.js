@@ -1,6 +1,6 @@
 const analyzeFileInfos = require('./analyzeFileInfos');
 const getFileInfo = require('./getFileInfo');
-const { findFiles } = require('../../utils');
+const { findFiles } = require('../utils');
 const qbLog = require('qb-log');
 
 qbLog._add('linesInfo', {
@@ -9,7 +9,7 @@ qbLog._add('linesInfo', {
 });
 
 module.exports = async function getLinesInfo(repoConfig) {
-  qbLog.linesInfo(repoConfig.folder);
+  qbLog.linesInfo(repoConfig.repoName);
 
   const { folder, extensions, ignoredFolderNames } = repoConfig;
   const filePaths = await findFiles(folder, extensions, ignoredFolderNames);

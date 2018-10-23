@@ -3,24 +3,12 @@ const Bluebird = require('bluebird');
 const fs = Bluebird.promisifyAll(require('fs'));
 const qbLog = require('qb-log');
 
-const DATA_FOLDER = join(__dirname, '..', '..', 'data');
+const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
-function writeFile(fileName, data) {
-  const serializedData = typeof data === 'string' ? data : JSON.stringify(data, null, '  ');
-
-  return fs.writeFileAsync(join(DATA_FOLDER, fileName), serializedData, 'utf8');
-}
-
-function readFile(fileName) {
-  return fs.readFileAsync(join(DATA_FOLDER, fileName), 'utf8');
-}
-
-function waterfall(fnList) {
-  return fnList.reduce((promise, fn) => promise.then(fn), Promise.resolve());
-}
-
-function clone(obj) {
-  return JSON.parse(JSON.stringify(obj));
+function logRepoError(message, err, repo) {
+  qbLog.error(message);
+  qbLog.empty(repo.repoName);
+  qbLog.empty(err.message);
 }
 
 function objToCli(options) {
@@ -34,17 +22,17 @@ function objToCli(options) {
     .join(' ');
 }
 
-function logRepoError(message, err, repo) {
-  qbLog.error(message);
-  qbLog.empty(repo.folder);
-  qbLog.empty(err.message);
+const DATA_FOLDER = join(__dirname, '..', 'chart-data', 'data');
+
+function writeFile(fileName, data) {
+  const serializedData = typeof data === 'string' ? data : JSON.stringify(data, null, '  ');
+
+  return fs.writeFileAsync(join(DATA_FOLDER, fileName), serializedData, 'utf8');
 }
 
 module.exports = {
-  writeFile,
-  readFile,
-  waterfall,
   clone,
+  logRepoError,
   objToCli,
-  logRepoError
+  writeFile
 };

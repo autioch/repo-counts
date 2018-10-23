@@ -1,4 +1,4 @@
-const { executeCommand } = require('../../utils');
+const { executeCommand } = require('../utils');
 const { relative, dirname, basename } = require('path');
 const parseLine = require('./parseLine');
 

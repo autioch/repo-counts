@@ -1,14 +1,12 @@
-const { writeFile, readFile, waterfall, clone, objToCli, logRepoError } = require('./misc');
+const { writeFile, clone, objToCli, logRepoError } = require('./misc');
 const findFiles = require('./findFiles');
 const executeCommand = require('./executeCommand');
 
 module.exports = {
   writeFile,
-  readFile,
-  waterfall,
+  logRepoError,
   findFiles,
   clone,
   objToCli,
-  executeCommand,
-  logRepoError
+  executeCommand
 };

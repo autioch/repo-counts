@@ -19,13 +19,23 @@ function setRepoChanges(repos) {
   });
 }
 
-export default function parse(repos) {
+export default function parseHistogram(repos) {
   setRepoChanges(repos);
 
   const { deletions, insertions } = getChangesPerMonth(repos);
+  const series = getGroups(repos, deletions, insertions);
+  const types = getReportedTypes(repos);
+  const maxCount = Math.max(...series.map((group) => group.countSum));
+  const legend = Object.entries(repos).map(([id, repo]) => ({
+    id,
+    label: repo.config.repoName,
+    color: repo.config.color
+  }));
 
   return {
-    types: getReportedTypes(repos),
-    groups: getGroups(repos, deletions, insertions)
+    types,
+    series,
+    maxCount,
+    legend
   };
 }

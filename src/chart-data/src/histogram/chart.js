@@ -1,20 +1,16 @@
 import React from 'react';
-import Group from './group';
+import HistogramSerie from './serie';
 import Legend from './legend';
-import parse from './parse';
 import './groups.css';
 import './index.css';
 import './legend.css';
 
-export default function HistogramChart({ repos }) {
-  const { groups, types } = parse(repos);
-  const maxCount = Math.max(...groups.map((group) => group.countSum));
-
+export default function HistogramChart({ series: { types, series, maxCount, legend } }) {
   return (
     <div className="histogram-chart">
-      <Legend types={types} repos={repos} />
+      <Legend types={types} legend={legend} />
       <div className="histogram-char__groups">
-        {groups.map((group) => <Group group={group} maxCount={maxCount} />)}
+        {series.map((serie) => <HistogramSerie serie={serie} maxCount={maxCount} />)}
       </div>
     </div>
   );

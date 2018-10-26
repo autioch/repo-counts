@@ -1,4 +1,5 @@
 import { uniq } from 'lodash';
+import { nextColor } from '../utils';
 
 function getQuarter(month) {
   return Math.ceil(month / 3);
@@ -49,18 +50,37 @@ function parseRepo([repoName, { lineInfo: { date } }]) {
   };
 }
 
-export default function parseLineInfo(data) {
-  const parsedRepos = Object.entries(data).map(parseRepo);
-  const maxCount = Math.max(...parsedRepos.map((repo) => repo.totalLines));
-  const months = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.months)), []);
-  const quarters = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.quarters)), []);
-  const years = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.years)), []);
+function getBarSerie(repo, allTypes) {
+  const { repoName, months: records, totalLines } = repo;
 
   return {
-    repos: parsedRepos,
-    maxCount,
-    allMonths: uniq(months).sort(),
-    allQuarters: uniq(quarters).sort(),
-    allYears: uniq(years).sort()
+    id: repoName,
+    header: repoName,
+    totalLines,
+    items: allTypes
+      .filter((month) => !!records[month])
+      .map((month, index) => ({
+        id: index,
+        label: month,
+        count: records[month].count,
+        percentage: records[month].percentage,
+        color: nextColor(index)
+      }))
   };
+}
+
+export default function parseLineInfo(data) {
+  const parsedRepos = Object.entries(data).map(parseRepo);
+  const months = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.months)), []);
+  const allMonths = uniq(months).sort();
+
+  // const maxCount = Math.max(...parsedRepos.map((repo) => repo.totalLines));
+  // const quarters = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.quarters)), []);
+  // const years = parsedRepos.reduce((arr, repo) => arr.concat(Object.keys(repo.years)), []);
+  // const allQuarters = uniq(quarters).sort();
+  // const allYears = uniq(years).sort();
+
+  const series = parsedRepos.map((repo) => getBarSerie(repo, allMonths));
+
+  return series;
 }

@@ -13,7 +13,7 @@ function Bar({ item, maxCount }) {
   );
 }
 
-export default function GroupTemplate({ group: { deletions, insertions, countSum, date, bars }, maxCount }) {
+export default function HistogramSerie({ serie: { deletions, insertions, countSum, date, bars }, maxCount }) {
   return (
     <div className="group" title={countSum}>
       <div className="bars">

@@ -2,17 +2,21 @@
 
 }
 
-.legend > div {
-  margin-bottom: .5vw;
+.legend__types {
+  margin-bottom: .5em;
 }
 
-.serie {
+.legend-item,
+.legend-items {
   display: flex;
   align-items: center;
+  margin-right: 1em;
 }
 
-.serie__box {
-  height: 1vw;
-  width: 1vw;
-  margin-right: .5vw;
+.legend-item__box {
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: .5em;
 }
+
+.legend-item__label {}

@@ -1,4 +1,4 @@
-const { uniq } = require('lodash');
+import { uniq } from 'lodash';
 
 function getQuarter(month) {
   return Math.ceil(month / 3);

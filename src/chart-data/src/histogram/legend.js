@@ -1,12 +1,11 @@
 import React from 'react';
 
-export default function HistogramLegend({ types, repos, ignored }) {
+export default function HistogramLegend({ types, repos }) {
   return (
     <div className="legend">
       <div>Included types: {types.join(', ')}</div>
-      <div>Ignored types: {ignored.join(', ')}</div>
-      {repos.map((repo) =>
-        <div className="serie">
+      {Object.entries(repos).map(([id, repo]) =>
+        <div className="serie" key={id}>
           <div className="serie__box" style={{
             backgroundColor: repo.color
           }}></div>

@@ -15,7 +15,9 @@ module.exports = async function gatherData(repoConfig) {
   qbLog.empty();
   qbLog.repo(repoConfig.repoName);
 
-  const result = {};
+  const result = {
+    config: repoConfig
+  };
 
   try {
     process.chdir(repoConfig.folder);

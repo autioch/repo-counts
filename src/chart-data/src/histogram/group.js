@@ -28,7 +28,7 @@ export default function GroupTemplate({ group: { deletions, insertions, countSum
         }}></div>
         {bars.map((bar) => <Bar key={bar.id} item={bar} maxCount={maxCount} />)}
       </div>
-      <div className="header">${date}</div>
+      <div className="header">{date}</div>
     </div>
   );
 }

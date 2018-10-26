@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import parseLineInfo from './parseLineInfo';
 import rawData from './data.json';
 import HorizontalStackedChart from './horizontalStacked/chart';
+import HistogramChart from './histogram/chart';
 import { nextColor } from './utils';
 
 function getBarSerie(label, repoMonths, allMonths) {
@@ -46,6 +47,7 @@ export default class App extends Component {
             );
           })}
         </div>
+        <HistogramChart repos={rawData} />
       </div>
     );
   }

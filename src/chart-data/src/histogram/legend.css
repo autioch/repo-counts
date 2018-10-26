@@ -1,3 +1,11 @@
+.legend {
+
+}
+
+.legend > div {
+  margin-bottom: .5vw;
+}
+
 .serie {
   display: flex;
   align-items: center;

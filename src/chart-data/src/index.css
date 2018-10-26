@@ -35,6 +35,10 @@ body {
   border: 0;
 }
 
+.repo {
+  width: 100%;
+}
+
 .repo__name {
   /* font-weight: bold; */
   /* font-size: 1.2em; */
@@ -46,7 +50,7 @@ body {
 }
 
 .repo {
-  margin: 1em;
+  /* margin: 1em; */
 }
 
 .repo + .repo {

@@ -1,28 +1,33 @@
-const { groupBy } = require('lodash');
-const dateToYearMonth = require('./dateToYearMonth');
+import { groupBy } from 'lodash';
+
+function dateToYearMonth(date) {
+  const [year, month] = date.split('-');
+
+  return `${year}-${month.padStart(2, '0')}`;
+}
 
 function prepareRepoCommits(repo) {
-  return repo.commits.map((commit) => Object.assign({}, commit, {
+  return repo.commitList.map((commit) => Object.assign({}, commit, {
     date: dateToYearMonth(commit.date)
   }));
 }
 
 function prepareCommits(repos) {
-  const allCommits = repos.reduce((arr, repo) => arr.concat(prepareRepoCommits(repo)), []);
-  const commitsInMonth = Object.entries(groupBy(allCommits, 'date'));
+  const allCommits = Object.values(repos).reduce((arr, repo) => arr.concat(prepareRepoCommits(repo)), []);
+  const commitListInMonth = Object.entries(groupBy(allCommits, 'date'));
 
-  return commitsInMonth;
+  return commitListInMonth;
 }
 
 function summarizeCommitProp(changesInMonth, prop) {
-  return changesInMonth.reduce((dict, [date, commits]) => {
-    dict[date] = commits.reduce((sum, commit) => sum + commit[prop], 0);
+  return changesInMonth.reduce((dict, [date, commitList]) => {
+    dict[date] = commitList.reduce((sum, commit) => sum + commit[prop], 0);
 
     return dict;
   }, {});
 }
 
-module.exports = function getChangesPerMonth(repos) {
+export default function getChangesPerMonth(repos) {
   const changesInMonth = prepareCommits(repos);
   const deletions = summarizeCommitProp(changesInMonth, 'deletions');
   const insertions = summarizeCommitProp(changesInMonth, 'insertions');
@@ -31,4 +36,4 @@ module.exports = function getChangesPerMonth(repos) {
     insertions,
     deletions
   };
-};
+}

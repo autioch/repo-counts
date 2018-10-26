@@ -1,0 +1,43 @@
+.horizontal-stacked-serie {
+  margin-bottom: 2em;
+}
+
+.horizontal-stacked-bar {
+  display: flex;
+  width: 100%;
+}
+
+.horizontal-stacked-bar__header {
+  width: 6em;
+  display: flex;
+  flex: none;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.horizontal-stacked-bar-items {
+  display: flex;
+  width: 100%;
+}
+
+.horizontal-stacked-bar__item {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1px 0;
+}
+
+
+.horizontal-stacked-serie-legend {
+  columns: 15em;
+  list-style-type: none;
+  margin: 0 0 .5em 6em;
+  padding: 0;
+  border: 0;
+}

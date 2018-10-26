@@ -1,9 +1,11 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable max-len */
+import HistogramChart from '../histogram/chart';
+import React from 'react';
+
 const bluebird = require('bluebird');
-const { readFile, writeFile } = require('../utils');
+const { readFile } = require('../utils');
 const parse = require('./parse');
-const render = require('./render');
 
 function readJson(repo, prop) {
   return readFile(`${repo.repoName}__${prop}.json`)
@@ -23,8 +25,7 @@ module.exports = function chart({ repos, ignored }) {
     .join(readJsons(repos, 'counts'), readJsons(repos, 'commits'))
     .then(() => {
       const { groups, types } = parse(repos);
-      const html = render(groups, types, repos, ignored);
 
-      return writeFile('chart.html', html);
+      return (<HistogramChart groups={groups} types={types} repos={repos} ignored={ignored} />);
     });
 };

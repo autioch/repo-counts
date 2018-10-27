@@ -1,7 +1,7 @@
 import { getColor } from '../utils';
 
-export default function parseHorizontalStacked(rawRepos, infoKey) {
-  return rawRepos.map((repo) => {
+export default function parseHorizontalStacked(repos, infoKey) {
+  const series = repos.map((repo) => {
     let totalCount = 0;
     const records = {};
 
@@ -18,6 +18,7 @@ export default function parseHorizontalStacked(rawRepos, infoKey) {
     return {
       id: repo.config.repoName,
       header: repo.config.repoName,
+      color: repo.config.color,
       totalCount,
       items: Object.entries(records)
         .sort((a, b) => a[0].localeCompare(b[0]))
@@ -25,11 +26,19 @@ export default function parseHorizontalStacked(rawRepos, infoKey) {
           id: index,
           label,
           count,
-
-          // count: (count / 1000).toFixed(1),
           percentage: ((count / totalCount) * 100).toFixed(1),
           color: getColor(label)
         }))
     };
   });
+
+  const useK = series.some((serie) => serie.items.some((item) => item.count > 10000));
+
+  if (useK) {
+    series.forEach((serie) => serie.items.forEach((item) => {
+      item.count = `${(item.count / 1000).toFixed(1)}k`;
+    }));
+  }
+
+  return series;
 }

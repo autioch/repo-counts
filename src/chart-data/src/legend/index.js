@@ -1,12 +1,14 @@
 import React from 'react';
 import './styles.scss';
 
-export default function Legend({ fileTypes, legend }) {
+export default function Legend({ legend }) {
+  const { items, fileTypes } = legend;
+
   return (
     <div className="legend">
-      <div className="legend__types">File types: {fileTypes.join(', ')}</div>
+      <h2>Legend</h2>
       <div className="legend-items">
-        {legend.map((item) =>
+        {items.map((item) =>
           <div className="legend-item" key={item.id}>
             <div className="legend-item__box" style={{
               backgroundColor: item.color
@@ -15,6 +17,7 @@ export default function Legend({ fileTypes, legend }) {
           </div>
         )}
       </div>
+      <div className="legend__types">File types: {fileTypes.join(', ')}</div>
     </div>
   );
 }

@@ -7,7 +7,6 @@ import parseHorizontalStacked from './horizontalStacked/parse';
 import { Select } from 'antd';
 import parseLegend from './legend/parse';
 import Legend from './legend';
-import { uniq, flattenDeep } from 'lodash';
 
 const { Option } = Select; // eslint-disable-line no-shadow
 
@@ -19,50 +18,37 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    const typesWithinRepos = repos.map((repo) => repo.counts.map((item) => Object.keys(item.count)));
-    const types = flattenDeep(typesWithinRepos);
-
-    const fileTypes = uniq(types).filter((type) => type !== 'SUM').sort();
     const legend = parseLegend(repos);
 
     this.state = {
       infoKey: options[0],
       horizontalSeries: parseHorizontalStacked(repos, options[0]),
       histogramSeries: parseHistogram(repos),
-      fileTypes,
       legend
     };
     this.chooseOption = this.chooseOption.bind(this);
   }
 
   chooseOption(infoKey) {
-    const typesWithinRepos = repos.map((repo) => repo.counts.map((item) => Object.keys(item.count)));
-    const types = flattenDeep(typesWithinRepos);
-
-    const fileTypes = uniq(types).filter((type) => type !== 'SUM').sort();
-    const legend = parseLegend(repos);
-
     this.setState({
       infoKey,
       horizontalSeries: parseHorizontalStacked(repos, infoKey),
       histogramSeries: parseHistogram(repos),
-      fileTypes,
-      legend
+      legend: parseLegend(repos)
     });
   }
 
   render() {
-    const { histogramSeries, horizontalSeries, infoKey, fileTypes, legend } = this.state;
+    const { histogramSeries, horizontalSeries, infoKey, legend } = this.state;
 
     return (
       <div className="App">
-        <h2>File types</h2>
-        <Legend fileTypes={fileTypes} legend={legend} />
+        <Legend legend={legend} />
         <h2>History of line count</h2>
         <HistogramChart series={histogramSeries} />
         <h2>
           Distributon of line count in
-          <Select value={infoKey} onChange={this.chooseOption} >
+          <Select value={infoKey} onChange={this.chooseOption} className="distribution-selector" >
             {options.map((option) => <Option key={option}>{option}</Option>)}
           </Select>
         </h2>

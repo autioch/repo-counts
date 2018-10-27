@@ -22,17 +22,20 @@ function HorizontalStackedBarItem({ item }) {
 }
 
 function HorizontalStackedSerie({ serie }) {
+  const colorStyle = {
+    backgroundColor: serie.color
+  };
+
   return (
     <div className="horizontal-stacked-serie">
-      <div className="horizontal-stacked-bar">
-        <div className="horizontal-stacked-bar__header">{serie.header}<br/>{serie.totalCount}</div>
-        <div className="horizontal-stacked-bar-items">
-          {serie.items.map((item) => <HorizontalStackedBarItem key={item.id} item={item} />)}
-        </div>
+      <div className="horizontal-stacked-serie__header">
+        <div className="horizontal-stacked-serie__color" style={colorStyle}></div>
+        <div>{serie.header}</div>
+        <div className="horizontal-stacked-serie__count">{serie.totalCount} lines</div>
       </div>
-      <ul className="horizontal-stacked-serie-legend">
-        {serie.items.map((item) => <li key={item.id}>{item.label} - {item.count} - {item.percentage}%</li>)}
-      </ul>
+      <div className="horizontal-stacked-bar-items">
+        {serie.items.map((item) => <HorizontalStackedBarItem key={item.id} item={item} />)}
+      </div>
     </div>
   );
 }

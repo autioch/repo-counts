@@ -9,8 +9,7 @@ body {
   font-family: Verdana;
 }
 
-.chart {
-}
+.chart {}
 
 .bars {
   display: flex;
@@ -56,4 +55,9 @@ body {
 .repo + .repo {
   margin-top: 4em;
   border-top: 1px solid #ccc;
+}
+
+.distribution-selector {
+  width: 10em;
+  margin-left: 1em !important;
 }

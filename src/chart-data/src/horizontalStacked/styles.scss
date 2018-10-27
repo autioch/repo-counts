@@ -2,24 +2,30 @@
   margin-bottom: 2em;
 }
 
-.horizontal-stacked-bar {
+.horizontal-stacked-serie__header {
+  flex: none;
   display: flex;
-  width: 100%;
+  align-items: center;
 }
 
-.horizontal-stacked-bar__header {
-  width: 6em;
-  display: flex;
+.horizontal-stacked-serie__color {
+  height: 1em;
+  width: 1em;
+  margin: .5em;
   flex: none;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  border: solid 1px #ccc;
+}
+
+.horizontal-stacked-serie__count {
+  margin-left: auto;
+  margin-right: .5em;
 }
 
 .horizontal-stacked-bar-items {
   display: flex;
   width: 100%;
+  box-sizing: border-box;
+  padding: 0 .5em;
 }
 
 .horizontal-stacked-bar__item {
@@ -31,13 +37,4 @@
   overflow: hidden;
   white-space: nowrap;
   padding: 1px 0;
-}
-
-
-.horizontal-stacked-serie-legend {
-  columns: 15em;
-  list-style-type: none;
-  margin: 0 0 .5em 6em;
-  padding: 0;
-  border: 0;
 }

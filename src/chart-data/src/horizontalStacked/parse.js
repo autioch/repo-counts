@@ -1,16 +1,11 @@
 import { getColor } from '../utils';
-import defs from '../defs';
 
-export default function parseHorizontalStacked(rawRepos, defKey) {
-  const { lineInfoKey, buildId } = defs[defKey];
-
+export default function parseHorizontalStacked(rawRepos, infoKey) {
   return rawRepos.map((repo) => {
     let totalCount = 0;
     const records = {};
 
-    Object.entries(repo.lineInfo[lineInfoKey]).forEach(([key, count]) => {
-      const id = buildId(key);
-
+    Object.entries(repo.lineInfo[infoKey]).forEach(([id, count]) => {
       totalCount += count;
 
       if (records[id]) {

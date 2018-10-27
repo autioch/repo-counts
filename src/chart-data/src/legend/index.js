@@ -1,9 +1,10 @@
 import React from 'react';
+import './styles.scss';
 
-export default function HistogramLegend({ types, legend }) {
+export default function Legend({ fileTypes, legend }) {
   return (
     <div className="legend">
-      <div className="legend__types">Included types: {types.join(', ')}</div>
+      <div className="legend__types">File types: {fileTypes.join(', ')}</div>
       <div className="legend-items">
         {legend.map((item) =>
           <div className="legend-item" key={item.id}>

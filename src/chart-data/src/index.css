@@ -56,8 +56,3 @@ body {
   margin-top: 4em;
   border-top: 1px solid #ccc;
 }
-
-.option-selector {
-  width: 10em;
-  margin-left: 1em !important;
-}

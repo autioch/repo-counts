@@ -73,7 +73,7 @@ function getSeries(repos, idBuilder) {
 
 export default function parseHistogram(repos, histogramKey) {
   const idBuilder = idBuilders[histogramKey];
-  const series = getSeries(repos, idBuilder);
+  const series = getSeries(repos.filter((repo) => !repo.isDisabled), idBuilder);
   const maxCount = Math.max(...series.map((group) => group.countSum));
 
   return {

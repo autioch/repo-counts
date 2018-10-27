@@ -1,36 +1,38 @@
 import { getColor } from '../utils';
 
 export default function parseHorizontalStacked(repos, horizontalKey) {
-  const series = repos.map((repo) => {
-    let totalCount = 0;
-    const records = {};
+  const series = repos
+    .filter((repo) => !repo.isDisabled)
+    .map((repo) => {
+      let totalCount = 0;
+      const records = {};
 
-    Object.entries(repo.lineInfo[horizontalKey]).forEach(([id, count]) => {
-      totalCount += count;
+      Object.entries(repo.lineInfo[horizontalKey]).forEach(([id, count]) => {
+        totalCount += count;
 
-      if (records[id]) {
-        records[id] += count;
-      } else {
-        records[id] = count;
-      }
+        if (records[id]) {
+          records[id] += count;
+        } else {
+          records[id] = count;
+        }
+      });
+
+      return {
+        id: repo.config.repoName,
+        header: repo.config.repoName,
+        color: repo.config.color,
+        totalCount,
+        items: Object.entries(records)
+          .sort((a, b) => a[0].localeCompare(b[0]))
+          .map(([label, count], index) => ({
+            id: index,
+            label,
+            count,
+            percentage: ((count / totalCount) * 100).toFixed(1),
+            color: getColor(label)
+          }))
+      };
     });
-
-    return {
-      id: repo.config.repoName,
-      header: repo.config.repoName,
-      color: repo.config.color,
-      totalCount,
-      items: Object.entries(records)
-        .sort((a, b) => a[0].localeCompare(b[0]))
-        .map(([label, count], index) => ({
-          id: index,
-          label,
-          count,
-          percentage: ((count / totalCount) * 100).toFixed(1),
-          color: getColor(label)
-        }))
-    };
-  });
 
   const useK = series.some((serie) => serie.items.some((item) => item.count > 10000));
 

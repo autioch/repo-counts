@@ -1,12 +1,9 @@
 .histogram-chart {
   display: flex;
-  width: 100%;
-  position: relative;
-  border-top: solid 1px #ddd;
 }
 
 .histogram-serie {
-  margin: 0.5em;
+  margin: 0 0.5em;
   flex: auto;
   min-width: 0;
 }

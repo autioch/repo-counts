@@ -1,5 +1,9 @@
+.distribution-chart {
+  // width: 100%;
+}
+
 .distribution-serie {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .distribution-serie__header {
@@ -11,21 +15,19 @@
 .distribution-serie__color {
   height: 1em;
   width: 1em;
-  margin: .5em;
+  margin-right: .5em;
   flex: none;
   border: solid 1px #ccc;
 }
 
 .distribution-serie__count {
   margin-left: auto;
-  margin-right: .5em;
 }
 
 .distribution-bar-items {
   display: flex;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 .5em;
 }
 
 .distribution-bar__item {

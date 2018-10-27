@@ -30,9 +30,14 @@ function writeFile(fileName, data) {
   return fs.writeFileAsync(join(DATA_FOLDER, fileName), serializedData, 'utf8');
 }
 
+function readFile(fileName) {
+  return fs.readFileAsync(join(DATA_FOLDER, fileName), 'utf8');
+}
+
 module.exports = {
   clone,
   logRepoError,
   objToCli,
-  writeFile
+  writeFile,
+  readFile
 };

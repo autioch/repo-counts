@@ -8,16 +8,17 @@ import parseLegend from './legend/parse';
 import Legend from './legend';
 import Selector from './selector';
 
-const repos = Object.values(rawData);
-const possibleOptions = repos[0].lineInfo;
-const distributionOptions = Object.keys(possibleOptions).filter((key) => typeof possibleOptions[key] === 'object');
+const distributionOptions = ['author', 'year', 'quarter', 'month'];
 const histogramOptions = ['month', 'quarter', 'year'];
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
+    const repos = Object.values(rawData);
+
     this.state = {
+      repos,
       distributionKey: distributionOptions[0],
       distributionSeries: parseDistribution(repos, distributionOptions[0]),
       histogramKey: histogramOptions[0],
@@ -26,19 +27,40 @@ export default class App extends Component {
     };
     this.chooseDistributionKey = this.chooseDistributionKey.bind(this);
     this.chooseHistogramKey = this.chooseHistogramKey.bind(this);
+    this.toggleSerie = this.toggleSerie.bind(this);
   }
 
   chooseDistributionKey(distributionKey) {
     this.setState({
       distributionKey,
-      distributionSeries: parseDistribution(repos, distributionKey)
+      distributionSeries: parseDistribution(this.state.repos, distributionKey)
     });
   }
 
   chooseHistogramKey(histogramKey) {
     this.setState({
       histogramKey,
-      histogramSeries: parseHistogram(repos, histogramKey)
+      histogramSeries: parseHistogram(this.state.repos, histogramKey)
+    });
+  }
+
+  toggleSerie(id) {
+    const repos = this.state.repos.map((repo) => {
+      if (repo.config.repoName !== id) {
+        return repo;
+      }
+
+      return {
+        ...repo,
+        isDisabled: !repo.isDisabled
+      };
+    });
+
+    this.setState({
+      repos,
+      histogramSeries: parseHistogram(repos, this.state.histogramKey),
+      distributionSeries: parseDistribution(repos, this.state.distributionKey),
+      legend: parseLegend(repos)
     });
   }
 
@@ -47,16 +69,16 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Legend legend={legend} />
-        <h2>
+        <Legend legend={legend} toggleSerie={this.toggleSerie}/>
+        <h3 className="chart-header">
           History of line count by
           <Selector value={histogramKey} onChange={this.chooseHistogramKey} options={histogramOptions} />
-        </h2>
+        </h3>
         <HistogramChart series={histogramSeries} />
-        <h2>
+        <h3 className="chart-header">
           Origin distributon of line count by
           <Selector value={distributionKey} onChange={this.chooseDistributionKey} options={distributionOptions} />
-        </h2>
+        </h3>
         <DistributionChart series={distributionSeries} />
       </div>
     );

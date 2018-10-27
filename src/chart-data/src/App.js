@@ -2,57 +2,62 @@ import React, { Component } from 'react';
 import rawData from './data.json';
 import HistogramChart from './histogram/chart';
 import parseHistogram from './histogram/parse';
-import HorizontalStackedChart from './horizontalStacked/chart';
-import parseHorizontalStacked from './horizontalStacked/parse';
-import { Select } from 'antd';
+import DistributionChart from './distribution/chart';
+import parseDistribution from './distribution/parse';
 import parseLegend from './legend/parse';
 import Legend from './legend';
-
-const { Option } = Select; // eslint-disable-line no-shadow
+import Selector from './selector';
 
 const repos = Object.values(rawData);
 const possibleOptions = repos[0].lineInfo;
-const options = Object.keys(possibleOptions).filter((key) => typeof possibleOptions[key] === 'object');
+const distributionOptions = Object.keys(possibleOptions).filter((key) => typeof possibleOptions[key] === 'object');
+const histogramOptions = ['month', 'quarter', 'year'];
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
-    const legend = parseLegend(repos);
-
     this.state = {
-      infoKey: options[0],
-      horizontalSeries: parseHorizontalStacked(repos, options[0]),
-      histogramSeries: parseHistogram(repos),
-      legend
+      distributionKey: distributionOptions[0],
+      distributionSeries: parseDistribution(repos, distributionOptions[0]),
+      histogramKey: histogramOptions[0],
+      histogramSeries: parseHistogram(repos, histogramOptions[0]),
+      legend: parseLegend(repos)
     };
-    this.chooseOption = this.chooseOption.bind(this);
+    this.chooseDistributionKey = this.chooseDistributionKey.bind(this);
+    this.chooseHistogramKey = this.chooseHistogramKey.bind(this);
   }
 
-  chooseOption(infoKey) {
+  chooseDistributionKey(distributionKey) {
     this.setState({
-      infoKey,
-      horizontalSeries: parseHorizontalStacked(repos, infoKey),
-      histogramSeries: parseHistogram(repos),
-      legend: parseLegend(repos)
+      distributionKey,
+      distributionSeries: parseDistribution(repos, distributionKey)
+    });
+  }
+
+  chooseHistogramKey(histogramKey) {
+    this.setState({
+      histogramKey,
+      histogramSeries: parseHistogram(repos, histogramKey)
     });
   }
 
   render() {
-    const { histogramSeries, horizontalSeries, infoKey, legend } = this.state;
+    const { histogramKey, histogramSeries, distributionKey, distributionSeries, legend } = this.state;
 
     return (
       <div className="App">
         <Legend legend={legend} />
-        <h2>History of line count</h2>
+        <h2>
+          History of line count by
+          <Selector value={histogramKey} onChange={this.chooseHistogramKey} options={histogramOptions} />
+        </h2>
         <HistogramChart series={histogramSeries} />
         <h2>
-          Distributon of line count in
-          <Select value={infoKey} onChange={this.chooseOption} className="distribution-selector" >
-            {options.map((option) => <Option key={option}>{option}</Option>)}
-          </Select>
+          Distributon of line count by
+          <Selector value={distributionKey} onChange={this.chooseDistributionKey} options={distributionOptions} />
         </h2>
-        <HorizontalStackedChart series={horizontalSeries} />
+        <DistributionChart series={distributionSeries} />
       </div>
     );
   }

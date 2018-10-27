@@ -1,14 +1,14 @@
-.horizontal-stacked-serie {
+.distribution-serie {
   margin-bottom: 2em;
 }
 
-.horizontal-stacked-serie__header {
+.distribution-serie__header {
   flex: none;
   display: flex;
   align-items: center;
 }
 
-.horizontal-stacked-serie__color {
+.distribution-serie__color {
   height: 1em;
   width: 1em;
   margin: .5em;
@@ -16,19 +16,19 @@
   border: solid 1px #ccc;
 }
 
-.horizontal-stacked-serie__count {
+.distribution-serie__count {
   margin-left: auto;
   margin-right: .5em;
 }
 
-.horizontal-stacked-bar-items {
+.distribution-bar-items {
   display: flex;
   width: 100%;
   box-sizing: border-box;
   padding: 0 .5em;
 }
 
-.horizontal-stacked-bar__item {
+.distribution-bar__item {
   flex: none;
   display: flex;
   flex-direction: column;

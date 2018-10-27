@@ -1,83 +1,79 @@
-/* eslint-disable max-len */
-import { keyBy, uniq, groupBy } from 'lodash';
+const { uniq } = require('lodash');
 
-function dateToYearMonth(date) {
-  const [year, month] = date.split('-');
+const idBuilders = {
+  month(date) {
+    const [year, month] = date.split('-');
 
-  return `${year}-${month.padStart(2, '0')}`;
-}
+    return `${year}-${month.padStart(2, '0')}`;
+  },
+  quarter(date) {
+    const [year, month] = date.split('-');
 
-function prepareRepoCommits(repo) {
-  return repo.commitList.map((commit) => Object.assign({}, commit, {
-    date: dateToYearMonth(commit.date)
-  }));
-}
+    return `${year}/${Math.ceil(month / 3)}`;
+  },
+  year: (date) => date.split('-')[0]
+};
 
-function prepareCommits(repos) {
-  const allCommits = Object.values(repos).reduce((arr, repo) => arr.concat(prepareRepoCommits(repo)), []);
-  const commitListInMonth = Object.entries(groupBy(allCommits, 'date'));
+/* TODO clean up this. */
+function getRecords(repos, idBuilder) {
+  return repos.reduce((obj, repo) => {
+    const dict = {};
 
-  return commitListInMonth;
-}
+    obj[repo.config.repoName] = dict;
+    repo.counts.forEach((count) => {
+      const { date, count: { SUM: { code } } } = count;
+      const countId = idBuilder(date);
 
-function summarizeCommitProp(changesInMonth, prop) {
-  return changesInMonth.reduce((dict, [date, commitList]) => {
-    dict[date] = commitList.reduce((sum, commit) => sum + commit[prop], 0);
+      if (!dict[countId]) {
+        dict[countId] = [];
+      }
+      dict[countId].push({
+        date,
+        count: code
+      });
+    }, {});
 
-    return dict;
+    Object.keys(dict).forEach((key) => {
+      dict[key] = dict[key].sort((a, b) => a.date.localeCompare(b.date)).pop().count;
+    });
+
+    return obj;
   }, {});
 }
 
-function getChangesPerMonth(repos) {
-  const changesInMonth = prepareCommits(repos);
-  const deletions = summarizeCommitProp(changesInMonth, 'deletions');
-  const insertions = summarizeCommitProp(changesInMonth, 'insertions');
-
-  return {
-    insertions,
-    deletions
-  };
-}
-
-function getGroups(repos, deletionsInMonth, insertionsInMonth) {
-  Object.values(repos).forEach((repo) => {
-    repo.counts.forEach((info) => {
-      info.date = dateToYearMonth(info.date);
-    });
-    repo.dict = keyBy(repo.counts, 'date');
-  });
-  const allDates = uniq(Object.values(repos).reduce((dates, repo) => dates.concat(repo.counts.map((count) => dateToYearMonth(count.date))), []));
-  const steps = allDates.map((date) => dateToYearMonth(date)).sort((dateA, dateB) => dateA.localeCompare(dateB));
-  const groups = steps.map((date) => ({
-    date,
-    deletions: deletionsInMonth[date],
-    insertions: insertionsInMonth[date],
-    bars: Object.values(repos).map((repo) => ({
-      repoName: repo.config.repoName,
+function getSeries(repos, idBuilder) {
+  const records = getRecords(repos, idBuilder);
+  const allRecords = repos.reduce((arr, repo) => arr.concat(repo.counts.map((count) => idBuilder(count.date))), []);
+  const uniqueRecords = uniq(allRecords.sort((dateA, dateB) => dateA.localeCompare(dateB)));
+  const series = uniqueRecords.map((id) => ({
+    id,
+    header: id,
+    countSum: 0,
+    bars: repos.map((repo) => ({
+      id: repo.config.repoName,
       color: repo.config.color,
-      count: repo.dict[date] ? repo.dict[date].count.SUM.code : undefined
+      count: records[repo.config.repoName][id]
     }))
   }));
 
-  groups.forEach((group, index) => group.bars.forEach((bar, barIndex) => {
-    if (bar.count) {
-      return;
-    }
-    const previousGroup = groups[index - 1];
+  series.forEach((group, index) => {
+    group.countSum = group.bars.reduce((sum, bar, barIndex) => {
+      if (!bar.count) {
+        const previousGroup = series[index - 1];
 
-    bar.count = previousGroup ? previousGroup.bars[barIndex].count : 0;
-  }));
+        bar.count = previousGroup ? previousGroup.bars[barIndex].count : 0;
+      }
 
-  groups.forEach((group) => {
-    group.countSum = group.bars.reduce((sum, bar) => sum + (bar.count || 0), 0);
+      return sum + bar.count;
+    }, 0);
   });
 
-  return groups;
+  return series;
 }
 
-export default function parseHistogram(repos) {
-  const { deletions, insertions } = getChangesPerMonth(repos);
-  const series = getGroups(repos, deletions, insertions);
+export default function parseHistogram(repos, histogramKey) {
+  const idBuilder = idBuilders[histogramKey];
+  const series = getSeries(repos, idBuilder);
   const maxCount = Math.max(...series.map((group) => group.countSum));
 
   return {

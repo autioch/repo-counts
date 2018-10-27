@@ -54,7 +54,7 @@ export default class App extends Component {
         </h2>
         <HistogramChart series={histogramSeries} />
         <h2>
-          Distributon of line count by
+          Origin distributon of line count by
           <Selector value={distributionKey} onChange={this.chooseDistributionKey} options={distributionOptions} />
         </h2>
         <DistributionChart series={distributionSeries} />

@@ -1,30 +1,29 @@
 import React from 'react';
-import './groups.css';
-import './index.css';
+import './styles.scss';
 
-function Bar({ item, maxCount }) {
+function HistogramBarItem({ item, maxCount }) {
   const { count, color } = item;
 
-  const style = {
-    height: `${(count / maxCount) * 100}%`,
-    backgroundColor: color
-  };
-
   return (
-    <div className="bar" title={count} style={style}></div>
+    <div className="histogram-bar-item" title={`${item.id}: ${count}`} style={{
+      height: `${(count / maxCount) * 100}%`,
+      backgroundColor: color
+    }}></div>
   );
 }
 
 function HistogramSerie({ serie: { countSum, header, bars }, maxCount }) {
   return (
-    <div className="group" title={countSum}>
-      <div className="bars">
-        <div className="bar--sum" title={countSum} style={{
+    <div className="histogram-serie">
+      <div className="histogram-bar" title={`Total: ${countSum}`}>
+        <div className="histogram-bar__sum" style={{
           height: `${(countSum / maxCount) * 100}%`
         }}></div>
-        {bars.map((bar) => <Bar key={bar.id} item={bar} maxCount={maxCount} />)}
+        <div className="histogram-bar-items">
+          {bars.map((bar) => <HistogramBarItem key={bar.id} item={bar} maxCount={maxCount} />)}
+        </div>
       </div>
-      <div className="header">{header}</div>
+      <div className="histogram-serie__header" title={header}>{header}</div>
     </div>
   );
 }
@@ -32,9 +31,7 @@ function HistogramSerie({ serie: { countSum, header, bars }, maxCount }) {
 export default function HistogramChart({ series: { series, maxCount } }) {
   return (
     <div className="histogram-chart">
-      <div className="histogram-char__groups">
-        {series.map((serie) => <HistogramSerie key={serie.id} serie={serie} maxCount={maxCount} />)}
-      </div>
+      {series.map((serie) => <HistogramSerie key={serie.id} serie={serie} maxCount={maxCount} />)}
     </div>
   );
 }

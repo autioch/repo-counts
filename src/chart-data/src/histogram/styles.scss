@@ -1,0 +1,45 @@
+.histogram-chart {
+  display: flex;
+  width: 100%;
+  position: relative;
+  border-top: solid 1px #ddd;
+}
+
+.histogram-serie {
+  margin: 0.5em;
+  flex: auto;
+  min-width: 0;
+}
+
+.histogram-serie__header {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.histogram-bar {
+  height: 40vh;
+  position: relative;
+  flex: auto;
+}
+
+.histogram-bar-item {
+  flex: auto;
+}
+
+.histogram-bar-items {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.histogram-bar__sum {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ddd;
+  z-index: -1;
+}

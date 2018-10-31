@@ -7,7 +7,9 @@
     "lint": "eslint ./src --fix --ext .js",
     "lint:test": "eslint ./spec --fix --ext .js",
     "test": "mocha --reporter=list **/*.spec.js",
-    "test:watch": "mocha --reporter=min --watch **/*.spec.js & exit 0"
+    "test:watch": "mocha --reporter=min --watch **/*.spec.js & exit 0",
+    "collect-data": "node ./src/index.js",
+    "cache-languages": "node ./src/cacheLanguages.js"
   },
   "keywords": [],
   "repository": {

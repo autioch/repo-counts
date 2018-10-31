@@ -12,4 +12,5 @@ const gatheredData = {};
     gatheredData[repoConfig.repoName] = data;
   }
 })()
-  .then(() => writeFile('data.json', gatheredData).then(() => qbLog.empty('DONE')));
+  .then(() => writeFile('data.json', gatheredData))
+  .then(() => qbLog.empty('DONE'));

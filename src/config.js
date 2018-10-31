@@ -3,6 +3,7 @@ const {
   clocPath = '', startingCommitNr = 3, repos: rawRepos
 } = require('../config');
 const { clone } = require('./utils');
+const languages = require('./languages');
 
 if (!clocPath) {
   throw Error('Invalid `clocPath` in config. Please specify path to perl cloc.');
@@ -65,5 +66,6 @@ repos
 module.exports = {
   clocPath,
   startingCommitNr,
-  repos
+  repos,
+  languages
 };

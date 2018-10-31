@@ -9,7 +9,7 @@ import Legend from './legend';
 import Selector from './selector';
 import { Switch } from 'antd';
 
-const distributionOptions = ['author', 'year', 'quarter', 'month', 'extension'];
+const distributionOptions = ['month', 'quarter', 'year', 'author', 'fileType'];
 const histogramOptions = ['month', 'quarter', 'year'];
 
 export default class App extends Component {

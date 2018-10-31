@@ -9,7 +9,7 @@ function assignDict(dict, key) {
 }
 
 function yearId(date) {
-  return date.split('-')[0];// .slice(0, 2);
+  return date.split('-')[0];
 }
 
 function quarterId(date) {
@@ -24,24 +24,25 @@ function monthId(date) {
 
 module.exports = function analyzeFileInfos(fileInfos) {
   const stats = {
-    totalFiles: fileInfos.length,
-    totalLines: 0,
     author: {},
     date: {},
     year: {},
     quarter: {},
     month: {},
-    extension: {}
+    fileType: {}
 
     // fileName: {},
     // lineLength: {},
     // linesInFile: {}
-    // contents: {}
+    // contents: {},
+    // totalFiles: fileInfos.length,
+    // totalLines: 0,
   };
 
-  fileInfos.forEach(({ /* fileName, */ lineCount, lines }) => {
-    stats.totalLines += lineCount;
+  fileInfos.forEach((fileInfo) => {
+    const { /* fileName, */ /* lineCount,*/ lines } = fileInfo;
 
+    // stats.totalLines += lineCount;
     // assignDict(stats.linesInFile, lineCount);
     // assignDict(stats.fileName, fileName);
 
@@ -54,7 +55,7 @@ module.exports = function analyzeFileInfos(fileInfos) {
       assignDict(stats.year, yearId(line.date));
       assignDict(stats.quarter, quarterId(line.date));
       assignDict(stats.month, monthId(line.date));
-      assignDict(stats.extension, monthId(line.extension));
+      assignDict(stats.fileType, line.fileType);
     });
   });
 

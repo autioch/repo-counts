@@ -48,4 +48,5 @@ List of repositories to be checked. You can specify `path` only to the `folder`,
 ## TODO
  - Unify mechanism for chosen and ignored file types
  - allow collecting only partial data for only chosen repositories
- - wire up chart-data to be easier in use.
+ - wire up chart-data to be easier in use
+ - report folders scanned

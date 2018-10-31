@@ -1,13 +1,14 @@
 const { executeCommand } = require('../utils');
-const { languages } = require('../config');
 const { relative, dirname, basename, extname } = require('path');
 const parseLine = require('./parseLine');
+
+// const { languages } = require('../config');
 
 module.exports = function getFileInfo(filePath, folderPath) {
   const folderName = dirname(filePath);
   const fileName = basename(filePath);
   const extension = extname(fileName).replace('.', '');
-  const fileType = languages[extension] || extension;
+  const fileType = /* languages[extension] || */ extension;
   const relativePath = relative(folderPath, filePath);
   const fileContents = executeCommand(`git blame --date=short -c ${relativePath}`);
 

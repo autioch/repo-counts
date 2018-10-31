@@ -8,7 +8,7 @@ const clone = (obj) => JSON.parse(JSON.stringify(obj));
 function logRepoError(message, err, repo) {
   qbLog.error(message);
   qbLog.empty(repo.repoName);
-  qbLog.empty(err);
+  qbLog.empty(err.message);
 }
 
 function objToCli(options) {

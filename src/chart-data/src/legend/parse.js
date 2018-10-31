@@ -3,7 +3,7 @@ import { getColor } from '../utils';
 
 function getFileTypes(repos) {
   const selectedRepos = repos.filter((repo) => !repo.isDisabled);
-  const typesWithinRepos = selectedRepos.map((repo) => repo.counts.map((item) => Object.keys(item.count)));
+  const typesWithinRepos = selectedRepos.map((repo) => (repo.counts || []).map((item) => Object.keys(item.count)));
   const types = flattenDeep(typesWithinRepos);
 
   return uniq(types).filter((type) => type !== 'SUM').sort();

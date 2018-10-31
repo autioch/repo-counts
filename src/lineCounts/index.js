@@ -1,5 +1,5 @@
 const countLines = require('./countLines');
-const { clone, executeCommand } = require('../utils');
+const { clone, executeCommand, logRepoError } = require('../utils');
 const qbLog = require('qb-log');
 
 qbLog({
@@ -32,6 +32,12 @@ function findFirstCommitInMonth(commits, yearAndMonth) {
 
 module.exports = function getLineCounts(repoConfig, commits) {
   qbLog.count(repoConfig.repoName);
+
+  if (!commits.length) {
+    logRepoError('No commits', {}, repoConfig);
+
+    return [];
+  }
 
   const [startCommit] = commits;
 

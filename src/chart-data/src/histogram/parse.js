@@ -20,7 +20,7 @@ function getRecords(repos, idBuilder, fileTypes) {
     const dict = {};
 
     obj[repo.config.repoName] = dict;
-    repo.counts.forEach((count) => {
+    (repo.counts || []).forEach((count) => {
       const { date, count: codes } = count;
       const countId = idBuilder(date);
 
@@ -29,10 +29,12 @@ function getRecords(repos, idBuilder, fileTypes) {
       }
       dict[countId].push({
         date,
-        count: fileTypes
-          .filter((type) => !!codes[type.id])
-          .map((type) => codes[type.id].code + codes[type.id].comment)
-          .reduce((sum, type) => sum + type, 0)
+        count: codes.SUM.code
+
+        // count: fileTypes
+        //   .filter((type) => !!codes[type.id])
+        //   .map((type) => codes[type.id].code + codes[type.id].comment)
+        //   .reduce((sum, type) => sum + type, 0)
       });
     }, {});
 
@@ -46,7 +48,7 @@ function getRecords(repos, idBuilder, fileTypes) {
 
 function getSeries(repos, idBuilder, fileTypes) {
   const records = getRecords(repos, idBuilder, fileTypes);
-  const allRecords = repos.reduce((arr, repo) => arr.concat(repo.counts.map((count) => idBuilder(count.date))), []);
+  const allRecords = repos.reduce((arr, repo) => arr.concat((repo.counts || []).map((count) => idBuilder(count.date))), []);
   const uniqueRecords = uniq(allRecords.sort((dateA, dateB) => dateA.localeCompare(dateB)));
   const series = uniqueRecords.map((id) => ({
     id,

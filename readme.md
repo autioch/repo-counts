@@ -2,17 +2,24 @@
 
 Tool for reporting amount of a code in repositories over time. It does not use any Github or other APIs, requires only git.
 
+## WARNING!
+As warnings should be written ahead, here's one. This module travels through the history of the repo. Because of that, it will **remove all uncommitted changes** - **git checkout** with **git reset --hard** will be used. Remember to **commit** Your work!
+
 ## Installation
 
 This package is currently _unavailable_ on `npm`. To use it clone or download repository.
 
 ## Configuration
+See `config.example.js` for an example.
 
 ### clocPath
 Absolute path to the perl cloc. By default this comes as dependency, but can be changed.
 
-### clocIgnored
-List of languages/extensions to be ignored by cloc.
+### ignoredFolderNames
+Array of folder names to be ignored in every repository - they work as a regex.
+
+### ignoredExtensions
+Array of extensions to be ignored in every repository.
 
 ### startingCommitNr
 Amount of commits to be skipped from the beggining of the history.
@@ -21,8 +28,8 @@ Amount of commits to be skipped from the beggining of the history.
 List of repositories to be checked. You can specify `path` only to the `folder`, or use an object with properties:
  - `folder` *required* is direct path to repo folder,
  - `repoName` is the name used in jsons and final chart,
- - `extensions` array of file types checked when collecting lines info, by default `['js', 'scss', 'sass', 'css', 'tpl', 'html', 'md']`
- - `ignoredFolderNames` array of folder names to be ignored - they work as a regex
+ - `ignoredFolderNames` array of folder names to be ignored - they work as a regex; these folder names will be joined with folder names defined in the main part of the config
+ - `ignoredExtensions` array of extensions to be ignored in every repository; these extensions will be joined with folder names defined in the main part of the config
  - `color` is the color of the bar in the chart, if not provided, will be assigned
 
 ## Collecting data

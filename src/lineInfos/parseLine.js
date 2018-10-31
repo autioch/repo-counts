@@ -1,6 +1,6 @@
 const qbLog = require('qb-log');
 
-module.exports = function parseLine(lineInfo) {
+module.exports = function parseLine(lineInfo, extension) {
   const [hash, authorWithBracket, date, lineDetails = ''] = lineInfo.split('\t').map((item) => item.trim());
   const author = authorWithBracket.slice(1).trim().toLowerCase();
   const bracketIndex = lineDetails.indexOf(')');
@@ -18,6 +18,7 @@ module.exports = function parseLine(lineInfo) {
   return {
     author,
     date,
-    contents
+    contents,
+    extension
   };
 };

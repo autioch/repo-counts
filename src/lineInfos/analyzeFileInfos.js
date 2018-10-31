@@ -31,24 +31,30 @@ module.exports = function analyzeFileInfos(fileInfos) {
     year: {},
     quarter: {},
     month: {},
-    fileName: {},
-    lineLength: {},
-    linesInFile: {}
+    extension: {}
+
+    // fileName: {},
+    // lineLength: {},
+    // linesInFile: {}
+    // contents: {}
   };
 
-  fileInfos.forEach(({ fileName, lineCount, lines }) => {
+  fileInfos.forEach(({ /* fileName, */ lineCount, lines }) => {
     stats.totalLines += lineCount;
 
-    assignDict(stats.linesInFile, lineCount);
-    assignDict(stats.fileName, fileName);
+    // assignDict(stats.linesInFile, lineCount);
+    // assignDict(stats.fileName, fileName);
 
     lines.forEach((line) => {
       assignDict(stats.author, line.author);
-      assignDict(stats.lineLength, line.contents.length);
+
+      // assignDict(stats.contents, line.contents);
+      // assignDict(stats.lineLength, line.contents.length);
       assignDict(stats.date, line.date);
       assignDict(stats.year, yearId(line.date));
       assignDict(stats.quarter, quarterId(line.date));
       assignDict(stats.month, monthId(line.date));
+      assignDict(stats.extension, monthId(line.extension));
     });
   });
 

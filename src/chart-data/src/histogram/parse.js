@@ -71,12 +71,53 @@ function getSeries(repos, idBuilder) {
   return series;
 }
 
+const singles = 1;
+const tens = 10;
+const hundreds = 100;
+const thousands = 1000;
+const scalesCount = 4;
+
+const rounding = {
+  '1': singles,
+  '2': tens,
+  '3': hundreds,
+  '4': hundreds,
+  '5': thousands,
+  '6': thousands
+};
+
+function getMaxCount(series) {
+  const maxCount = Math.max(...series.map((group) => group.countSum));
+
+  const orderOfMagnitue = maxCount.toString().length;
+  const roundingAmount = rounding[orderOfMagnitue];
+
+  if (roundingAmount) {
+    return Math.ceil(maxCount / roundingAmount) * roundingAmount;
+  }
+
+  return roundingAmount;
+}
+
+function getScales(maxCount) {
+  const valueCount = maxCount > scalesCount ? scalesCount : maxCount;
+  const values = [maxCount];
+
+  for (let index = 1; index < valueCount; index++) {
+    values.push(Math.ceil(maxCount / valueCount * (valueCount - index)));
+  }
+
+  return values.concat(0);
+}
+
 export default function parseHistogram(repos, histogramKey) {
   const idBuilder = idBuilders[histogramKey];
   const series = getSeries(repos.filter((repo) => !repo.isDisabled), idBuilder);
-  const maxCount = Math.max(...series.map((group) => group.countSum));
+  const maxCount = getMaxCount(series);
+  const scales = getScales(maxCount);
 
   return {
+    scales,
     series,
     maxCount
   };

@@ -1,76 +1,69 @@
 const {
-  clocPath = '',
-  clocIgnored = [],
-  startingCommitNr = 3,
-  repos
+  ignoredFolderNames = [], ignoredExtensions = [],
+  clocPath = '', startingCommitNr = 3, repos: rawRepos
 } = require('../config');
+const { clone } = require('./utils');
 
 if (!clocPath) {
   throw Error('Invalid `clocPath` in config. Please specify path to perl cloc.');
 }
-const { clone } = require('./utils');
 
 const AVAILABLE_COLORS = [
   '#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff',
   '#f99', '#9f9', '#99f', '#ff9', '#f9f', '#9ff'
 ];
 
-function prepareRepos(rawRepos) {
-  const REPO_DEFAULTS = {
-    folder: '', // required
-    repoName: '',
-    extensions: ['js', 'scss', 'sass', 'css', 'tpl', 'html', 'md'],
-    ignoredFolderNames: ['node_modules'],
-    color: false
-  };
+const REPO_DEFAULTS = {
+  folder: '',
+  repoName: '',
+  ignoredFolderNames: [],
+  ignoredExtensions: [],
+  color: false
+};
 
-  const configs = rawRepos.map((rawRepo) => {
-    const repoConfig = typeof rawRepo === 'object' ? rawRepo : {
-      folder: rawRepo
-    };
-
-    const config = Object.assign(clone(REPO_DEFAULTS), repoConfig);
-
-    if (!config.folder) {
-      throw Error('Missing `folder` in repo configuration. ');
-    }
-
-    if (!config.repoName) {
-      const separator = config.folder.includes('/') ? '/' : '\\';
-
-      // path.dirname(filename).split(path.sep).pop()
-      // path.basename(path.dirname(filename))
-      config.repoName = config.folder.split(separator).pop();
-    }
-
-    return config;
+/* Fill in missing properties for the repo configurations. */
+const repos = rawRepos.map((rawRepo) => {
+  const config = Object.assign(clone(REPO_DEFAULTS), typeof rawRepo === 'object' ? rawRepo : {
+    folder: rawRepo
   });
 
-  const usedColors = configs.reduce((obj, config) => {
-    if (config.color) {
-      if (obj[config.color]) {
-        throw Error(`${config.folder} uses already used color ${config.color}`);
-      }
-      obj[config.color] = true;
+  config.ignoredExtensions = config.ignoredExtensions.concat(ignoredExtensions);
+  config.ignoredFolderNames = config.ignoredFolderNames.concat(ignoredFolderNames);
+
+  if (!config.folder) {
+    throw Error('Missing `folder` in repo configuration. ');
+  }
+
+  if (!config.repoName) {
+    config.repoName = config.folder.split(config.folder.includes('/') ? '/' : '\\').pop();
+  }
+
+  return config;
+});
+
+/* Collect already assigned colors. Check for duplicated colors. */
+const usedColors = {};
+
+repos.forEach((config) => {
+  if (config.color) {
+    if (usedColors[config.color]) {
+      throw Error(`${config.folder} uses already used color ${config.color}`);
     }
+    usedColors[config.color] = true;
+  }
+});
 
-    return obj;
-  }, {});
+const availableColors = AVAILABLE_COLORS.filter((color) => !usedColors[color]);
 
-  const availableColors = AVAILABLE_COLORS.filter((color) => !usedColors[color]);
-  const uncoloredConfigs = configs.filter((config) => !config.color);
-  const availableCount = availableColors.length;
-
-  uncoloredConfigs.forEach((config, index) => {
-    config.color = availableColors[index % availableCount];
+/* Assign missing colors. */
+repos
+  .filter((config) => !config.color)
+  .forEach((config, index) => {
+    config.color = availableColors[index % availableColors.length];
   });
-
-  return configs;
-}
 
 module.exports = {
   clocPath,
-  clocIgnored,
   startingCommitNr,
-  repos: prepareRepos(repos)
+  repos
 };

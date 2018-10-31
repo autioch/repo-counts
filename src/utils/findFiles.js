@@ -1,9 +1,9 @@
 const glob = require('glob');
 const { join, resolve } = require('path');
 
-function buildSearchPattern(folderName, extensions) {
+function buildSearchPattern(folderName, ignoredExtensions) {
   const absoluteRoot = resolve(folderName);
-  const filePattern = `*.{${extensions.join(',')}}`;
+  const filePattern = `*.!(${ignoredExtensions.join('|')})`;
   const searchExpression = join(absoluteRoot, '**', filePattern);
 
   return searchExpression.replace(/\\/g, '/');
@@ -30,8 +30,8 @@ function executeSearch(searchPattern, ignoreList) {
   });
 }
 
-module.exports = function findFiles(folderName, extensions, ignoredFolderNames) {
-  const searchPattern = buildSearchPattern(folderName, extensions);
+module.exports = function findFiles(folderName, ignoredFolderNames, ignoredExtensions) {
+  const searchPattern = buildSearchPattern(folderName, ignoredExtensions);
   const ignoreList = buildIgnoreList(ignoredFolderNames);
 
   return executeSearch(searchPattern, ignoreList);

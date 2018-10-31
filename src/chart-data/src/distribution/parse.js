@@ -41,6 +41,10 @@ export default function parseHorizontalStacked(repos, horizontalKey) {
       item.count = `${(item.count / 1000).toFixed(1)}k`;
     }));
   }
+  const maxCount = Math.max(...series.map((serie) => serie.totalCount));
 
-  return series;
+  return {
+    series,
+    maxCount
+  };
 }

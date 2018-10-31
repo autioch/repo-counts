@@ -11,7 +11,7 @@ qbLog({
   }
 });
 
-module.exports = async function gatherData(repoConfig) {
+module.exports = async function gatherData(repoConfig) { // eslint-disable-line max-statements
   qbLog.empty();
   qbLog.repo(repoConfig.repoName);
 
@@ -25,6 +25,13 @@ module.exports = async function gatherData(repoConfig) {
     logRepoError(`Failed to change dir`, err, repoConfig);
 
     return result;
+  }
+
+  try {
+    executeCommand('git reset --hard');
+    executeCommand(`git checkout`);
+  } catch (err) {
+    logRepoError(`Failed to prepare repository`, err, repoConfig);
   }
 
   try {
@@ -44,6 +51,7 @@ module.exports = async function gatherData(repoConfig) {
   }
 
   try {
+    executeCommand('git reset --hard');
     executeCommand(`git checkout`);
   } catch (err) {
     logRepoError(`Failed to restore repository`, err, repoConfig);

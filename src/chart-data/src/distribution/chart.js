@@ -20,9 +20,12 @@ function DistributionBarItem({ item }) {
   );
 }
 
-function DistributionSerie({ serie }) {
+function DistributionSerie({ serie, maxCount, distributionIsRelative }) {
   const colorStyle = {
     backgroundColor: serie.color
+  };
+  const amountStyle = {
+    width: distributionIsRelative ? `${(serie.totalCount / maxCount) * 100}%` : '100%'
   };
 
   return (
@@ -32,17 +35,24 @@ function DistributionSerie({ serie }) {
         <div>{serie.header}</div>
         <div className="distribution-serie__count">{serie.totalCount} lines</div>
       </div>
-      <div className="distribution-bar-items">
+      <div className="distribution-bar-items" style={amountStyle}>
         {serie.items.map((item) => <DistributionBarItem key={item.id} item={item} />)}
       </div>
     </div>
   );
 }
 
-export default function DistributionChart({ series }) {
+export default function DistributionChart({ series: { series, maxCount }, distributionIsRelative }) {
   return (
     <div className="distribution-chart">
-      {series.map((serie) => <DistributionSerie key={serie.id} serie={serie} />)}
+      {
+        series.map((serie) => <DistributionSerie
+          key={serie.id}
+          serie={serie}
+          maxCount={maxCount}
+          distributionIsRelative={distributionIsRelative}
+        />)
+      }
     </div>
   );
 }

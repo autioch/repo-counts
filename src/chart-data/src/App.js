@@ -7,8 +7,9 @@ import parseDistribution from './distribution/parse';
 import parseLegend from './legend/parse';
 import Legend from './legend';
 import Selector from './selector';
+import { Switch } from 'antd';
 
-const distributionOptions = ['author', 'year', 'quarter', 'month'];
+const distributionOptions = ['author', 'year', 'quarter', 'month', 'extension'];
 const histogramOptions = ['month', 'quarter', 'year'];
 
 export default class App extends Component {
@@ -21,10 +22,12 @@ export default class App extends Component {
       repos,
       distributionKey: distributionOptions[0],
       distributionSeries: parseDistribution(repos, distributionOptions[0]),
+      distributionIsRelative: true,
       histogramKey: histogramOptions[0],
       histogramSeries: parseHistogram(repos, histogramOptions[0]),
       legend: parseLegend(repos)
     };
+    this.toggleDistributionIsRelative = this.toggleDistributionIsRelative.bind(this);
     this.chooseDistributionKey = this.chooseDistributionKey.bind(this);
     this.chooseHistogramKey = this.chooseHistogramKey.bind(this);
     this.toggleSerie = this.toggleSerie.bind(this);
@@ -41,6 +44,12 @@ export default class App extends Component {
     this.setState({
       histogramKey,
       histogramSeries: parseHistogram(this.state.repos, histogramKey)
+    });
+  }
+
+  toggleDistributionIsRelative(distributionIsRelative) {
+    this.setState({
+      distributionIsRelative
     });
   }
 
@@ -65,7 +74,10 @@ export default class App extends Component {
   }
 
   render() {
-    const { histogramKey, histogramSeries, distributionKey, distributionSeries, legend } = this.state;
+    const {
+      histogramKey, histogramSeries, legend,
+      distributionKey, distributionSeries, distributionIsRelative
+    } = this.state;
 
     return (
       <div className="App">
@@ -78,8 +90,13 @@ export default class App extends Component {
         <h3 className="chart-header">
           Origin distributon of line count by
           <Selector value={distributionKey} onChange={this.chooseDistributionKey} options={distributionOptions} />
+          <Switch
+            checked={distributionIsRelative}
+            onChange={this.toggleDistributionIsRelative}
+            checkedChildren="Relative"
+            unCheckedChildren="Absolute"/>
         </h3>
-        <DistributionChart series={distributionSeries} />
+        <DistributionChart series={distributionSeries} distributionIsRelative={distributionIsRelative} />
       </div>
     );
   }

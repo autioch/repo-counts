@@ -17,33 +17,35 @@ export default class App extends Component {
     super(props);
 
     const repos = Object.values(rawData);
+    const legend = parseLegend(repos);
 
     this.state = {
       repos,
       distributionKey: distributionOptions[0],
-      distributionSeries: parseDistribution(repos, distributionOptions[0]),
+      distributionSeries: parseDistribution(repos, distributionOptions[0], legend.fileTypes),
       distributionIsRelative: true,
       histogramKey: histogramOptions[0],
-      histogramSeries: parseHistogram(repos, histogramOptions[0]),
-      legend: parseLegend(repos)
+      histogramSeries: parseHistogram(repos, histogramOptions[0], legend.fileTypes),
+      legend
     };
     this.toggleDistributionIsRelative = this.toggleDistributionIsRelative.bind(this);
     this.chooseDistributionKey = this.chooseDistributionKey.bind(this);
     this.chooseHistogramKey = this.chooseHistogramKey.bind(this);
     this.toggleSerie = this.toggleSerie.bind(this);
+    this.toggleFileType = this.toggleFileType.bind(this);
   }
 
   chooseDistributionKey(distributionKey) {
     this.setState({
       distributionKey,
-      distributionSeries: parseDistribution(this.state.repos, distributionKey)
+      distributionSeries: parseDistribution(this.state.repos, distributionKey, this.state.legend.fileTypes)
     });
   }
 
   chooseHistogramKey(histogramKey) {
     this.setState({
       histogramKey,
-      histogramSeries: parseHistogram(this.state.repos, histogramKey)
+      histogramSeries: parseHistogram(this.state.repos, histogramKey, this.state.legend.fileTypes)
     });
   }
 
@@ -65,11 +67,36 @@ export default class App extends Component {
       };
     });
 
+    const { fileTypes } = this.state.legend;
+
     this.setState({
       repos,
-      histogramSeries: parseHistogram(repos, this.state.histogramKey),
-      distributionSeries: parseDistribution(repos, this.state.distributionKey),
+      histogramSeries: parseHistogram(repos, this.state.histogramKey, fileTypes),
+      distributionSeries: parseDistribution(repos, this.state.distributionKey, fileTypes),
       legend: parseLegend(repos)
+    });
+  }
+
+  toggleFileType(id) {
+    const { series, fileTypes } = this.state.legend;
+    const newTypes = fileTypes.map((fileType) => {
+      if (fileType.id !== id) {
+        return fileType;
+      }
+
+      return {
+        ...fileType,
+        isDisabled: !fileType.isDisabled
+      };
+    });
+
+    this.setState({
+      histogramSeries: parseHistogram(this.state.repos, this.state.histogramKey, newTypes),
+      distributionSeries: parseDistribution(this.state.repos, this.state.distributionKey, newTypes),
+      legend: {
+        series,
+        fileTypes: newTypes
+      }
     });
   }
 
@@ -81,7 +108,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Legend legend={legend} toggleSerie={this.toggleSerie}/>
+        <Legend legend={legend} toggleSerie={this.toggleSerie} toggleFileType={this.toggleFileType}/>
         <h3 className="chart-header">
           History of line count by
           <Selector value={histogramKey} onChange={this.chooseHistogramKey} options={histogramOptions} />

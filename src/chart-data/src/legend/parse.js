@@ -14,6 +14,8 @@ export default function parseLegend(repos) {
     id: fileType,
     label: fileType,
     color: getColor(fileType)
+
+    // isDisabled: repo.isDisabled // TODO
   }));
 
   const series = repos.map((repo) => ({

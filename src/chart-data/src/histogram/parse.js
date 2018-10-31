@@ -15,13 +15,13 @@ const idBuilders = {
 };
 
 /* TODO clean up this. */
-function getRecords(repos, idBuilder) {
+function getRecords(repos, idBuilder, fileTypes) {
   return repos.reduce((obj, repo) => {
     const dict = {};
 
     obj[repo.config.repoName] = dict;
     repo.counts.forEach((count) => {
-      const { date, count: { SUM: { code } } } = count;
+      const { date, count: codes } = count;
       const countId = idBuilder(date);
 
       if (!dict[countId]) {
@@ -29,7 +29,10 @@ function getRecords(repos, idBuilder) {
       }
       dict[countId].push({
         date,
-        count: code
+        count: fileTypes
+          .filter((type) => !!codes[type.id])
+          .map((type) => codes[type.id].code + codes[type.id].comment)
+          .reduce((sum, type) => sum + type, 0)
       });
     }, {});
 
@@ -41,8 +44,8 @@ function getRecords(repos, idBuilder) {
   }, {});
 }
 
-function getSeries(repos, idBuilder) {
-  const records = getRecords(repos, idBuilder);
+function getSeries(repos, idBuilder, fileTypes) {
+  const records = getRecords(repos, idBuilder, fileTypes);
   const allRecords = repos.reduce((arr, repo) => arr.concat(repo.counts.map((count) => idBuilder(count.date))), []);
   const uniqueRecords = uniq(allRecords.sort((dateA, dateB) => dateA.localeCompare(dateB)));
   const series = uniqueRecords.map((id) => ({
@@ -110,9 +113,10 @@ function getScales(maxCount) {
   return values.concat(0);
 }
 
-export default function parseHistogram(repos, histogramKey) {
+export default function parseHistogram(repos, histogramKey, fileTypes) {
+  const activeFileTypes = fileTypes.filter((fileType) => !fileType.isDisabled);
   const idBuilder = idBuilders[histogramKey];
-  const series = getSeries(repos.filter((repo) => !repo.isDisabled), idBuilder);
+  const series = getSeries(repos.filter((repo) => !repo.isDisabled), idBuilder, activeFileTypes);
   const maxCount = getMaxCount(series);
   const scales = getScales(maxCount);
 

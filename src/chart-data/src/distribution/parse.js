@@ -1,6 +1,12 @@
 import { getColor } from '../utils';
 
-export default function parseHorizontalStacked(repos, horizontalKey) {
+export default function parseHorizontalStacked(repos, horizontalKey /* , fileTypes */) {
+  // const dict = fileTypes.reduce((obj, fileType) => {
+  //   obj[fileType] = true;
+  //
+  //   return obj;
+  // }, {});
+
   const series = repos
     .filter((repo) => !repo.isDisabled)
     .map((repo) => {

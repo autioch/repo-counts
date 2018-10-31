@@ -12,10 +12,7 @@ function LegendSerieItem({ item, toggleItem }) {
   );
 }
 
-/* TODO */
-const toggleType = () => alert('Not implemented yet'); // eslint-disable-line no-alert
-
-export default function Legend({ legend, toggleSerie }) {
+export default function Legend({ legend, toggleSerie, toggleFileType }) {
   const { series, fileTypes } = legend;
 
   return (
@@ -29,7 +26,7 @@ export default function Legend({ legend, toggleSerie }) {
       <div className="legend-group">
         <h3 className="legend-group__header">File types</h3>
         <div className="legend-series">
-          {fileTypes.map((item) => <LegendSerieItem key={item.id} item={item} toggleItem={toggleType} />)}
+          {fileTypes.map((item) => <LegendSerieItem key={item.id} item={item} toggleItem={toggleFileType} />)}
         </div>
       </div>
     </div>

@@ -24,6 +24,9 @@ Array of extensions to be ignored in every repository.
 ### startingCommitNr
 Amount of commits to be skipped from the beggining of the history.
 
+### rawInfoDetails
+Insteaf of summary, each line info will be saved. **Warning** - this will result in a _large_ input.
+
 ### repos
 List of repositories to be checked. You can specify `path` only to the `folder`, or use an object with properties:
  - `folder` *required* is direct path to repo folder,

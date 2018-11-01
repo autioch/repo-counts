@@ -1,6 +1,6 @@
 const {
   ignoredFolderNames = [], ignoredExtensions = [],
-  clocPath = '', startingCommitNr = 3, repos: rawRepos
+  clocPath = '', startingCommitNr = 3, repos: rawRepos, rawInfoDetails
 } = require('../config');
 const { clone } = require('./utils');
 const languages = require('./languages');
@@ -66,6 +66,7 @@ repos
 module.exports = {
   clocPath,
   startingCommitNr,
+  rawInfoDetails,
   repos,
   languages
 };

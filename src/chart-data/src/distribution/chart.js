@@ -33,7 +33,7 @@ function DistributionSerie({ serie, maxCount, distributionIsRelative }) {
       <div className="distribution-serie__header">
         <div className="distribution-serie__color" style={colorStyle}></div>
         <div>{serie.header}</div>
-        <div className="distribution-serie__count">{serie.totalCount} lines</div>
+        <div className="distribution-serie__count">{serie.totalCount} total</div>
       </div>
       <div className="distribution-bar-items" style={amountStyle}>
         {serie.items.map((item) => <DistributionBarItem key={item.id} item={item} />)}

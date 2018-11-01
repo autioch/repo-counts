@@ -1,6 +1,5 @@
 const glob = require('glob');
 const { join, resolve } = require('path');
-const { writeFile } = require('./misc');
 
 function buildSearchPattern(folderName, ignoredExtensions) {
   const absoluteRoot = resolve(folderName);
@@ -39,9 +38,5 @@ module.exports = function findFiles(folderName, ignoredFolderNames, ignoredExten
 
   const result = executeSearch(searchPattern, ignoreList);
 
-  return result.then((files) => {
-    writeFile('findFiles.tmp', files);
-
-    return files;
-  });
+  return result;
 };

@@ -5,6 +5,7 @@ module.exports = {
   ignoredFolderNames: ['node_modules', 'polyfills', 'dist', 'build'],
   ignoredExtensions: ['gitignore', 'json', 'png', 'map'],
   startingCommitNr: 3,
+  rawInfoDetails: false,
   repos: [
     join('e:', 'projects', 'my-repo')
   ]

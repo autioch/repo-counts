@@ -9,8 +9,11 @@ import Legend from './legend';
 import Selector from './selector';
 import { Switch } from 'antd';
 
-const distributionOptions = ['month', 'quarter', 'year', 'author', 'fileType'];
+const lineInfos = Object.values(rawData)[0].lineInfo;
+const distributionOptions = Object.entries(lineInfos).filter((entry) => typeof entry[1] === 'object').map((entry) => entry[0]); // eslint-disable-line max-len
 const histogramOptions = ['month', 'quarter', 'year'];
+
+console.log(distributionOptions);
 
 export default class App extends Component {
   constructor(props) {

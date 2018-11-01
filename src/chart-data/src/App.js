@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import rawData from './data.json';
+import rawData from './data/data.json';
 import HistogramChart from './histogram/chart';
 import parseHistogram from './histogram/parse';
 import DistributionChart from './distribution/chart';
@@ -13,7 +13,7 @@ const lineInfos = Object.values(rawData)[0].lineInfo;
 const distributionOptions = Object.entries(lineInfos).filter((entry) => typeof entry[1] === 'object').map((entry) => entry[0]); // eslint-disable-line max-len
 const histogramOptions = ['month', 'quarter', 'year'];
 
-const defaultDistribution = 'author';
+const defaultDistribution = 'fileType';
 const defaultHistogram = 'month';
 
 export default class App extends Component {
@@ -119,7 +119,7 @@ export default class App extends Component {
         </h3>
         <HistogramChart series={histogramSeries} />
         <h3 className="chart-header">
-          Origin distributon of line count by
+          Current origin distributon of line count by
           <Selector value={distributionKey} onChange={this.chooseDistributionKey} options={distributionOptions} />
           <Switch
             checked={distributionIsRelative}

@@ -29,12 +29,10 @@ function getRecords(repos, idBuilder, fileTypes) {
       }
       dict[countId].push({
         date,
-        count: codes.SUM.code
-
-        // count: fileTypes
-        //   .filter((type) => !!codes[type.id])
-        //   .map((type) => codes[type.id].code + codes[type.id].comment)
-        //   .reduce((sum, type) => sum + type, 0)
+        count: fileTypes
+          .filter((type) => !!codes[type.id])
+          .map((type) => codes[type.id].code + codes[type.id].comment + codes[type.id].blank)
+          .reduce((sum, type) => sum + type, 0)
       });
     }, {});
 

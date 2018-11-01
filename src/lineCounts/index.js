@@ -48,7 +48,6 @@ module.exports = function getLineCounts(repoConfig, commits) { // eslint-disable
   }
 
   const [startCommit] = commits;
-
   const endTime = new Date().getTime();
   const counts = [];
 

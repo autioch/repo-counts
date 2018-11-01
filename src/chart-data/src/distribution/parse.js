@@ -33,20 +33,13 @@ export default function parseHorizontalStacked(repos, horizontalKey /* , fileTyp
           .map(([label, count], index) => ({
             id: index,
             label,
-            count,
-            percentage: ((count / totalCount) * 100).toFixed(1),
+            count: count > 1000 ? `${Math.round(count / 100) / 10}K` : count,
+            percentage: Math.round((count / totalCount) * 1000) / 10,
             color: getColor(label)
           }))
       };
     });
 
-  const useK = series.some((serie) => serie.items.some((item) => item.count > 10000));
-
-  if (useK) {
-    series.forEach((serie) => serie.items.forEach((item) => {
-      item.count = `${(item.count / 1000).toFixed(1)}k`;
-    }));
-  }
   const maxCount = Math.max(...series.map((serie) => serie.totalCount));
 
   return {

@@ -3,9 +3,8 @@ const { executeCommand, objToCli } = require('../utils');
 const { clocPath } = require('../config');
 
 const options = objToCli({
-  json: undefined,
-
   // 'by-file': undefined,
+  json: undefined,
   'skip-uniqueness': undefined
 });
 

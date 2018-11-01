@@ -14,20 +14,20 @@ function logRepoError(message, err, repo) {
 function objToCli(options) {
   return Object
     .entries(options)
-    .reduce((arr, [key, val]) => {
-      const value = val === undefined ? '' : `=${val}`; // eslint-disable-line no-undefined
-
-      return arr.concat(`--${key}${value}`);
-    }, [])
+    .map(([key, val]) => `--${key}${val === undefined ? '' : `=${val}`}`)
     .join(' ');
 }
 
-const DATA_FOLDER = join(__dirname, '..', 'chart-data', 'src');
+const DATA_FOLDER = join(__dirname, '..', '..', 'data');
+const CHART_FOLDER = join(__dirname, '..', 'chart-data', 'src', 'data');
 
 function writeFile(fileName, data) {
   const serializedData = typeof data === 'string' ? data : JSON.stringify(data, null, '  ');
 
-  return fs.writeFileAsync(join(DATA_FOLDER, fileName), serializedData, 'utf8');
+  return Bluebird.all([
+    fs.writeFileAsync(join(CHART_FOLDER, fileName), serializedData, 'utf8'),
+    fs.writeFileAsync(join(DATA_FOLDER, fileName), serializedData, 'utf8')
+  ]);
 }
 
 function readFile(fileName) {

@@ -44,7 +44,6 @@ module.exports = function analyzeFileInfos(fileInfos) {
     folderName: {},
     fileName: {},
     fileType: {},
-    linesInFile: {},
 
     /* Line */
     author: {},
@@ -52,33 +51,34 @@ module.exports = function analyzeFileInfos(fileInfos) {
     year: {},
     quarter: {},
     month: {},
-    lineLength: {},
+    lineLength: {}
 
     /* Summary */
-    codeLines: 0,
-    emptyLines: 0,
-    totalLines: 0
+    // linesInFile: {},
+    // codeLines: 0,
+    // emptyLines: 0,
+    // totalLines: 0
   };
 
   fileInfos.forEach((fileInfo) => {
     const { folderName, fileName, fileType, lines } = fileInfo;
 
-    stats.totalLines += lines.length;
-    assignDict(stats.folderName, folderName);
-    assignDict(stats.fileName, fileName);
-    assignDict(stats.fileType, fileType);
-    assignDict(stats.linesInFile, lines.length);
+    // stats.totalLines += lines.length;
+    // assignDict(stats.linesInFile, lines.length);
 
     lines.forEach((line) => {
       const [date, author, contentsLength] = line;
 
-      stats[contentsLength ? 'codeLines' : 'emptyLines'] += 1;
+      // stats[contentsLength ? 'codeLines' : 'emptyLines'] += 1;
       assignDict(stats.author, author);
       assignDict(stats.date, date);
       assignDict(stats.year, yearId(date));
       assignDict(stats.quarter, quarterId(date));
       assignDict(stats.month, monthId(date));
       assignDict(stats.lineLength, contentsLength);
+      assignDict(stats.folderName, folderName);
+      assignDict(stats.fileName, fileName);
+      assignDict(stats.fileType, fileType);
     });
   });
 

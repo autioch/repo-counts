@@ -8,7 +8,9 @@ module.exports = function getFileInfo(filePath, folderPath) {
   const extension = extname(fileName).replace('.', '').toLowerCase();
   const relativePath = relative(folderPath, filePath);
   const fileContents = executeCommand(`git blame --date=short -c ${relativePath}`);
-  const lines = fileContents.trim().split('\n').map((line) => parseLine(line));
+  const lines = fileContents.trim().split('\n')
+    .map((line) => parseLine(filePath, line))
+    .filter((info) => !!info.length);
 
   return {
     folderName: dirname(relativePath),

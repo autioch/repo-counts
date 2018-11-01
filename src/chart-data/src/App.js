@@ -13,7 +13,8 @@ const lineInfos = Object.values(rawData)[0].lineInfo;
 const distributionOptions = Object.entries(lineInfos).filter((entry) => typeof entry[1] === 'object').map((entry) => entry[0]); // eslint-disable-line max-len
 const histogramOptions = ['month', 'quarter', 'year'];
 
-console.log(distributionOptions);
+const defaultDistribution = 'author';
+const defaultHistogram = 'month';
 
 export default class App extends Component {
   constructor(props) {
@@ -24,11 +25,11 @@ export default class App extends Component {
 
     this.state = {
       repos,
-      distributionKey: distributionOptions[0],
-      distributionSeries: parseDistribution(repos, distributionOptions[0], legend.fileTypes),
+      distributionKey: defaultDistribution,
+      distributionSeries: parseDistribution(repos, defaultDistribution, legend.fileTypes),
       distributionIsRelative: true,
-      histogramKey: histogramOptions[0],
-      histogramSeries: parseHistogram(repos, histogramOptions[0], legend.fileTypes),
+      histogramKey: defaultHistogram,
+      histogramSeries: parseHistogram(repos, defaultHistogram, legend.fileTypes),
       legend
     };
     this.toggleDistributionIsRelative = this.toggleDistributionIsRelative.bind(this);

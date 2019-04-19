@@ -18,8 +18,9 @@ module.exports = async function gatherData(repoConfig) { // eslint-disable-line 
   const fileName = `${repoConfig.repoName}.json`;
 
   if (isCachedFile(fileName)) {
-    qbLog.info('Founc cached data', repoConfig.repoName);
-    const cachedResult = JSON.parse(readFile(fileName));
+    qbLog.info('Found cached data', repoConfig.repoName);
+    const fileContents = await readFile(fileName);
+    const cachedResult = JSON.parse(fileContents);
 
     return cachedResult;
   }

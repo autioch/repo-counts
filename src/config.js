@@ -19,7 +19,7 @@ function prepareRepos(rawRepos) {
   const REPO_DEFAULTS = {
     folder: '', // required
     repoName: '',
-    extensions: ['js', 'scss', 'sass', 'css', 'tpl', 'html', 'md'],
+    extensions: ['js', 'scss', 'sass', 'css', 'tpl', 'html', 'md', 'c', 'h', 'cpp'],
     ignoredFolderNames: ['node_modules'],
     color: false
   };

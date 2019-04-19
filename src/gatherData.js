@@ -1,4 +1,4 @@
-const { executeCommand, logRepoError } = require('./utils');
+const { executeCommand, logRepoError, writeFile, isCachedFile, readFile } = require('./utils');
 const lineCounts = require('./lineCounts');
 const lineInfos = require('./lineInfos');
 const commits = require('./commits');
@@ -11,9 +11,18 @@ qbLog({
   }
 });
 
-module.exports = async function gatherData(repoConfig) {
+module.exports = async function gatherData(repoConfig) { // eslint-disable-line max-statements
   qbLog.empty();
   qbLog.repo(repoConfig.repoName);
+
+  const fileName = `${repoConfig.repoName}.json`;
+
+  if (isCachedFile(fileName)) {
+    qbLog.info('Founc cached data', repoConfig.repoName);
+    const cachedResult = JSON.parse(readFile(fileName));
+
+    return cachedResult;
+  }
 
   const result = {
     config: repoConfig
@@ -48,6 +57,8 @@ module.exports = async function gatherData(repoConfig) {
   } catch (err) {
     logRepoError(`Failed to restore repository`, err, repoConfig);
   }
+
+  writeFile(fileName, result);
 
   return result;
 };

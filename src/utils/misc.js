@@ -34,10 +34,15 @@ function readFile(fileName) {
   return fs.readFileAsync(join(DATA_FOLDER, fileName), 'utf8');
 }
 
+function isCachedFile(fileName) {
+  return fs.existsSync(join(DATA_FOLDER, fileName)); // eslint-disable-line no-sync
+}
+
 module.exports = {
   clone,
   logRepoError,
   objToCli,
   writeFile,
-  readFile
+  readFile,
+  isCachedFile
 };

@@ -1,4 +1,4 @@
-const { writeFile, clone, objToCli, logRepoError } = require('./misc');
+const { writeFile, clone, objToCli, logRepoError, isCachedFile } = require('./misc');
 const findFiles = require('./findFiles');
 const executeCommand = require('./executeCommand');
 
@@ -8,5 +8,6 @@ module.exports = {
   findFiles,
   clone,
   objToCli,
-  executeCommand
+  executeCommand,
+  isCachedFile
 };

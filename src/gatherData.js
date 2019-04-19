@@ -37,6 +37,13 @@ module.exports = async function gatherData(repoConfig) { // eslint-disable-line 
   }
 
   try {
+    executeCommand('git reset --hard');
+    executeCommand(`git checkout`);
+  } catch (err) {
+    logRepoError(`Failed to prepare repository`, err, repoConfig);
+  }
+
+  try {
     result.lineInfo = await lineInfos(repoConfig);
   } catch (err) {
     logRepoError(`Failed to measure line info`, err, repoConfig);
@@ -53,6 +60,7 @@ module.exports = async function gatherData(repoConfig) { // eslint-disable-line 
   }
 
   try {
+    executeCommand('git reset --hard');
     executeCommand(`git checkout`);
   } catch (err) {
     logRepoError(`Failed to restore repository`, err, repoConfig);

@@ -1,18 +1,20 @@
 const { omit } = require('lodash');
-const { objToCli, executeCommand } = require('../utils');
-const { clocPath, clocIgnored } = require('../config');
+const { executeCommand, objToCli } = require('../utils');
+const { clocPath } = require('../config');
 
 const options = objToCli({
-  'exclude-dir': ['node_modules', 'polyfills'].join(','),
-  'exclude-ext': clocIgnored.join(','),
-  'exclude-lang': clocIgnored.join(','),
-  json: undefined
+  // 'by-file': undefined,
+  json: undefined,
+  'skip-uniqueness': undefined
 });
 
 module.exports = function countLines(repoConfig) {
-  const { folder } = repoConfig;
-  const resultsJson = executeCommand(`perl ${clocPath} ${options} ${folder}`);
-  const results = JSON.parse(resultsJson);
+  const { folder, ignoredFolderNames, ignoredExtensions } = repoConfig;
+  const exceludeDir = ignoredFolderNames.length ? `--exclude-dir=${ignoredFolderNames.join(',')}` : '';
+  const exceludeExt = ignoredExtensions.length ? `--exclude-ext=${ignoredExtensions.join(',')}` : '';
+  const resultsJson = executeCommand(`perl ${clocPath} ${options} ${exceludeDir} ${exceludeExt} ${folder}`);
+
+  const results = JSON.parse(resultsJson.replace(/\\/gi, '/'));
 
   return omit(results, ['header']);
 };

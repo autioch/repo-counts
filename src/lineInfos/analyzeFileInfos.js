@@ -9,7 +9,7 @@ function assignDict(dict, key) {
 }
 
 function yearId(date) {
-  return date.split('-')[0];// .slice(0, 2);
+  return date.split('-')[0];
 }
 
 function quarterId(date) {
@@ -22,33 +22,63 @@ function monthId(date) {
   return date.split('-').slice(0, 2).join('-');
 }
 
+// function countId(count) {
+//   return count;
+//
+//   if (count <= 10) {
+//     return '1-10';
+//   }
+//   if (count <= 100) {
+//     return '11-100';
+//   }
+//   if (count <= 500) {
+//     return '101-500';
+//   }
+//
+//   return '500+';
+// }
+
 module.exports = function analyzeFileInfos(fileInfos) {
   const stats = {
-    totalFiles: fileInfos.length,
-    totalLines: 0,
+    /* File */
+    folderName: {},
+    fileName: {},
+    fileType: {},
+
+    /* Line */
     author: {},
     date: {},
     year: {},
     quarter: {},
     month: {},
-    fileName: {},
-    lineLength: {},
-    linesInFile: {}
+    lineLength: {}
+
+    /* Summary */
+    // linesInFile: {},
+    // codeLines: 0,
+    // emptyLines: 0,
+    // totalLines: 0
   };
 
-  fileInfos.forEach(({ fileName, lineCount, lines }) => {
-    stats.totalLines += lineCount;
+  fileInfos.forEach((fileInfo) => {
+    const { folderName, fileName, fileType, lines } = fileInfo;
 
-    assignDict(stats.linesInFile, lineCount);
-    assignDict(stats.fileName, fileName);
+    // stats.totalLines += lines.length;
+    // assignDict(stats.linesInFile, lines.length);
 
     lines.forEach((line) => {
-      assignDict(stats.author, line.author);
-      assignDict(stats.lineLength, line.contents.length);
-      assignDict(stats.date, line.date);
-      assignDict(stats.year, yearId(line.date));
-      assignDict(stats.quarter, quarterId(line.date));
-      assignDict(stats.month, monthId(line.date));
+      const [date, author, contentsLength] = line;
+
+      // stats[contentsLength ? 'codeLines' : 'emptyLines'] += 1;
+      assignDict(stats.author, author);
+      assignDict(stats.date, date);
+      assignDict(stats.year, yearId(date));
+      assignDict(stats.quarter, quarterId(date));
+      assignDict(stats.month, monthId(date));
+      assignDict(stats.lineLength, contentsLength);
+      assignDict(stats.folderName, folderName);
+      assignDict(stats.fileName, fileName);
+      assignDict(stats.fileType, fileType);
     });
   });
 

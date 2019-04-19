@@ -1,18 +1,33 @@
+@mixin verticalLabel() {
+  writing-mode: vertical-rl;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  transform: rotate(180deg);
+}
+
 .histogram-chart {
   display: flex;
+  position: relative;
+  padding-left: 2.5em;
+  margin-top: 4em;
+  margin-bottom: 3em;
 }
 
 .histogram-serie {
   margin: 0 0.5em;
   flex: auto;
   min-width: 0;
+  // transition: width 200ms;
 }
 
 .histogram-serie__header {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: center;
+  @include verticalLabel();
+  height: 4em;
+  margin-top: .5em;
 }
 
 .histogram-bar {
@@ -23,6 +38,7 @@
 
 .histogram-bar-item {
   flex: auto;
+  transition: width 200ms height 200ms;
 }
 
 .histogram-bar-items {
@@ -39,4 +55,47 @@
   right: 0;
   background-color: #ddd;
   z-index: -1;
+  transition: height 200ms;
+}
+
+.histogram-bar__sum-label {
+  @include verticalLabel();
+  margin-top: -.5em;
+  transform: translateY(-100%) rotate(180deg);
+}
+
+.histogram-chart-scale {
+  position: absolute;
+  left: 2.5em;
+  top: 0;
+  right: 0;
+  bottom: 4.5em;
+  border-bottom: solid 1px #e8e8e8;
+  border-left: solid 1px #e8e8e8;
+}
+
+.histogram-chart-scale-item {
+  position: absolute;
+  width: 100%;
+
+  &:first-child,
+  &:last-child {
+    > .histogram-chart-scale-item__line {
+      display: none;
+    }
+  }
+}
+
+.histogram-chart-scale-item__label {
+  transform: translate(calc(-.5em - 100%), 50%);
+  text-align: right;
+  width: 2em;
+}
+
+.histogram-chart-scale-item__line {
+  width: 100%;
+  height: 1px;
+  border-top: dashed 1px #e8e8e8;
+  z-index: -1;
+  position: relative;
 }

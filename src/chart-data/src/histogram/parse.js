@@ -15,13 +15,13 @@ const idBuilders = {
 };
 
 /* TODO clean up this. */
-function getRecords(repos, idBuilder) {
+function getRecords(repos, idBuilder, fileTypes) {
   return repos.reduce((obj, repo) => {
     const dict = {};
 
     obj[repo.config.repoName] = dict;
-    repo.counts.forEach((count) => {
-      const { date, count: { SUM: { code } } } = count;
+    (repo.counts || []).forEach((count) => {
+      const { date, count: codes } = count;
       const countId = idBuilder(date);
 
       if (!dict[countId]) {
@@ -29,7 +29,10 @@ function getRecords(repos, idBuilder) {
       }
       dict[countId].push({
         date,
-        count: code
+        count: fileTypes
+          .filter((type) => !!codes[type.id])
+          .map((type) => codes[type.id].code + codes[type.id].comment + codes[type.id].blank)
+          .reduce((sum, type) => sum + type, 0)
       });
     }, {});
 
@@ -41,9 +44,9 @@ function getRecords(repos, idBuilder) {
   }, {});
 }
 
-function getSeries(repos, idBuilder) {
-  const records = getRecords(repos, idBuilder);
-  const allRecords = repos.reduce((arr, repo) => arr.concat(repo.counts.map((count) => idBuilder(count.date))), []);
+function getSeries(repos, idBuilder, fileTypes) {
+  const records = getRecords(repos, idBuilder, fileTypes);
+  const allRecords = repos.reduce((arr, repo) => arr.concat((repo.counts || []).map((count) => idBuilder(count.date))), []);
   const uniqueRecords = uniq(allRecords.sort((dateA, dateB) => dateA.localeCompare(dateB)));
   const series = uniqueRecords.map((id) => ({
     id,
@@ -71,12 +74,54 @@ function getSeries(repos, idBuilder) {
   return series;
 }
 
-export default function parseHistogram(repos, histogramKey) {
-  const idBuilder = idBuilders[histogramKey];
-  const series = getSeries(repos.filter((repo) => !repo.isDisabled), idBuilder);
+const singles = 1;
+const tens = 10;
+const hundreds = 100;
+const thousands = 1000;
+const scalesCount = 4;
+
+const rounding = {
+  '1': singles,
+  '2': tens,
+  '3': hundreds,
+  '4': hundreds,
+  '5': thousands,
+  '6': thousands
+};
+
+function getMaxCount(series) {
   const maxCount = Math.max(...series.map((group) => group.countSum));
 
+  const orderOfMagnitue = maxCount.toString().length;
+  const roundingAmount = rounding[orderOfMagnitue];
+
+  if (roundingAmount) {
+    return Math.ceil(maxCount / roundingAmount) * roundingAmount;
+  }
+
+  return roundingAmount;
+}
+
+function getScales(maxCount) {
+  const valueCount = maxCount > scalesCount ? scalesCount : maxCount;
+  const values = [maxCount];
+
+  for (let index = 1; index < valueCount; index++) {
+    values.push(Math.ceil(maxCount / valueCount * (valueCount - index)));
+  }
+
+  return values.concat(0);
+}
+
+export default function parseHistogram(repos, histogramKey, fileTypes) {
+  const activeFileTypes = fileTypes.filter((fileType) => !fileType.isDisabled);
+  const idBuilder = idBuilders[histogramKey];
+  const series = getSeries(repos.filter((repo) => !repo.isDisabled), idBuilder, activeFileTypes);
+  const maxCount = getMaxCount(series);
+  const scales = getScales(maxCount);
+
   return {
+    scales,
     series,
     maxCount
   };

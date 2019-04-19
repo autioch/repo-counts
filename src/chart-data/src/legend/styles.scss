@@ -1,4 +1,10 @@
-.legend {}
+.legend {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+  padding-bottom: 1em;
+}
 
 .legend-group {
   display: flex;

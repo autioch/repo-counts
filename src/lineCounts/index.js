@@ -1,5 +1,5 @@
 const countLines = require('./countLines');
-const { clone, executeCommand } = require('../utils');
+const { clone, executeCommand, logRepoError } = require('../utils');
 const qbLog = require('qb-log');
 
 qbLog({
@@ -13,12 +13,7 @@ qbLog({
   }
 });
 
-function getNextMonthFirstDay(dateString) {
-  const date = new Date(dateString);
-
-  date.setMonth(date.getMonth() + 1);
-  date.setDate(1);
-
+function formatDate(date) {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
@@ -26,15 +21,33 @@ function getNextMonthFirstDay(dateString) {
   return `${year}-${month}-${day}`;
 }
 
+function getNextMonthFirstDay(dateString) {
+  const date = new Date(dateString);
+
+  date.setMonth(date.getMonth() + 1);
+  date.setDate(1);
+
+  return formatDate(date);
+}
+
 function findFirstCommitInMonth(commits, yearAndMonth) {
   return commits.find(({ date }) => yearAndMonth === date.slice(0, 7));
 }
 
-module.exports = function getLineCounts(repoConfig, commits) {
+const today = formatDate(new Date());
+
+module.exports = function getLineCounts(repoConfig, commits) { // eslint-disable-line max-statements
   qbLog.count(repoConfig.repoName);
+  qbLog.countDate(today, 'TODAY');
+  const currentCount = countLines(repoConfig);
+
+  if (!commits.length) {
+    logRepoError('No commits', {}, repoConfig);
+
+    return [];
+  }
 
   const [startCommit] = commits;
-
   const endTime = new Date().getTime();
   const counts = [];
 
@@ -60,5 +73,8 @@ module.exports = function getLineCounts(repoConfig, commits) {
     nextDate = getNextMonthFirstDay(nextDate);
   }
 
-  return counts;
+  return counts.concat({
+    date: today,
+    count: currentCount
+  });
 };

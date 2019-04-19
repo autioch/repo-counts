@@ -1,6 +1,7 @@
 const analyzeFileInfos = require('./analyzeFileInfos');
 const getFileInfo = require('./getFileInfo');
 const { findFiles } = require('../utils');
+const { rawInfoDetails } = require('../config');
 const qbLog = require('qb-log');
 
 qbLog._add('linesInfo', {
@@ -11,9 +12,14 @@ qbLog._add('linesInfo', {
 module.exports = async function getLinesInfo(repoConfig) {
   qbLog.linesInfo(repoConfig.repoName);
 
-  const { folder, extensions, ignoredFolderNames } = repoConfig;
-  const filePaths = await findFiles(folder, extensions, ignoredFolderNames);
+  const { folder, ignoredFolderNames, ignoredExtensions } = repoConfig;
+  const filePaths = await findFiles(folder, ignoredFolderNames, ignoredExtensions);
   const fileLineInfos = filePaths.reduce((arr, filePath) => arr.concat(getFileInfo(filePath, folder)), []);
+
+  if (rawInfoDetails) {
+    return fileLineInfos;
+  }
+
   const analyzedLineInfos = analyzeFileInfos(fileLineInfos);
 
   return analyzedLineInfos;

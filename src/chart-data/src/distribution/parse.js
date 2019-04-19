@@ -1,6 +1,12 @@
 import { getColor } from '../utils';
 
-export default function parseHorizontalStacked(repos, horizontalKey) {
+export default function parseHorizontalStacked(repos, horizontalKey /* , fileTypes */) {
+  // const dict = fileTypes.reduce((obj, fileType) => {
+  //   obj[fileType] = true;
+  //
+  //   return obj;
+  // }, {});
+
   const series = repos
     .filter((repo) => !repo.isDisabled)
     .map((repo) => {
@@ -27,20 +33,17 @@ export default function parseHorizontalStacked(repos, horizontalKey) {
           .map(([label, count], index) => ({
             id: index,
             label,
-            count,
-            percentage: ((count / totalCount) * 100).toFixed(1),
+            count: count > 1000 ? `${Math.round(count / 100) / 10}K` : count,
+            percentage: Math.round((count / totalCount) * 1000) / 10,
             color: getColor(label)
           }))
       };
     });
 
-  const useK = series.some((serie) => serie.items.some((item) => item.count > 10000));
+  const maxCount = Math.max(...series.map((serie) => serie.totalCount));
 
-  if (useK) {
-    series.forEach((serie) => serie.items.forEach((item) => {
-      item.count = `${(item.count / 1000).toFixed(1)}k`;
-    }));
-  }
-
-  return series;
+  return {
+    series,
+    maxCount
+  };
 }

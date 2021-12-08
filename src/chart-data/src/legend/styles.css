@@ -11,7 +11,6 @@
   align-items: baseline;
 }
 
-
 .legend-series {
   display: flex;
   flex-wrap: wrap;
@@ -29,19 +28,16 @@
   cursor: pointer;
   padding: .25em;
   border-radius: .25em;
+}
 
-  &:hover {
-    color: #000;
-    background-color: #f0f0f0;
-  }
+.legend-serie:hover {
+  color: #000;
+  background-color: #f0f0f0;
+}
 
-  &.is-disabled {
-
-    > .legend-serie__box,
-    > .legend-serie__label {
-      opacity: .5;
-    }
-  }
+.legend-serie.is-disabled > .legend-serie__box,
+.legend-serie.is-disabled > .legend-serie__label {
+  opacity: .5;
 }
 
 .legend-serie__box {

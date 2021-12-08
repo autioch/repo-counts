@@ -1,14 +1,3 @@
-@mixin verticalLabel() {
-  writing-mode: vertical-rl;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  letter-spacing: 1px;
-  transform: rotate(180deg);
-}
-
 .histogram-chart {
   display: flex;
   position: relative;
@@ -25,7 +14,14 @@
 }
 
 .histogram-serie__header {
-  @include verticalLabel();
+  writing-mode: vertical-rl;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  transform: rotate(180deg);
   height: 4em;
   margin-top: .5em;
 }
@@ -59,7 +55,14 @@
 }
 
 .histogram-bar__sum-label {
-  @include verticalLabel();
+  writing-mode: vertical-rl;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  transform: rotate(180deg);
   margin-top: -.5em;
   transform: translateY(-100%) rotate(180deg);
 }
@@ -77,13 +80,11 @@
 .histogram-chart-scale-item {
   position: absolute;
   width: 100%;
+}
 
-  &:first-child,
-  &:last-child {
-    > .histogram-chart-scale-item__line {
-      display: none;
-    }
-  }
+.histogram-chart-scale-item:first-child > .histogram-chart-scale-item__line,
+.histogram-chart-scale-item:last-child > .histogram-chart-scale-item__line {
+  display: none;
 }
 
 .histogram-chart-scale-item__label {

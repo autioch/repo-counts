@@ -2,7 +2,9 @@ const { execSync } = require('child_process');
 const { objToCli, logRepoError } = require('./misc');
 
 const execSyncOptions = {
-  stdio: ['ignore', 'pipe', 'pipe']
+  stdio: ['ignore', 'pipe', 'pipe'],
+  encoding: 'utf8',
+  maxBuffer: 50 * 1024 * 1024
 };
 
 function buildCommand(parts) {

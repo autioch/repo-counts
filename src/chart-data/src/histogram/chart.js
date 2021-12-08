@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.scss';
+import './styles.css';
 
 function HistogramBarItem({ item, maxCount }) {
   const { count, color } = item;

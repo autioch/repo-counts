@@ -9,8 +9,11 @@ const execSyncOptions = {
   maxBuffer: 50 * 1024 * 1024
 };
 
-export default async function executeCommand(commandStr) {
-  const { stdout, stderr } = await exec(commandStr, execSyncOptions);
+export default async function executeCommand(commandStr, cwd) {
+  const { stdout, stderr } = await exec(commandStr, {
+    ...execSyncOptions,
+    cwd
+  });
 
   return stdout;
 };

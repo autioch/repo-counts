@@ -1,16 +1,15 @@
-import getFileList from './getFileList.mjs';
-import getFileInfo from './getFileInfo.mjs';
-import getRepoRoot from './getRepoRoot.mjs';
-import pLimit from 'p-limit';
 import { promises as fs } from 'fs';
+import { repoList } from './config.mjs';
+import { persist, writeFile } from './db/index.mjs';
+import { scanRepo } from './scanRepo/index.mjs';
 
-const limit = pLimit(10);
+const repos = [];
 
-const fileList = await getFileList();
-const repoRoot = await getRepoRoot();
-const input = fileList.map(fileName => limit(getFileInfo, fileName));
-const result = await Promise.all(input);
+for (let i = 0; i < repoList.length; i++){
+  repos.push(await scanRepo(repoList[i]));
+}
 
-await fs.writeFile('./output.json', JSON.stringify(result), 'utf8');
+await persist();
+await writeFile('repos', repos);
 
 console.log('done');

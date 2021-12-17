@@ -1,2 +1,4 @@
 node_modules
 gather/config.js
+config.mjs
+v2/db/*.json

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "binary-extensions": "^2.2.0",
     "cloc": "^2.9.0",
     "gitignore-to-glob": "^0.3.0",
     "glob": "^7.2.0",

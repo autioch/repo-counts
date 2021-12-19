@@ -15,5 +15,5 @@ export default async function executeCommand(commandStr, cwd) {
     cwd
   });
 
-  return stdout;
+  return stdout.trim();
 };

@@ -1,6 +1,5 @@
 export default class DbMap extends Map {
-
-  constructor(){
+  constructor() {
     super();
 
     this.nextId = 0;
@@ -13,7 +12,7 @@ export default class DbMap extends Map {
   getId(label) {
     const id = this.get(label);
 
-    if (id){
+    if (id) {
       return id;
     }
 

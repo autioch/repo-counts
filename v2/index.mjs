@@ -1,63 +1,34 @@
-import { promises as fs } from 'fs';
 import { repoList } from './config.mjs';
-import { persist, writeFile } from './db/index.mjs';
-import Repo from './Repo.mjs';
-import pLimit from 'p-limit';
-import ProgressBar from 'progress';
+import { persist } from './db/index.mjs';
+import Scanner from './Scanner.mjs';
 
-const repos = [];
-const diffs = [];
-const limit = pLimit(50);
-const setMap = (map, key, val) => {
-  if (!map[key]){
-    map[key]
-  }
-}
+const scanner = new Scanner(repoList);
+const test = (obj, label) => console.log(label, JSON.stringify(obj).length);
 
-function getBar(title, total) {
-  const bar = new ProgressBar('  ' + title + ' [:bar] :current/:total :rate/s :etas', {
-    total
-  });
+const currentDiffCounts = await scanner.getCurrentDiffCounts();
 
-  return () => bar.tick();
-}
+test(currentDiffCounts, 'currentDiffCounts');
 
-for (let i = 0; i < repoList.length; i++){
-  const repo = new Repo(repoList[i]);
-  const commits = await repo.getCommitList(await repo.getFirstCommitHash(), await repo.getHeadHash());
+const historicalDiffCountsYear = await scanner.getHistoricalDiffCounts('year');
 
-  const uniqueDates = [...new Set(commits.map(([y,m,d]) => `${y}-${m}-${d}`))];
+test(historicalDiffCountsYear, 'historicalDiffCountsYear');
 
-  const commitPerYearPerMonth = commits.reduce((obj, commit) => {
-    const [year, month, day, hash] = commit;
+const historicalDiffCountsMonth = await scanner.getHistoricalDiffCounts('month');
 
-    if (!obj[year]) {
-      obj[year] = {};
-    }
+test(historicalDiffCountsMonth, 'historicalDiffCountsMonth');
 
-    if ((!obj[year][month]) || (obj[year][month][2] > day)){
-      obj[year][month] = commit;
-    }
+const currentBlameCounts = await scanner.getCurrentBlameCounts();
 
-    return obj;
-  },{});
+test(currentBlameCounts, 'currentBlameCounts');
 
-  const commitsToVisit = Object.values(commitPerYearPerMonth).flatMap((dict) => Object.values(dict));
-console.log(commits);
-console.log(commitsToVisit);
-  // const files = await repo.getFileList('HEAD');
+const historicalBlameCountsYear = await scanner.getHistoricalBlameCounts('year');
 
-  // const tickBar = getBar(repo.dirBase, files.length);
-  // const getFileInfo = async (filePath) => [filePath, await repo.blameFile(filePath, tickBar)];
-  // const result = await Promise.all(files.map((filePath) => limit(getFileInfo, filePath)));
-  // const diff = await repo.getFileLineCount(await repo.getEmptyRepoHash(), await repo.getHeadHash());
+test(historicalBlameCountsYear, 'historicalBlameCountsYear');
 
-  // repos.push([repo.dir,  Object.fromEntries(result)]);
-  // diffs.push([repo.dir,  Object.fromEntries([diff])]);
-}
+const historicalBlameCountsMonth = await scanner.getHistoricalBlameCounts('month');
 
-// await persist();
-// await writeFile('repos', repos);
-// await writeFile('gitdiff', gitdiff);
+test(historicalBlameCountsMonth, 'historicalBlameCountsMonth');
+
+await persist();
 
 console.log('done');

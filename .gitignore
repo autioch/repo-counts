@@ -1,5 +1,4 @@
 node_modules
-gather/config.js
+src/db/*.json
 config.mjs
-v2/db/*.json
 *.csv

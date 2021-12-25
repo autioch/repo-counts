@@ -2,6 +2,9 @@
 
 Tool for reporting amount of a code in repositories over time. It does not use any Github or other APIs, requires only git.
 
+## TODO
+Update the readme.
+
 ## WARNING!
 As warnings should be written ahead, here's one. This module travels through the history of the repo. Because of that, it will **remove all uncommitted changes** - **git checkout** with **git reset --hard** will be used. Remember to **commit** Your work!
 

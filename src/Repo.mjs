@@ -52,6 +52,11 @@ export default class Repo {
     return this.command(`git rev-list ${commitHash} --count`);
   }
 
+  async cleanRepo() {
+    await this.command('git reset --hard');
+    await this.command('git clean -fd');
+  }
+
   async getCommitList(fromCommit, toCommit) {
     const result = await this.command(`git log ${fromCommit}..${toCommit} --pretty=format:"%at;%H" --no-merges`);
 
@@ -86,7 +91,7 @@ export default class Repo {
 
     // TODO add bar interrupt if something goes wrong
     if (!fileContents) {
-      console.log(`FAIL blame ${filePath}`);
+      // console.log(`FAIL blame ${filePath}`);
 
       return [];
     }

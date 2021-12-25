@@ -1,17 +1,24 @@
-const countLines = require('./countLines');
 const { clone, executeCommand, logRepoError } = require('../utils');
-const qbLog = require('qb-log');
+const { omit } = require('lodash');
+const { objToCli } = require('../utils');
+const { clocPath } = require('../config');
 
-qbLog({
-  count: {
-    prefix: 'LINE COUNT',
-    formatter: qbLog._chalk.green
-  },
-  countDate: {
-    prefix: 'COUNT DATE',
-    formatter: qbLog._chalk.cyan
-  }
+const options = objToCli({
+  // 'by-file': undefined,
+  json: undefined,
+  'skip-uniqueness': undefined
 });
+
+function countLines(repoConfig) {
+  const { folder, ignoredFolderNames, ignoredExtensions } = repoConfig;
+  const exceludeDir = ignoredFolderNames.length ? `--exclude-dir=${ignoredFolderNames.join(',')}` : '';
+  const exceludeExt = ignoredExtensions.length ? `--exclude-ext=${ignoredExtensions.join(',')}` : '';
+  const resultsJson = executeCommand(`perl ${clocPath} ${options} ${exceludeDir} ${exceludeExt} ${folder}`);
+
+  const results = JSON.parse(resultsJson.replace(/\\/gi, '/'));
+
+  return omit(results, ['header']);
+}
 
 function formatDate(date) {
   const year = date.getFullYear();
@@ -37,8 +44,6 @@ function findFirstCommitInMonth(commits, yearAndMonth) {
 const today = formatDate(new Date());
 
 module.exports = function getLineCounts(repoConfig, commits) { // eslint-disable-line max-statements
-  qbLog.count(repoConfig.repoName);
-  qbLog.countDate(today, 'TODAY');
   const currentCount = countLines(repoConfig);
 
   if (!commits.length) {
@@ -58,7 +63,6 @@ module.exports = function getLineCounts(repoConfig, commits) { // eslint-disable
     commit = findFirstCommitInMonth(commits, nextDate.slice(0, 7));
 
     if (commit) {
-      qbLog.countDate(commit.date);
       executeCommand('git reset --hard');
       executeCommand(`git checkout ${commit.hash}`);
     }

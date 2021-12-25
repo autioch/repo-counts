@@ -43,7 +43,7 @@ export function getBar(title, total) {
   return () => bar.tick();
 }
 
-export function historicalLineCountsToCsv(counts) {
+export function historicalDiffCountsToCsv(counts) {
   const dates = [...new Set(Object.values(counts).flatMap((datas) => Object.keys(datas)))].sort();
   const repoNames = Object.keys(counts);
   const getCountForDate = (repoName, dateIndex) => counts[repoName][dates[dateIndex]];

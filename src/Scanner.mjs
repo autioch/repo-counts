@@ -1,9 +1,11 @@
+import Db from './Db.mjs';
 import Repo from './Repo.mjs';
 import { getBar } from './utils.mjs';
 
 export default class Scanner {
-  constructor(repos) {
-    this.repos = repos.map((repo) => new Repo(repo));
+  constructor(repos, dbPath) {
+    this.db = new Db(dbPath);
+    this.repos = repos.map((repo) => new Repo(repo, this.db));
   }
 
   async getCurrentDiffCounts() {

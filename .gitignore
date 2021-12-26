@@ -1,4 +1,5 @@
 node_modules
 src/db/*.json
+src/data/*.json
+src/data/*.csv
 config.mjs
-*.csv

@@ -3,7 +3,6 @@ import pLimit from 'p-limit';
 import { basename, extname } from 'path';
 
 import Commit from './Commit.mjs';
-import { db } from './db/index.mjs';
 import { command, getBar, getFirstCommitPerMonth, getLastCommitPerYear } from './utils.mjs';
 
 const limit = pLimit(50);
@@ -11,21 +10,9 @@ const binarySet = new Set(binaryExtensions.map((ext) => `.${ext}`));
 const trim = (item) => item.trim();
 const isBinary = (fileName) => !binarySet.has(extname(fileName));
 
-function parseBlameLine(line) {
-  if (!line) {
-    return false;
-  }
-
-  const [, authorWithBracket = '', date, lineDetails = ''] = line.split('\t').map(trim);
-  const author = authorWithBracket.slice(1).trim().toLowerCase();
-  const bracketIndex = lineDetails.indexOf(')');
-  const contents = bracketIndex > 0 ? lineDetails.slice(bracketIndex + 1).trim() : '';
-
-  return [db.dates.getId(date), db.authors.getId(author), contents.length];
-}
-
 export default class Repo {
-  constructor(dir) {
+  constructor(dir, db) {
+    this.db = db;
     this.dir = dir;
     this.dirBase = basename(dir);
 
@@ -88,6 +75,7 @@ export default class Repo {
 
   async blameFile(filePath, commitHash) {
     const fileContents = await this.command(`git blame --date=short -c "${filePath}" ${commitHash}`);
+    const { dates, authors } = this.db;
 
     // TODO add bar interrupt if something goes wrong
     if (!fileContents) {
@@ -96,7 +84,14 @@ export default class Repo {
       return [];
     }
 
-    return fileContents.split('\n').map(parseBlameLine).filter(Boolean);
+    return fileContents.split('\n').filter(Boolean).map((line) => {
+      const [, authorWithBracket = '', date, lineDetails = ''] = line.split('\t').map(trim);
+      const author = authorWithBracket.slice(1).trim().toLowerCase();
+      const bracketIndex = lineDetails.indexOf(')');
+      const contents = bracketIndex > 0 ? lineDetails.slice(bracketIndex + 1).trim() : '';
+
+      return [dates.getId(date), authors.getId(author), contents.length];
+    });
   }
 
   async getFirstCommitsPerMonth() {

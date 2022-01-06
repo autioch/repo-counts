@@ -43,26 +43,6 @@ export function getBar(title, total) {
   return () => bar.tick();
 }
 
-export function historicalDiffCountsToCsv(counts) {
-  const dates = [...new Set(Object.values(counts).flatMap((datas) => Object.keys(datas)))].sort();
-  const repoNames = Object.keys(counts);
-  const getCountForDate = (repoName, dateIndex) => counts[repoName][dates[dateIndex]];
-
-  const rows = dates.map((date, index) => [date, ...repoNames.map((repoName) => {
-    let count = 0;
-
-    let dateIndex = index + 1;
-
-    while (!count && dateIndex > -1) {
-      count = getCountForDate(repoName, dateIndex--);
-    }
-
-    return count;
-  })]);
-
-  return [ ['Year-month', ...repoNames], ...rows];
-}
-
 const execOptions = {
   stdio: ['ignore', 'pipe', 'pipe'],
   encoding: 'utf8',
@@ -80,10 +60,10 @@ export async function command(commandString, cwd) {
 
     return stdout.trim();
   } catch (err) { // eslint-disable-line no-unused-vars
-    // console.log(`Failed to execute command ${commandString}`);
+    console.log(`Failed to execute command ${commandString}`);
 
-    // console.log(commandString);
-    // console.log(err.message);
+    console.log(commandString);
+    console.log(err.message);
 
     return '';
   }

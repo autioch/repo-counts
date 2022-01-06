@@ -8,71 +8,109 @@ export default class Scanner {
     this.repos = repos.map((repo) => new Repo(repo, this.db));
   }
 
-  async getCurrentDiffCounts() {
-    const counts = {};
+  async iterateRepos(callbackFn) {
+    const result = [];
 
     for (let i = 0; i < this.repos.length; i++) {
       const repo = this.repos[i];
-      const emptyRepoHash = await repo.getHashForEmptyRepo();
 
-      counts[repo.dirBase] = await repo.getCountFromDiff(emptyRepoHash, 'HEAD');
+      result.push([repo.dirBase, await callbackFn(repo)]);
     }
 
-    return counts;
+    return Object.fromEntries(result);
   }
 
-  async getHistoricalDiffCounts(period) {
-    const labelProp = period === 'year' ? 'year' : 'yearMonth';
-    const counts = {};
+  getCurrentDiffCounts() {
+    console.log(`Current diff counts`);
 
-    for (let i = 0; i < this.repos.length; i++) {
-      const repo = this.repos[i];
+    return this.iterateRepos(async (repo) => repo.getCountFromDiff(await repo.getHashForEmptyRepo(), 'HEAD'));
+  }
+
+  getHistoricalDiffCounts(period) {
+    const labelProp = period === 'year' ? 'year' : 'yearMonth';
+
+    console.log(`Historical diff counts per ${labelProp}`);
+
+    return this.iterateRepos(async (repo) => {
       const commitsToVisit = await (period === 'year' ? repo.getLastCommitsPerYear() : repo.getFirstCommitsPerMonth());
       const emptyRepoHash = await repo.getHashForEmptyRepo();
       const tickBar = getBar(repo.dirBase, commitsToVisit.length);
-
-      counts[repo.dirBase] = {};
+      const result = {};
 
       for (let j = 0; j < commitsToVisit.length; j++) {
         const commit = commitsToVisit[j];
 
-        counts[repo.dirBase][commit[labelProp]] = await repo.getCountFromDiff(emptyRepoHash, commit.hash);
+        result[commit[labelProp]] = await repo.getCountFromDiff(emptyRepoHash, commit.hash);
         tickBar();
       }
-    }
 
-    return counts;
+      return result;
+    });
   }
 
-  async getCurrentBlameCounts() {
-    const counts = {};
+  historicalDiffCountsToCsv(counts) { // eslint-disable-line class-methods-use-this
+    const dates = [...new Set(Object.values(counts).flatMap((datas) => Object.keys(datas)))].sort();
+    const repoNames = Object.keys(counts);
+    const getCountForDate = (repoName, dateIndex) => counts[repoName][dates[dateIndex]];
 
-    for (let i = 0; i < this.repos.length; i++) {
-      const repo = this.repos[i];
+    const rows = dates.map((date, index) => [date, ...repoNames.map((repoName) => {
+      let count = 0;
 
-      counts[repo.dirBase] = await repo.getCountFromBlame('HEAD', repo.dirBase);
-    }
+      let dateIndex = index + 1;
 
-    return counts;
+      while (!count && dateIndex > -1) {
+        count = getCountForDate(repoName, dateIndex--);
+      }
+
+      return count || -1;
+    })]);
+
+    return [ ['Year-month', ...repoNames], ...rows];
   }
 
-  async getHistoricalBlameCounts(period) {
+  getCurrentBlameCounts() {
+    console.log(`Current blame counts`);
+
+    return this.iterateRepos((repo) => repo.getCountFromBlame('HEAD', repo.dirBase));
+  }
+
+  getHistoricalBlameCounts(period) {
     const labelProp = period === 'year' ? 'year' : 'yearMonth';
-    const counts = {};
 
-    for (let i = 0; i < this.repos.length; i++) {
-      const repo = this.repos[i];
+    console.log(`Historical blame counts per ${labelProp}`);
+
+    return this.iterateRepos(async (repo) => {
       const commitsToVisit = await (period === 'year' ? repo.getLastCommitsPerYear() : repo.getFirstCommitsPerMonth());
 
-      counts[repo.dirBase] = {};
+      const result = {};
 
       for (let j = 0; j < commitsToVisit.length; j++) {
         const commit = commitsToVisit[j];
 
-        counts[repo.dirBase][commit[labelProp]] = await repo.getCountFromBlame(commit.hash, `${repo.dirBase} ${commit[labelProp]}`);
+        result[commit[labelProp]] = await repo.getCountFromBlame(commit.hash, `${repo.dirBase} ${commit[labelProp]}`);
       }
-    }
 
-    return counts;
+      return result;
+    });
+  }
+
+  historicalBlameCountsToCsv(counts) { // eslint-disable-line class-methods-use-this
+    const dates = [...new Set(Object.values(counts).flatMap((datas) => Object.keys(datas)))].sort();
+    const repoNames = Object.keys(counts);
+    const getCountForDate = (repoName, dateIndex) => counts[repoName][dates[dateIndex]];
+
+    const rows = dates.map((date, index) => [date, ...repoNames.map((repoName) => {
+      let count = 0;
+
+      let dateIndex = index + 1;
+
+      while (!count && dateIndex > -1) {
+        count = getCountForDate(repoName, dateIndex--);
+      }
+
+      return count ? count.reduce((sum, [, lines]) => sum + lines.length, 0) : -1;
+    })]);
+
+    return [ ['Year-month', ...repoNames], ...rows];
   }
 }

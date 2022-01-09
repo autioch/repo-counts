@@ -26,4 +26,8 @@ export default class Fs {
   async writeCsv(fileName, rows) {
     await fs.writeFile(join(this.dir, `${fileName}.csv`), rows.map((row) => row.join(';')).join('\n'), 'utf8');
   }
+
+  async writeHtml(fileName, html) {
+    await fs.writeFile(join(this.dir, `${fileName}.html`), html, 'utf8');
+  }
 }

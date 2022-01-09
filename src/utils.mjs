@@ -62,8 +62,8 @@ export async function command(commandString, cwd) {
   } catch (err) { // eslint-disable-line no-unused-vars
     console.log(`Failed to execute command ${commandString}`);
 
-    console.log(commandString);
-    console.log(err.message);
+    // console.log(commandString);
+    // console.log(err.message);
 
     return '';
   }

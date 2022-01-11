@@ -23,7 +23,7 @@ await scanner.db.restore();
 
 // await fs.writeCsv('historicalDiffCountsYear', scanner.historicalDiffCountsToCsv(await scanner.getHistoricalDiffCounts('month')));
 // await fs.writeCsv('historicalBlameCountsYear', scanner.historicalBlameCountsToCsv(await scanner.getHistoricalBlameCounts('month')));
-await fs.writeHtml('historicalBlameCountsYear', scanner.csvToHtml(scanner.historicalDiffCountsToCsv(await scanner.getHistoricalDiffCounts('year'))));
+await fs.writeHtml('historicalBlameCountsYear', scanner.historicalDiffCountsToHtml(await scanner.getHistoricalDiffCounts('year')));
 
 await scanner.db.persist();
 

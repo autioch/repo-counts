@@ -68,3 +68,11 @@ export async function command(commandString, cwd) {
     return '';
   }
 }
+
+export function h(tagAndClassName, children, attributes = []) {
+  const [tagName, className = ''] = tagAndClassName.split('.');
+  const attrs = attributes.map(([key, value]) => value ? `${key}=${typeof value === 'string' ? `"${value}"` : value}` : key).join(' ');
+  const tag = tagName || 'div';
+
+  return `<${tag}${className ? ` class="${className}"` : ''}${attrs ? ` ${attrs}` : ''}>${Array.isArray(children) ? `\n${children.join('')}` : children}</${tag}>`;
+}

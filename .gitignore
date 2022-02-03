@@ -3,4 +3,3 @@ src/db/*.json
 src/data/*.json
 src/data/*.csv
 src/data/*.html
-config.mjs

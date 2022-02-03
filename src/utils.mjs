@@ -1,4 +1,5 @@
 import child_process from 'child_process';
+import { basename, extname } from 'path';
 import ProgressBar from 'progress';
 import { promisify } from 'util';
 
@@ -60,7 +61,7 @@ export async function command(commandString, cwd) {
 
     return stdout.trim();
   } catch (err) { // eslint-disable-line no-unused-vars
-    console.log(`Failed to execute command ${commandString}`);
+    // console.log(`Failed to execute command ${commandString}`);
 
     // console.log(commandString);
     // console.log(err.message);
@@ -71,8 +72,39 @@ export async function command(commandString, cwd) {
 
 export function h(tagAndClassName, children, attributes = []) {
   const [tagName, className = ''] = tagAndClassName.split('.');
-  const attrs = attributes.map(([key, value]) => value ? `${key}=${typeof value === 'string' ? `"${value}"` : value}` : key).join(' ');
+  const attrs = attributes.filter(Boolean).map(([key, value]) => value ? `${key}=${typeof value === 'string' ? `"${value}"` : value}` : key).join(' ');
   const tag = tagName || 'div';
 
   return `<${tag}${className ? ` class="${className}"` : ''}${attrs ? ` ${attrs}` : ''}>${Array.isArray(children) ? `\n${children.join('')}` : children}</${tag}>`;
 }
+
+export function getExt(fileName) {
+  const ext = extname(fileName);
+
+  // console.log(fileName, ext, basename(fileName, ext));
+
+  return basename(fileName, ext).length && ext.length ? ext : 'other';
+}
+
+export function getNearestCommitFn(dates) {
+  return function getNearestCommit(commits, dateIndex) {
+    let files;
+
+    while (!files && dateIndex > -1) {
+      files = commits[dates[dateIndex--]]; // eslint-disable-line no-param-reassign
+    }
+
+    return files || [];
+  };
+}
+
+export const colors = [
+  '#999',
+  '#9ff',
+  '#99f',
+  '#f9f',
+  '#f99',
+  '#ff9',
+  '#9f9',
+  '#fff'
+];

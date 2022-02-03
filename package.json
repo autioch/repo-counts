@@ -8,6 +8,7 @@
   "license": "ISC",
   "dependencies": {
     "binary-extensions": "2.2.0",
+    "commander": "^9.0.0",
     "p-limit": "4.0.0",
     "progress": "2.0.3"
   },

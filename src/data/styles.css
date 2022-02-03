@@ -2,107 +2,138 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  grid-template: 1fr min-content / 1fr 100px;
   font-family: Consolas;
 }
 
-.chart {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  flex: auto;
-  border: solid 1px #f1f1f1;
-  box-sizing: border-box;
-}
+input {display:none}
 
-.legend {
-  flex: none;
-  width: 100%;
-  display: flex;
-}
-
-.legend > .item {
+.item {
   display: flex;
   align-items: center;
   cursor: pointer;
   opacity:.5;
   transition: opacity 250ms;
+  margin: 5px;
 }
 
-.legend > .item::before {
+.item::before {
   display: block;
   content: '';
-  height: 1vw;
-  width: 1vw;
-  margin: .5vw;
+  height: 16px;
+  width: 16px;
+  margin-right: 5px;
+}
+
+.item:nth-child(6n+1)::before,
+.repo > .type:nth-child(6n+1) {
+  background-color: #f99;
+}
+
+.date > .repo:nth-child(6n+1) > .type {
+  border-left: solid 3px #f99;
+}
+
+.item:nth-child(6n+2)::before,
+.repo > .type:nth-child(6n+2) {
+  background-color: #9f9;
+}
+
+.date > .repo:nth-child(6n+2) > .type {
+  border-left: solid 3px #9f9;
+}
+
+.item:nth-child(6n+3)::before,
+.repo > .type:nth-child(6n+3) {
+  background-color: #99f;
+}
+
+.date > .repo:nth-child(6n+3) > .type {
+  border-left: solid 3px #99f;
+}
+
+.item:nth-child(6n+4)::before,
+.repo > .type:nth-child(6n+4) {
+  background-color: #ff9;
+}
+
+.date > .repo:nth-child(6n+4) > .type {
+  border-left: solid 3px #ff9;
+}
+
+.item:nth-child(6n+5)::before,
+.repo > .type:nth-child(6n+5) {
+  background-color: #f9f;
+}
+
+.date > .repo:nth-child(6n+5) > .type {
+  border-left: solid 3px #f9f;
+}
+
+.item:nth-child(6n+6)::before,
+.repo > .type:nth-child(6n+6) {
+  background-color: #9ff;
+}
+
+.date > .repo:nth-child(6n+6) > .type {
+  border-left: solid 3px #9ff;
+}
+
+.chart {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.repos {
+  display: flex;
 }
 
 .date {
-  flex: 1 1 1px;
   display: flex;
-  flex-direction: column-reverse;
-  height: 100%;
-  /* margin: 0 0.5vw; */
-  box-sizing: border-box;
+  flex: 1 1 1px;
+  flex-direction: row;
   padding: 0 0.5vw;
   transition: background 250ms;
+  align-items: flex-end;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.date::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 .date:hover {
   background: #f1f1f1;
 }
 
-.header {
-  text-align: center;
-}
-
-.values {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  flex: auto;
-  align-items: flex-end;
-}
-
-.value {
+.date > .repo {
   position: relative;
   flex: auto;
   width: 0;
   overflow: hidden;
+  flex-direction: column;
+  display: flex;
+  /* align-items: flex-end; */
+  justify-content: flex-end;
   transition: width 250ms;
 }
 
-.label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* writing-mode: vertical-rl; */
-  white-space: nowrap;
-}
-
-
-/* TODO This should be generated */
-.legend > .item:nth-child(1)::before,
-.value:nth-child(1) {
-  background-color: #f00;
-}
-
-.legend > .item:nth-child(2)::before,
-.value:nth-child(2) {
-  background-color: #0f0;
-}
-
-.legend > .item:nth-child(3)::before,
-.value:nth-child(3) {
-  background-color: #00f;
-}
-
-.legend > .item:nth-child(4)::before,
-.value:nth-child(4) {
-  background-color: #ff0;
+.date > .repo > .type {
+  max-height: 0;
+  transition: max-height 250ms;
+  box-sizing: border-box;
 }

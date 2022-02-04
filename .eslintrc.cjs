@@ -28,6 +28,7 @@ module.exports = {
     'no-sync': ['off'],
     'no-confusing-arrow': ['off'],
     'no-await-in-loop': ['off'],
+    'no-unused-expressions': ['off'],
     'newline-per-chained-call': ['off'],
 
     'simple-import-sort/imports': ['warn', {

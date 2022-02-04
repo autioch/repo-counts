@@ -1,6 +1,6 @@
-import { getExt, getNearestCommitFn, h } from './utils.mjs';
+import { getExt, h } from './utils.mjs';
 
-export default class Printer {
+export default class Converter {
   static historicalDiffCountsToCsv(counts) {
     const dates = [...new Set(Object.values(counts).flatMap((datas) => Object.keys(datas)))].sort();
     const repoNames = Object.keys(counts);
@@ -69,11 +69,23 @@ export default class Printer {
     return [ ['Year-month', ...repoNames], ...rows];
   }
 
+  static getNearestCommitFn(dates) {
+    return function getNearestCommit(commits, dateIndex) {
+      let files;
+
+      while (!files && dateIndex > -1) {
+        files = commits[dates[dateIndex--]]; // eslint-disable-line no-param-reassign
+      }
+
+      return files || [];
+    };
+  }
+
   static parseCountsForHtml(counts) {
     const dates = [...new Set(Object.values(counts).flatMap((result) => Object.keys(result)))].sort();
     const repoNames = Object.keys(counts);
     const fileTypes = [...new Set(Object.values(counts).flatMap((result) => Object.values(result).flatMap((files) => files.map((file) => getExt(file[0])))))].sort();
-    const getNearestCommit = getNearestCommitFn(dates);
+    const getNearestCommit = this.getNearestCommitFn(dates);
     const items = dates.map((date, dateIndex) => ({
       dateLabel: date,
       repos: repoNames.map((repoName) => {

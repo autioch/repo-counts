@@ -3,7 +3,8 @@ import pLimit from 'p-limit';
 import { basename, extname } from 'path';
 
 import Commit from './Commit.mjs';
-import { command, getBar, getFirstCommitPerMonth, getLastCommitPerYear } from './utils.mjs';
+import { PERIOD } from './consts.mjs';
+import { command, getBar } from './utils.mjs';
 
 const limit = pLimit(50);
 const binarySet = new Set(binaryExtensions.map((ext) => `.${ext}`));
@@ -50,8 +51,8 @@ export default class Repo {
     return result.split('\n').map((line) => new Commit(...line.split(';')));
   }
 
-  async getCountFromDiff(fromCommitHash, toCommitHash) {
-    const countedLines = await this.command(`git diff --shortstat --ignore-all-space ${fromCommitHash}..${toCommitHash}`);
+  async getCountFromDiff(commitHash, compareCommitHash) {
+    const countedLines = await this.command(`git diff --shortstat --ignore-all-space ${compareCommitHash}..${commitHash}`);
     const [, insertions] = countedLines.split(',');
     const [lineCount] = insertions.trim().split(' ');
 
@@ -97,12 +98,40 @@ export default class Repo {
   async getFirstCommitsPerMonth() {
     const commits = await this.getCommitList(await this.getHashForFirstCommit(), await this.getHashForHead());
 
-    return getFirstCommitPerMonth(commits);
+    const yearMonthDict = commits.reduce((obj, commit) => {
+      const { year, month, day } = commit;
+
+      if (!obj[year]) {
+        obj[year] = {};
+      }
+
+      if (!obj[year][month] || (obj[year][month].day > day)) {
+        obj[year][month] = commit;
+      }
+
+      return obj;
+    }, {});
+
+    return Object.values(yearMonthDict).flatMap((dict) => Object.values(dict));
   }
 
   async getLastCommitsPerYear() {
     const commits = await this.getCommitList(await this.getHashForFirstCommit(), await this.getHashForHead());
 
-    return getLastCommitPerYear(commits);
+    const yearDict = commits.reduce((obj, commit) => {
+      const { year, month, day } = commit;
+
+      if (!obj[year] || (obj[year].month < month) || (obj[year].month === month && (obj[year].day < day))) {
+        obj[year] = commit;
+      }
+
+      return obj;
+    }, {});
+
+    return Object.values(yearDict);
+  }
+
+  getCommitsForPeriod(period) {
+    return period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getFirstCommitsPerMonth();
   }
 }

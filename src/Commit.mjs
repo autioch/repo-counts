@@ -8,6 +8,7 @@ export default class Commit {
     this.month = date.getMonth() + 1;
     this.day = date.getDate();
     this.hash = hash;
-    this.yearMonth = [this.year, this.month].map(dig2).join('-');
+    this.monthLabel = [this.year, this.month].map(dig2).join('-');
+    this.yearLabel = this.year.toString();
   }
 }

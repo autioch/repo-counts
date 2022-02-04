@@ -3,38 +3,6 @@ import { basename, extname } from 'path';
 import ProgressBar from 'progress';
 import { promisify } from 'util';
 
-export function getFirstCommitPerMonth(commits) {
-  const yearMonthDict = commits.reduce((obj, commit) => {
-    const { year, month, day } = commit;
-
-    if (!obj[year]) {
-      obj[year] = {};
-    }
-
-    if (!obj[year][month] || (obj[year][month].day > day)) {
-      obj[year][month] = commit;
-    }
-
-    return obj;
-  }, {});
-
-  return Object.values(yearMonthDict).flatMap((dict) => Object.values(dict));
-}
-
-export function getLastCommitPerYear(commits) {
-  const yearDict = commits.reduce((obj, commit) => {
-    const { year, month, day } = commit;
-
-    if (!obj[year] || (obj[year].month < month) || (obj[year].month === month && (obj[year].day < day))) {
-      obj[year] = commit;
-    }
-
-    return obj;
-  }, {});
-
-  return Object.values(yearDict);
-}
-
 export function getBar(title, total) {
   const bar = new ProgressBar(`  ${title} [:bar] :current/:total :rate/s :etas`, {
     width: 40,
@@ -86,17 +54,11 @@ export function getExt(fileName) {
   return basename(fileName, ext).length && ext.length ? ext : 'other';
 }
 
-export function getNearestCommitFn(dates) {
-  return function getNearestCommit(commits, dateIndex) {
-    let files;
-
-    while (!files && dateIndex > -1) {
-      files = commits[dates[dateIndex--]]; // eslint-disable-line no-param-reassign
-    }
-
-    return files || [];
-  };
+export function notSupported() {
+  throw Error(`Not supported.`);
 }
+
+export function noop() {} // eslint-disable-line no-empty-function
 
 export const colors = [
   '#999',

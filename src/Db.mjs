@@ -29,6 +29,10 @@ export default class Db {
   constructor(dir, debug = false) {
     this.dir = dir;
     this.fs = new Fs(dir, debug);
+
+    // for tests
+    this.authors = new Column();
+    this.dates = new Column();
   }
 
   async restore() {

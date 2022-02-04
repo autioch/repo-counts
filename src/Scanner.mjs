@@ -20,57 +20,51 @@ export default class Scanner {
     return Object.fromEntries(result);
   }
 
-  getCurrentDiffCounts() {
-    console.log(`Current diff counts`);
+  async iterateCommits(commitsToVisit, labelProp, callbackFn) { // eslint-disable-line class-methods-use-this
+    const result = {};
 
-    return this.iterateRepos(async (repo) => repo.getCountFromDiff(await repo.getHashForEmptyRepo(), 'HEAD'));
+    for (let j = 0; j < commitsToVisit.length; j++) {
+      const commit = commitsToVisit[j];
+
+      result[commit[labelProp]] = await callbackFn(commit);
+    }
+
+    return result;
   }
 
-  getHistoricalDiffCounts(period) {
-    const labelProp = period === 'year' ? 'year' : 'yearMonth';
-
-    console.log(`Historical diff counts per ${labelProp}`);
-
-    return this.iterateRepos(async (repo) => {
-      const commitsToVisit = await (period === 'year' ? repo.getLastCommitsPerYear() : repo.getFirstCommitsPerMonth());
-      const emptyRepoHash = await repo.getHashForEmptyRepo();
-      const tickBar = getBar(repo.dirBase, commitsToVisit.length);
-      const result = {};
-
-      for (let j = 0; j < commitsToVisit.length; j++) {
-        const commit = commitsToVisit[j];
-
-        result[commit[labelProp]] = await repo.getCountFromDiff(emptyRepoHash, commit.hash);
-        tickBar();
-      }
-
-      return result;
-    });
+  getCurrentDiffCounts() {
+    return this.iterateRepos(async (repo) => repo.getCountFromDiff('HEAD', await repo.getHashForEmptyRepo()));
   }
 
   getCurrentBlameCounts() {
-    console.log(`Current blame counts`);
-
     return this.iterateRepos((repo) => repo.getCountFromBlame('HEAD', repo.dirBase));
   }
 
-  getHistoricalBlameCounts(period) {
-    const labelProp = period === 'year' ? 'year' : 'yearMonth';
-
-    console.log(`Historical blame counts per ${labelProp}`);
+  getHistoricalDiffCounts(period) {
+    const labelProp = `${period}Label`;
 
     return this.iterateRepos(async (repo) => {
-      const commitsToVisit = await (period === 'year' ? repo.getLastCommitsPerYear() : repo.getFirstCommitsPerMonth());
+      const commitsToVisit = await repo.getCommitsForPeriod(period);
+      const emptyRepoHash = await repo.getHashForEmptyRepo();
+      const tickBar = getBar(repo.dirBase, commitsToVisit.length);
 
-      const result = {};
+      return this.iterateCommits(commitsToVisit, labelProp, async (commit) => {
+        const data = await repo.getCountFromDiff(commit.hash, emptyRepoHash);
 
-      for (let j = 0; j < commitsToVisit.length; j++) {
-        const commit = commitsToVisit[j];
+        tickBar();
 
-        result[commit[labelProp]] = await repo.getCountFromBlame(commit.hash, `${repo.dirBase} ${commit[labelProp]}`);
-      }
+        return data;
+      });
+    });
+  }
 
-      return result;
+  getHistoricalBlameCounts(period) {
+    const labelProp = `${period}Label`;
+
+    return this.iterateRepos(async (repo) => {
+      const commitsToVisit = await repo.getCommitsForPeriod(period);
+
+      return this.iterateCommits(commitsToVisit, labelProp, (commit) => repo.getCountFromBlame(commit.hash, `${repo.dirBase} ${commit[labelProp]}`));
     });
   }
 }

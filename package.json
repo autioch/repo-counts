@@ -1,18 +1,17 @@
 {
   "name": "repo-history",
-  "private": true,
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "View your repository history",
   "main": "src/index.mjs",
   "bin": "bin/cli.js",
-  "author": "",
+  "author": "autioch@gmail.com",
   "license": "ISC",
   "scripts": {
     "test": "node src/test.mjs"
   },
   "dependencies": {
     "binary-extensions": "2.2.0",
-    "commander": "^9.0.0",
+    "commander": "9.0.0",
     "p-limit": "4.0.0",
     "progress": "2.0.3"
   },

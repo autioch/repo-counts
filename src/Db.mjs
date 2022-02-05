@@ -1,5 +1,3 @@
-import Fs from './Fs.mjs';
-
 class Column extends Map {
   constructor() {
     super();
@@ -26,9 +24,8 @@ class Column extends Map {
 }
 
 export default class Db {
-  constructor(dir, debug = false) {
-    this.dir = dir;
-    this.fs = new Fs(dir, debug);
+  constructor(fs) {
+    this.fs = fs;
 
     // for tests
     this.authors = new Column();

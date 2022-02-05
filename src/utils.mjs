@@ -71,7 +71,36 @@ export const colors = [
   '#fff'
 ];
 
-const AVAILABLE_COLORS = [
-  '#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff',
-  '#f99', '#9f9', '#99f', '#ff9', '#f9f', '#9ff'
-];
+// const AVAILABLE_COLORS = [
+//   '#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff',
+//   '#f99', '#9f9', '#99f', '#ff9', '#f9f', '#9ff'
+// ];
+
+export async function isDirGitRepository(dir) {
+  try {
+    await exec('git rev-parse --git-dir', { // eslint-disable-line no-unused-vars
+      ...execOptions,
+      cwd: dir
+    });
+
+    return true;
+  } catch (err) { // eslint-disable-line no-unused-vars
+    return false;
+  }
+}
+
+export async function getValidRepos(repo) {
+  const validRepos = [];
+
+  for (let i = 0; i < repo.length; i++) {
+    const isGitRepo = await isDirGitRepository(repo[i]);
+
+    if (isGitRepo) {
+      validRepos.push(repo[i]);
+    } else {
+      console.log(`Invalid git dir provided, skipping - ${repo[i]}`);
+    }
+  }
+
+  return validRepos;
+}

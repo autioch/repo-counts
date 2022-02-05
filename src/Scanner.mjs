@@ -1,11 +1,10 @@
-import Db from './Db.mjs';
 import Repo from './Repo.mjs';
 import { getBar } from './utils.mjs';
 
 export default class Scanner {
-  constructor(repos, dbPath) {
-    this.db = new Db(dbPath);
-    this.repos = repos.map((repo) => new Repo(repo, this.db));
+  constructor(repoPaths, db) {
+    this.db = db;
+    this.repos = repoPaths.map((repoPath) => new Repo(repoPath, this.db));
   }
 
   async iterateRepos(callbackFn) {

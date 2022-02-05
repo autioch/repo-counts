@@ -16,8 +16,6 @@ export default class Repo {
     this.db = db;
     this.dir = dir;
     this.dirBase = basename(dir);
-
-    // TODO Add check if directory is actually a repo
   }
 
   command(commandString) {

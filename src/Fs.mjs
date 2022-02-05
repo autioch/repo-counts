@@ -1,12 +1,27 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { existsSync, promises as fs } from 'fs';
+import { dirname, isAbsolute, join } from 'path';
+import { fileURLToPath } from 'url';
 
 import { FORMAT } from './consts.mjs';
 
 export default class Fs {
-  constructor(dir, debug = false) {
-    this.dir = dir;
-    this.debug = debug;
+  constructor(dir, dry = false) {
+    this.dir = isAbsolute(dir) ? dir : join(process.cwd(), dir);
+    this.dry = dry;
+  }
+
+  async ensureDir() {
+    if (existsSync(this.dir)) {
+      return;
+    }
+    console.warn(`Path ${this.dir} didnt't exist - will be created.`);
+    await fs.mkdir(this.dir, {
+      recursive: true
+    });
+  }
+
+  async writeFile(fileName, data) {
+    !this.dry && await fs.writeFile(join(this.dir, fileName), data, 'utf8');
   }
 
   async readJson(fileName) {
@@ -20,20 +35,18 @@ export default class Fs {
   }
 
   async writeJson(fileName, data) {
-    const json = this.debug ? JSON.stringify(data, null, '  ') : JSON.stringify(data);
-
-    await fs.writeFile(join(this.dir, `${fileName}.json`), json, 'utf8');
+    await this.writeFile(`${fileName}.json`, JSON.stringify(data));
   }
 
   async writeCsv(fileName, rows) {
-    await fs.writeFile(join(this.dir, `${fileName}.csv`), rows.map((row) => row.join(';')).join('\n'), 'utf8');
+    await this.writeFile(`${fileName}.csv`, rows.map((row) => row.join(';')).join('\n'));
   }
 
   async writeHtml(fileName, html) {
-    await fs.writeFile(join(this.dir, `${fileName}.html`), html, 'utf8');
+    await this.writeFile(`${fileName}.html`, html);
   }
 
-  async writeFile(format, fileName, data) {
+  async writeOutput(format, fileName, data) {
     switch (format) {
       case FORMAT.JSON:
         await this.writeJson(fileName, data);
@@ -46,5 +59,11 @@ export default class Fs {
         break;
       default: throw Error(`Unsupported file format - ${format}`);
     }
+  }
+
+  async copyStyles() {
+    const curDir = dirname(fileURLToPath(import.meta.url));
+
+    await fs.copyFile(join(curDir, 'styles.css'), join(this.dir, 'styles.css'));
   }
 }

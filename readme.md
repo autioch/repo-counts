@@ -18,3 +18,13 @@ TODO
 - `m,method` - `diff` is fast option, `blame` slow, but has a lot more details
 - `i,ignore <ext>,<ext>` - file types that should be skipped when counting
 <!-- - `c,config=<path>` - path to a json file that can have any of the options above; options from command line will overwrite options from file -->
+
+
+## Possible improvements
+1. Allow skipping first n commits. This is helpful when initial commits are more of a POS or setting up stuff.
+2. Allow specifying a time period instead of a whole timeline.
+3. Display more data in html output (on hover?).
+4. Allow configuring colors.
+5. Allow defyining config file, that can hold repeatable congfiguration - implemented, not tested.
+6. Implement option for ignoring extensions and folder names.
+7. Allow probing repositories not on disk - using github API or other services.

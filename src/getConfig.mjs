@@ -11,7 +11,7 @@ export default async function getConfig() {
     .option('-hi, --histogram', 'instead of showing only current state, complete history will be shown')
     .option('-ie, --ignore-extensions <json>', 'list of extensions to be ignored')
     .option('-c, --config <path.mjs>', 'path to a mjs file with basic configuration')
-    .option('-d, --database <dir>', 'path to a directory holding cache and data')
+    .option('-o, --output <dir>', 'path to a directory holding cache and data, absolute or relative to execution dir')
     .option('--dry', 'run without saving');
 
   program.parse();
@@ -21,7 +21,7 @@ export default async function getConfig() {
     method: METHOD.DIFF,
     format: FORMAT.JSON,
     histogram: false,
-    database: './database',
+    output: 'repo-history',
     ignoreExtensions: [],
     repo: [],
     dry: false

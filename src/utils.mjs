@@ -70,3 +70,8 @@ export const colors = [
   '#9f9',
   '#fff'
 ];
+
+const AVAILABLE_COLORS = [
+  '#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff',
+  '#f99', '#9f9', '#99f', '#ff9', '#f9f', '#9ff'
+];

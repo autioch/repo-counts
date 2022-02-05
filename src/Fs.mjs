@@ -1,6 +1,8 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 
+import { FORMAT } from './consts.mjs';
+
 export default class Fs {
   constructor(dir, debug = false) {
     this.dir = dir;
@@ -29,5 +31,20 @@ export default class Fs {
 
   async writeHtml(fileName, html) {
     await fs.writeFile(join(this.dir, `${fileName}.html`), html, 'utf8');
+  }
+
+  async writeFile(format, fileName, data) {
+    switch (format) {
+      case FORMAT.JSON:
+        await this.writeJson(fileName, data);
+        break;
+      case FORMAT.CSV:
+        await this.writeCsv(fileName, data);
+        break;
+      case FORMAT.HTML:
+        await this.writeHtml(fileName, data);
+        break;
+      default: throw Error(`Unsupported file format - ${format}`);
+    }
   }
 }

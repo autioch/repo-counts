@@ -3,9 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.mjs",
+  "bin": "bin/cli.js",
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "test": "node src/test.mjs"
+  },
   "dependencies": {
     "binary-extensions": "2.2.0",
     "commander": "^9.0.0",

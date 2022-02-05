@@ -3,7 +3,7 @@ import { FORMAT, METHOD, PERIOD } from './consts.mjs';
 import run from './run.mjs';
 
 const repo = ['E:/projects/trial-css-filter'];
-const database = './database';
+const output = './repo-history';
 
 const configs = [false, true].flatMap((histogram) =>
   [FORMAT.JSON, FORMAT.CSV, FORMAT.HTML].flatMap((format) =>
@@ -14,7 +14,7 @@ const configs = [false, true].flatMap((histogram) =>
           format,
           method,
           period,
-          database,
+          output,
           repo,
           dry: true
         })

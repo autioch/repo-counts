@@ -1,4 +1,22 @@
-import { getExt, h } from './utils.mjs';
+import { basename, extname } from 'path';
+
+import { DETAIL, FORMAT } from './consts.mjs';
+
+function getExt(fileName) {
+  const ext = extname(fileName);
+
+  // console.log(fileName, ext, basename(fileName, ext));
+
+  return basename(fileName, ext).length && ext.length ? ext : 'other';
+}
+
+function h(tagAndClassName, children, attributes = []) {
+  const [tagName, className = ''] = tagAndClassName.split('.');
+  const attrs = attributes.filter(Boolean).map(([key, value]) => value ? `${key}=${typeof value === 'string' ? `"${value}"` : value}` : key).join(' ');
+  const tag = tagName || 'div';
+
+  return `<${tag}${className ? ` class="${className}"` : ''}${attrs ? ` ${attrs}` : ''}>${Array.isArray(children) ? `\n${children.join('')}` : children}</${tag}>`;
+}
 
 export default class Converter {
   static historicalDiffCountsToCsv(counts) {
@@ -163,5 +181,45 @@ export default class Converter {
         ])
       ])
     ]);
+  }
+
+  static convert(config, format, data) {
+    const { chronicle, detail } = config;
+
+    const MODE = {
+      CURRENT: 'current',
+      HISTORY: 'history'
+    };
+
+    const CONVERTER = {
+      [MODE.HISTORY]: {
+        [DETAIL.DIFF]: {
+          [FORMAT.JSON]: () => data,
+          [FORMAT.CSV]: () => Converter.historicalDiffCountsToCsv(data), // eslint-disable-line no-use-before-define
+          [FORMAT.HTML]: () => Converter.historicalDiffCountsToHtml(data) // eslint-disable-line no-use-before-define
+        },
+        [DETAIL.BLAME]: {
+          [FORMAT.JSON]: () => data,
+          [FORMAT.CSV]: () => Converter.historicalBlameCountsToCsv(data), // eslint-disable-line no-use-before-define
+          [FORMAT.HTML]: () => Converter.historicalBlameCountsToHtml(data) // eslint-disable-line no-use-before-define
+        }
+      },
+      [MODE.CURRENT]: {
+        [DETAIL.DIFF]: {
+          [FORMAT.JSON]: () => data,
+          [FORMAT.CSV]: () => data,
+          [FORMAT.HTML]: () => data
+        },
+        [DETAIL.BLAME]: {
+          [FORMAT.JSON]: () => data,
+          [FORMAT.CSV]: () => data,
+          [FORMAT.HTML]: () => data
+        }
+      }
+    };
+
+    const fn = CONVERTER[chronicle ? MODE.HISTORY : MODE.CURRENT][detail ? DETAIL.BLAME : DETAIL.DIFF][format];
+
+    return fn(data);
   }
 }

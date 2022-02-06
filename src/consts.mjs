@@ -4,7 +4,7 @@ const FORMAT = {
   HTML: 'html'
 };
 
-const METHOD = {
+const DETAIL = {
   BLAME: 'blame',
   DIFF: 'diff'
 };
@@ -16,6 +16,6 @@ const PERIOD = {
 
 export {
   FORMAT,
-  METHOD,
+  DETAIL,
   PERIOD
 };

@@ -66,4 +66,22 @@ export default class Scanner {
       return this.iterateCommits(commitsToVisit, labelProp, (commit) => repo.getCountFromBlame(commit.hash, `${repo.dirBase} ${commit[labelProp]}`));
     });
   }
+
+  scan(config) {
+    const { chronicle, detail, period } = config;
+
+    if (chronicle) {
+      if (detail) {
+        return this.getHistoricalBlameCounts(period);
+      }
+
+      return this.getHistoricalDiffCounts(period);
+    }
+
+    if (detail) {
+      return this.getCurrentBlameCounts(period);
+    }
+
+    return this.getCurrentDiffCounts(period);
+  }
 }

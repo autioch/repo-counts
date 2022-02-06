@@ -1,6 +1,22 @@
-import getConfig from './getConfig.mjs';
+import { Option, program } from 'commander'; // eslint-disable-line no-shadow
+
+import { FORMAT, PERIOD } from './consts.mjs';
 import run from './run.mjs';
 
-await run(await getConfig());
+program
+  .addOption(new Option('-r, --repos <paths...>', 'path(s) to the repository').default(['.']))
+  .addOption(new Option('-d, --detail', 'provide detailed information per file type, takes a lot more time').default(false))
+  .addOption(new Option('-c, --chronicle', 'instead of showing only current state, complete history will be shown').default(false))
+  .addOption(new Option('-p, --period <year|month>', 'used when chronicle option is used').default(PERIOD.YEAR).choices(Object.values(PERIOD)))
+  .addOption(new Option('-f, --formats <ext...>', 'expected format of the file').default([FORMAT.JSON]).choices(Object.values(FORMAT)))
+  .addOption(new Option('-o, --output <dir>', 'path to a directory holding cache and data, absolute or relative to execution dir').default('.repo-history'))
+  .addOption(new Option('--dry', 'run without saving').default(false))
+  .version('1.0.0'); // todo add it from package.json
+
+program.parse();
+
+const config = program.opts();
+
+await run(config);
 
 console.log('done');

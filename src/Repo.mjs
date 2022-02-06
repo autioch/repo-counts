@@ -2,10 +2,19 @@ import binaryExtensions from 'binary-extensions';
 import child_process, { execSync } from 'child_process';
 import pLimit from 'p-limit';
 import { basename, extname } from 'path';
+import ProgressBar from 'progress';
 import { promisify } from 'util';
 
 import { PERIOD } from './consts.mjs';
-import { getBar } from './utils.mjs';
+
+function getBar(title, total) {
+  const bar = new ProgressBar(`  ${title} [:bar] :current/:total :rate/s :etas`, {
+    width: 40,
+    total
+  });
+
+  return () => bar.tick();
+}
 
 const limit = pLimit(50);
 const binarySet = new Set(binaryExtensions.map((ext) => `.${ext}`));
@@ -180,5 +189,44 @@ export default class Repo {
 
   getCommitsForPeriod(period) {
     return period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getLastCommitsPerMonth();
+  }
+
+  async getCurrentData() {
+    return this.getCountFromDiff('HEAD', await this.getHashForEmptyRepo());
+  }
+
+  getCurrentDetailData() {
+    return this.getCountFromBlame('HEAD', this.dirBase);
+  }
+
+  async getChronicleData(period) {
+    const commitsToVisit = await this.getCommitsForPeriod(period);
+    const emptyRepoHash = await this.getHashForEmptyRepo();
+    const tickBar = getBar(this.dirBase, commitsToVisit.length);
+    const labelProp = `${period}Label`;
+    const result = {};
+
+    for (let j = 0; j < commitsToVisit.length; j++) {
+      const commit = commitsToVisit[j];
+
+      result[commit[labelProp]] = await this.getCountFromDiff(commit.hash, emptyRepoHash);
+      tickBar();
+    }
+
+    return result;
+  }
+
+  async getChronicleDetailData(period) {
+    const commitsToVisit = await this.getCommitsForPeriod(period);
+    const labelProp = `${period}Label`;
+    const result = {};
+
+    for (let j = 0; j < commitsToVisit.length; j++) {
+      const commit = commitsToVisit[j];
+
+      result[commit[labelProp]] = await this.getCountFromBlame(commit.hash, `${this.dirBase} ${commit[labelProp]}`);
+    }
+
+    return result;
   }
 }

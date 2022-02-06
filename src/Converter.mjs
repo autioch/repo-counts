@@ -5,8 +5,6 @@ import { DETAIL, FORMAT } from './consts.mjs';
 function getExt(fileName) {
   const ext = extname(fileName);
 
-  // console.log(fileName, ext, basename(fileName, ext));
-
   return basename(fileName, ext).length && ext.length ? ext : 'other';
 }
 

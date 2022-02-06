@@ -2,29 +2,12 @@ import Converter from './Converter.mjs';
 import Db from './Db.mjs';
 import Fs from './Fs.mjs';
 import Scanner from './Scanner.mjs';
-import { isDirGitRepository } from './utils.mjs';
-
-async function getValidRepos(repo) {
-  const validRepos = [];
-
-  for (let i = 0; i < repo.length; i++) {
-    const isGitRepo = await isDirGitRepository(repo[i]);
-
-    if (isGitRepo) {
-      validRepos.push(repo[i]);
-    } else {
-      console.log(`Invalid git dir provided, skipping - ${repo[i]}`);
-    }
-  }
-
-  return validRepos;
-}
 
 export default async function run(config) { // eslint-disable-line max-statements
   console.log(Object.entries(config).filter(([key]) => key !== 'repo').map(([key, value]) => `${key}=${value.toString()}`).join('   '));
 
   const { repos, chronicle, detail, period, formats, output, dry } = config;
-  const validRepos = await getValidRepos(repos);
+  const validRepos = repos.filter(Fs.isDirGitRepository);
 
   console.log(`Run for ${validRepos.length} repos`);
   const fs = new Fs(output, dry);

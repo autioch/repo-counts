@@ -1,15 +1,24 @@
 import binaryExtensions from 'binary-extensions';
+import child_process, { execSync } from 'child_process';
 import pLimit from 'p-limit';
 import { basename, extname } from 'path';
+import { promisify } from 'util';
 
-import Commit from './Commit.mjs';
 import { PERIOD } from './consts.mjs';
-import { command, getBar } from './utils.mjs';
+import { getBar } from './utils.mjs';
 
 const limit = pLimit(50);
 const binarySet = new Set(binaryExtensions.map((ext) => `.${ext}`));
 const trim = (item) => item.trim();
 const isBinary = (fileName) => !binarySet.has(extname(fileName));
+const dig2 = (num) => num.toString().padStart(2, '0');
+
+const exec = promisify(child_process.exec);
+const execOptions = {
+  stdio: ['ignore', 'pipe', 'pipe'],
+  encoding: 'utf8',
+  maxBuffer: 50 * 1024 * 1024
+};
 
 export default class Repo {
   constructor(dir, db) {
@@ -18,8 +27,33 @@ export default class Repo {
     this.dirBase = basename(dir);
   }
 
-  command(commandString) {
-    return command(commandString, this.dir);
+  static isDirGitRepository(dir) {
+    try {
+      execSync('git rev-parse --git-dir', {
+        cwd: dir
+      });
+
+      return true;
+    } catch (err) { // eslint-disable-line no-unused-vars
+      console.log(`Invalid git dir provided, skipping - ${dir}`);
+
+      return false;
+    }
+  }
+
+  async command(commandString) {
+    try {
+      const { stdout } = await exec(commandString, {
+        ...execOptions,
+        cwd: this.dir
+      });
+
+      return stdout.trim();
+    } catch (err) {
+      false && console.log(`Failed to execute command`, commandString, '\n', err.message);
+
+      return '';
+    }
   }
 
   getHashForHead() {
@@ -46,7 +80,22 @@ export default class Repo {
   async getCommitList(fromCommit, toCommit) {
     const result = await this.command(`git log ${fromCommit}..${toCommit} --pretty=format:"%at;%H" --no-merges`);
 
-    return result.split('\n').map((line) => new Commit(...line.split(';')));
+    return result.split('\n').map((line) => {
+      const [unixDate, hash] = line.split(';');
+      const date = new Date(unixDate * 1000); // JS milisecons, unix seconds
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+
+      return {
+        year,
+        month,
+        day,
+        hash,
+        monthLabel: [year, month].map(dig2).join('-'),
+        yearLabel: year.toString()
+      };
+    });
   }
 
   async getCountFromDiff(commitHash, compareCommitHash) {
@@ -93,7 +142,7 @@ export default class Repo {
     });
   }
 
-  async getFirstCommitsPerMonth() {
+  async getLastCommitsPerMonth() {
     const commits = await this.getCommitList(await this.getHashForFirstCommit(), await this.getHashForHead());
 
     const yearMonthDict = commits.reduce((obj, commit) => {
@@ -130,6 +179,6 @@ export default class Repo {
   }
 
   getCommitsForPeriod(period) {
-    return period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getFirstCommitsPerMonth();
+    return period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getLastCommitsPerMonth();
   }
 }

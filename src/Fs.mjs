@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 
 import { FORMAT } from './consts.mjs';
 
+const joinRow = (row) => row.join(';');
+
 export default class Fs {
   constructor(dir, dry = false) {
     this.dir = isAbsolute(dir) ? dir : join(process.cwd(), dir);
@@ -25,7 +27,7 @@ export default class Fs {
   }
 
   async readJson(fileName) {
-    try {
+    try { // try catch is for Db class
       const data = await fs.readFile(join(this.dir, `${fileName}.json`), 'utf8');
 
       return JSON.parse(data);
@@ -39,7 +41,7 @@ export default class Fs {
   }
 
   async writeCsv(fileName, rows) {
-    await this.writeFile(`${fileName}.csv`, rows.map((row) => row.join(';')).join('\n'));
+    await this.writeFile(`${fileName}.csv`, rows.map(joinRow).join('\n'));
   }
 
   async writeHtml(fileName, html) {

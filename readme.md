@@ -1,5 +1,5 @@
 # Repo History
-Tool for reporting amount of a code in repositories over time.
+Tool for reporting amount of a code in repositories, with an option of generating counts over time.
 
 ## Installation
 This package is currently _unavailable_ on `npm`. To use it clone or download repository.

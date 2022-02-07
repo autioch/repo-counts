@@ -4,11 +4,6 @@ const FORMAT = {
   HTML: 'html'
 };
 
-const DETAIL = {
-  BLAME: 'blame',
-  DIFF: 'diff'
-};
-
 const PERIOD = {
   MONTH: 'month',
   YEAR: 'year'
@@ -16,6 +11,5 @@ const PERIOD = {
 
 export {
   FORMAT,
-  DETAIL,
   PERIOD
 };

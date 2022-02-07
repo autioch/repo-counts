@@ -1,0 +1,8 @@
+{
+   "imports": {
+      "commander": "https://esm.sh/commander",
+      "progress": "https://esm.sh/progress",
+      "binary-extensions": "https://esm.sh/binary-extensions",
+      "p-limit": "https://esm.sh/p-limit"
+   }
+}

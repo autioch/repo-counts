@@ -3,7 +3,7 @@ import { FORMAT, PERIOD } from './consts.mjs';
 import run from './run.mjs';
 
 const repos = ['E:/projects/trial-css-filter'];
-const output = './repo-history';
+const output = './.repo-history';
 
 const configs = [false, true].flatMap((detail) =>
   [false, true].flatMap((chronicle) =>
@@ -16,7 +16,7 @@ const configs = [false, true].flatMap((detail) =>
           period,
           formats: [format],
           output,
-          dry: true
+          dry: false
         })
       )
     )
@@ -25,14 +25,6 @@ const configs = [false, true].flatMap((detail) =>
 
 for (let index = 0; index < configs.length; index++) {
   console.log(`\n################### ${index + 1} / ${configs.length} ###################`);
-  try {
-    await run(configs[index]);
-  } catch (err) {
-    console.error(err.message);
 
-    // if (err.message === 'Not supported.') {
-    // } else {
-    // throw err;
-    // }
-  }
+  await run(configs[index]);
 }

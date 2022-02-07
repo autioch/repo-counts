@@ -5,11 +5,19 @@ Tool for reporting amount of a code in repositories, with an option of generatin
 This package is currently _unavailable_ on `npm`. To use it clone or download repository.
 
 ## Usage
+
+### Node.js
 Run `npx repo-history -h` to list available options with description.
 
 Tool can be run in a current repository dir, using `npx repo-history`
 
 Optionally, can be run for any number of repositories: `npx repo-history -r <path1> <path2>`
+
+### Deno
+Not yet supported - this tool uses node.js api that isn't available in `std/node` library.
+
+That said, I'm testing the tool by running:
+`deno run --unstable --compat --allow-env --import-map=./import_map.json .\src\index.mjs`
 
 ## TODO
 1. Allow skipping first n commits. This is helpful when initial commits are more of a POS or setting up stuff.

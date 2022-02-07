@@ -42,7 +42,7 @@ export default class Repo {
         cwd: dir
       });
 
-      return true;
+      return dir;
     } catch (err) { // eslint-disable-line no-unused-vars
       console.log(`Invalid git dir provided, skipping - ${dir}`);
 
@@ -191,15 +191,17 @@ export default class Repo {
     return period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getLastCommitsPerMonth();
   }
 
-  async getCurrentData() {
+  /* API for the app */
+
+  async getCurrentSimple() {
     return this.getCountFromDiff('HEAD', await this.getHashForEmptyRepo());
   }
 
-  getCurrentDetailData() {
+  getCurrentDetail() {
     return this.getCountFromBlame('HEAD', this.dirBase);
   }
 
-  async getChronicleData(period) {
+  async getChronicleSimple(period) {
     const commitsToVisit = await this.getCommitsForPeriod(period);
     const emptyRepoHash = await this.getHashForEmptyRepo();
     const tickBar = getBar(this.dirBase, commitsToVisit.length);
@@ -216,7 +218,7 @@ export default class Repo {
     return result;
   }
 
-  async getChronicleDetailData(period) {
+  async getChronicleDetail(period) {
     const commitsToVisit = await this.getCommitsForPeriod(period);
     const labelProp = `${period}Label`;
     const result = {};

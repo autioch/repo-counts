@@ -8,7 +8,7 @@ const output = './spec/mock';
 const configs = [false, true].flatMap((detail) =>
   [false, true].flatMap((chronicle) =>
     [PERIOD.YEAR, PERIOD.MONTH].flatMap((period) =>
-      [FORMAT.JSON, FORMAT.CSV, FORMAT.HTML].flatMap((format) =>
+      [/* FORMAT.JSON, FORMAT.CSV, */FORMAT.HTML].flatMap((format) =>
         ({
           repos,
           detail,

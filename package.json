@@ -1,13 +1,16 @@
 {
-  "name": "repo-history",
+  "name": "repo-counts",
   "version": "0.0.1",
-  "description": "View your repository history",
+  "description": "Count the code in your repository",
   "main": "src/index.mjs",
   "bin": "bin/cli.js",
   "author": "autioch@gmail.com",
   "license": "ISC",
+  "type": "module",
   "scripts": {
-    "test": "node src/run.spec.mjs"
+    "help": "node src/index.mjs -h",
+    "test:config": "node spec/run.mjs",
+    "test": "mocha ./spec/*.spec.mjs -R min"
   },
   "dependencies": {
     "binary-extensions": "2.2.0",
@@ -20,6 +23,7 @@
     "@babel/plugin-syntax-top-level-await": "7.14.5",
     "eslint": "7.30.0",
     "eslint-config-qb": "1.0.0",
-    "eslint-plugin-simple-import-sort": "7.0.0"
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "mocha": "^9.2.0"
   }
 }

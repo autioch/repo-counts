@@ -16,7 +16,7 @@ export default class Fs {
     if (existsSync(this.dir)) {
       return;
     }
-    console.warn(`Path ${this.dir} didnt't exist - will be created.`);
+    console.warn(`Path ${this.dir} doesnt't exist - will be created.`);
     await fs.mkdir(this.dir, {
       recursive: true
     });

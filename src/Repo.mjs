@@ -5,7 +5,7 @@ import { basename, extname } from 'path';
 import ProgressBar from 'progress';
 import { promisify } from 'util';
 
-import { PERIOD } from './consts.mjs';
+import { LABEL_MONTH, LABEL_YEAR, PERIOD, PERIOD_LABELS } from './consts.mjs';
 
 function getBar(title, total) {
   const bar = new ProgressBar(`  ${title} [:bar] :current/:total :rate/s :etas`, {
@@ -101,8 +101,8 @@ export default class Repo {
         month,
         day,
         hash,
-        monthLabel: [year, month].map(dig2).join('-'),
-        yearLabel: year.toString()
+        [LABEL_YEAR]: year.toString(),
+        [LABEL_MONTH]: [year, month].map(dig2).join('-')
       };
     });
   }
@@ -205,7 +205,7 @@ export default class Repo {
     const commitsToVisit = await this.getCommitsForPeriod(period);
     const emptyRepoHash = await this.getHashForEmptyRepo();
     const tickBar = getBar(this.dirBase, commitsToVisit.length);
-    const labelProp = `${period}Label`;
+    const labelProp = PERIOD_LABELS[period];
     const result = {};
 
     for (let j = 0; j < commitsToVisit.length; j++) {
@@ -220,7 +220,7 @@ export default class Repo {
 
   async getChronicleDetail(period) {
     const commitsToVisit = await this.getCommitsForPeriod(period);
-    const labelProp = `${period}Label`;
+    const labelProp = PERIOD_LABELS[period];
     const result = {};
 
     for (let j = 0; j < commitsToVisit.length; j++) {

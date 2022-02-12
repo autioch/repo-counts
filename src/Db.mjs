@@ -1,3 +1,5 @@
+const inverseKeys = ([key, value]) => [value, key];
+
 class Column extends Map {
   constructor() {
     super();
@@ -20,6 +22,11 @@ class Column extends Map {
     this.set(label, this.nextId);
 
     return this.nextId;
+  }
+
+  // TODO Currently unused.
+  getInverseMap() {
+    return new Map(Array.from(this, inverseKeys));
   }
 }
 

@@ -29,6 +29,12 @@ const execOptions = {
   maxBuffer: 50 * 1024 * 1024
 };
 
+function getExt(fileName) {
+  const ext = extname(fileName);
+
+  return ext.length && basename(fileName, ext).length ? ext : 'other';
+}
+
 export default class Repo {
   constructor(dir, db) {
     this.db = db;
@@ -118,7 +124,7 @@ export default class Repo {
   async getCountFromBlame(commitHash, label) {
     const files = await this.getFileList(commitHash);
     const tickBar = getBar(label, files.length);
-    const getFileInfo = async (filePath) => [filePath, await this.blameFile(filePath, commitHash, tickBar())];
+    const getFileInfo = async (filePath) => [filePath, getExt(filePath), await this.blameFile(filePath, commitHash, tickBar())];
 
     return Promise.all(files.map((filePath) => limit(getFileInfo, filePath)));
   }

@@ -1,5 +1,39 @@
+import chart from './chart/chart.mjs';
 import { FORMAT } from './consts.mjs';
-import { chronicleDetailForHtml, chronicleSimpleForHtml, currentDetailForHtml, currentSimpleForHtml, getData, getDates, h, template } from './converter.utils.mjs';
+
+function normalizeDates(data) {
+  const dates = [...new Set(data.flatMap(([, counts]) => Object.keys(counts)))].sort();
+  const [lowDate] = dates;
+  const highDate = dates.pop();
+  const [lowYear] = lowDate.split('-');
+  const [highYear] = highDate.split('-');
+
+  const forAllYear = new Array(1 + parseInt(highYear, 10) - parseInt(lowYear, 10)).fill(parseInt(lowYear, 10));
+
+  if (highDate.includes('-')) {
+    const allDates = forAllYear.flatMap((low, i) => new Array(12).fill(`${low + i}-`).map((prefix, j) => prefix + j.toString().padStart(2, '0')));
+
+    return allDates.slice(allDates.indexOf(lowDate), allDates.indexOf(highDate) + 1);
+  }
+
+  return forAllYear.map((low, i) => (low + i).toString());
+}
+
+function getMatchingCounts(counts, dates, index) {
+  while (index > 0 && !counts[dates[index]]) {
+    index--; // eslint-disable-line no-param-reassign
+  }
+
+  return counts[dates[index]];
+}
+
+function countByExtension(files) {
+  return files.reduce((obj, [, ext, lines]) => {
+    obj[ext] = (obj[ext] || 0) + lines.length;
+
+    return obj;
+  }, {});
+}
 
 export default class Converter {
   static currentSimpleCsv(data) {
@@ -10,72 +44,82 @@ export default class Converter {
   }
 
   static currentSimpleHtml(data) {
-    const { items, maxValue } = currentSimpleForHtml(data); // TODO
-
-    const ci = (className, index) => `${className} ${className}${index}`;
-    const ii = (className, index) => `${className}${index}`;
-    const R = 'repo';
-    const repos = data.map(({ repoName }, rIndex) => h(`label.item ${ci(R, rIndex)}`, repoName, [ ['for', ii(R, rIndex)] ]));
-
-    return template('', '', 'chart', '', repos);
+    return chart({
+      items: [{
+        label: 'Current',
+        items: data.map(([repoName, count]) => ({
+          label: repoName,
+          items: [{
+            label: 'all',
+            value: count
+          }]
+        }))
+      }]
+    });
   }
 
   static currentDetailCsv(data) {
     return [
       ['Repository', 'FileName', 'Line Index', 'Line Date', 'Line Author', 'Line Length'],
-      ...data.flatMap(([repo, files]) => files.flatMap(([fileName, lines]) => lines.map((line, index) => [repo, fileName, index + 1, ...line])))
+      ...data.flatMap(([repo, files]) => files.flatMap(([fileName, ext, lines]) => lines.map((line, index) => [repo, fileName, ext, index + 1, ...line])))
     ];
   }
 
   static currentDetailHtml(data) {
-    return template('', [], h('pre', JSON.stringify(data, null, '  '))); // TODO
+    const fileTypes = [...new Set(data.flatMap(([, files]) => files.flatMap(([, ext]) => ext)))].sort();
+
+    return chart({
+      items: [{
+        label: 'Current',
+        items: data.map(([repoName, files]) => {
+          const byExtension = countByExtension(files);
+
+          return {
+            label: repoName,
+            items: fileTypes.map((fileType) => ({
+              label: fileType,
+              value: byExtension[fileType] || 0
+            }))
+          };
+        })
+      }]
+    });
   }
 
   static chronicleSimpleCsv(data) {
-    const dates = getDates(data);
+    const dates = normalizeDates(data);
 
     return [
       ['Repository', 'Date', 'Line Count'],
-      ...dates.flatMap((date, i) => data.map(([repo, counts]) => [repo, date, getData(counts, dates, i) || 0]))
+      ...dates.flatMap((date, i) => data.map(([repo, counts]) => [repo, date, getMatchingCounts(counts, dates, i) || 0]))
     ];
   }
 
   static chronicleSimpleHtml(data) {
-    const { items, maxValue } = chronicleSimpleForHtml(data);
+    const dates = normalizeDates(data);
 
-    const ci = (className, index) => `${className} ${className}${index}`;
-    const ii = (className, index) => `${className}${index}`;
-    const R = 'repo';
-
-    const repoStyles = data.map((_, rIndex) => ii(R, rIndex)).map((cl) => `#${cl}:checked ~ .app .repos .${cl} {opacity:1}\n#${cl}:checked ~ .app .chart .${cl} {width:100%}`); // eslint-disable-line no-unused-vars
-    const repoInputs = data.map((_, rIndex) => h(`input.${R}`, '', [ ['type', 'checkbox'], ['id', ii(R, rIndex)], ['checked'] ])); // eslint-disable-line no-unused-vars
-
-    const percentItem = (className, children, label, value, max) => h(`.${className}`, children, [ // eslint-disable-line max-params
-      ['style', `height:${(value / max * 100).toFixed(5)}%`],
-      ['data-label', label],
-      ['data-value', value]
-    ]);
-
-    const styles = [...repoStyles];
-    const controls = [...repoInputs];
-    const chart = items.map(({ dateLabel, repos }) => h('.date', repos.map(({ repoLabel, count }, rIndex) => percentItem(
-      ci(R, rIndex),
-      repoLabel,
-      count,
-      maxValue
-    )), [ ['data-label', dateLabel] ]));
-    const reposH = data.map(([repoName], rIndex) => h(`label.item ${ci(R, rIndex)}`, repoName, [ ['for', ii(R, rIndex)] ]));
-
-    return template(styles, controls, chart, '', reposH);
+    return chart({
+      items: dates.map((date, i) => ({
+        id: i,
+        label: date,
+        items: data.map(([repoName, counts]) => ({
+          label: repoName,
+          items: [{
+            label: 'all',
+            value: getMatchingCounts(counts, dates, i) || 0
+          }]
+        }))
+      }))
+    });
   }
 
   static chronicleDetailCsv(data) {
-    const dates = getDates(data);
+    const dates = normalizeDates(data);
 
     const rows = dates.flatMap((date, i) => data.flatMap(([repo, counts]) => {
-      const files = getData(counts, dates, i) || [];
+      const files = getMatchingCounts(counts, dates, i) || [];
 
-      return files.flatMap(([fileName, lines]) => lines.map((line, index) => [repo, date, fileName, index + 1, ...line])); // eslint-disable-line max-nested-callbacks
+      return files.flatMap(([fileName, ext, lines]) => lines.map((line, index) => [repo, date, fileName, ext, index + 1, ...line])); // eslint-disable-line max-nested-callbacks
     }));
 
     return [
@@ -85,37 +129,29 @@ export default class Converter {
   }
 
   static chronicleDetailHtml(data) {
-    const { items, maxValue, fileTypes } = chronicleDetailForHtml(data);
+    const dates = normalizeDates(data);
+    const fileTypes = [...new Set(data.flatMap(([, counts]) => Object.values(counts).flatMap((files) => files.map(([, ext]) => ext))))].sort();
 
-    const ci = (className, index) => `${className} ${className}${index}`;
-    const ii = (className, index) => `${className}${index}`;
-    const T = 'type';
-    const R = 'repo';
+    return chart({
+      items: dates.map((date, i) => ({
+        id: i,
+        label: date,
+        items: data.map(([repoName, counts], i2) => {
+          const files = getMatchingCounts(counts, dates, i) || [];
+          const byExtension = countByExtension(files);
 
-    const repoStyles = data.map((_, rIndex) => ii(R, rIndex)).map((cl) => `#${cl}:checked ~ .app .repos .${cl} {opacity:1}\n#${cl}:checked ~ .app .chart .${cl} {width:100%}`); // eslint-disable-line no-unused-vars
-    const typeStyles = fileTypes.map((_, ftIndex) => ii(T, ftIndex)).map((cl) => `#${cl}:checked ~ .app .file-types .${cl} {opacity:1}\n#${cl}:checked ~ .app .chart .${cl} {max-height:100%}`); // eslint-disable-line no-unused-vars
-    const repoInputs = data.map((_, rIndex) => h(`input.${R}`, '', [ ['type', 'checkbox'], ['id', ii(R, rIndex)], ['checked'] ])); // eslint-disable-line no-unused-vars
-    const typeInputs = fileTypes.map((_, ftIndex) => h(`input.${T}`, '', [ ['type', 'checkbox'], ['id', ii(T, ftIndex)], ['checked'] ])); // eslint-disable-line no-unused-vars
-
-    const percentItem = (className, children, label, value, max) => h(`.${className}`, children, [ // eslint-disable-line max-params
-      ['style', `height:${(value / max * 100).toFixed(5)}%`],
-      ['data-label', label],
-      ['data-value', value]
-    ]);
-
-    const styles = [...repoStyles, ...typeStyles];
-    const controls = [...repoInputs, ...typeInputs];
-    const chart = items.map(({ dateLabel, repos }) => h('.date', repos.map(({ repoLabel, count, types }, rIndex) => percentItem(
-      ci(R, rIndex),
-      types.map(({ fileType, count: fileTypeCount }, ftIndex) => percentItem(ci(T, ftIndex), '', fileType, fileTypeCount, count)),
-      repoLabel,
-      count,
-      maxValue
-    )), [ ['data-label', dateLabel] ]));
-    const fileTypesH = fileTypes.map((fileType, ftIndex) => h(`label.item ${ci(T, ftIndex)}`, fileType.replace('.', ''), [ ['for', ii(T, ftIndex)] ]));
-    const reposH = data.map(([repoName], rIndex) => h(`label.item ${ci(R, rIndex)}`, repoName, [ ['for', ii(R, rIndex)] ]));
-
-    return template(styles, controls, chart, fileTypesH, reposH);
+          return {
+            id: i2,
+            label: repoName,
+            items: fileTypes.map((fileType, i3) => ({
+              id: i3,
+              label: fileType,
+              value: byExtension[fileType] || 0
+            }))
+          };
+        })
+      }))
+    });
   }
 
   static convert(config, format, data) {

@@ -6,7 +6,7 @@ import Repo from './Repo.mjs';
 export default async function run(config) { // eslint-disable-line max-statements
   console.log(Object.entries(config).filter(([key]) => key !== 'repo').map(([key, value]) => `${key}=${value.toString()}`).join('   '));
 
-  const { repos, chronicle, detail, period, formats, output, dry } = config;
+  const { repos, chronicle, detail, period, formats, output, dry, cache } = config;
   const validRepos = repos.map(Repo.isDirGitRepository);
 
   console.log(`Run for ${validRepos.length} repos`);
@@ -18,10 +18,12 @@ export default async function run(config) { // eslint-disable-line max-statement
   await db.restore();
 
   const modeString = `${chronicle ? 'Chronicle' : 'Current'}${detail ? 'Detail' : 'Simple'}`;
-  const data = [];
+  const data = cache ? await fs.readJson(modeString + (chronicle ? period : '')) : [];
 
-  for (const repo of repoList) {
-    data.push([repo.dirBase, await repo[`get${modeString}`](period)]);
+  if (!data.length) {
+    for (const repo of repoList) {
+      data.push([repo.dirBase, await repo[`get${modeString}`](period)]);
+    }
   }
 
   for (const format of formats) {

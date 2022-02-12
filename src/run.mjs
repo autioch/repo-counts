@@ -30,6 +30,6 @@ export default async function run(config) { // eslint-disable-line max-statement
     await fs.writeOutput(format, modeString + (chronicle ? period : ''), Converter.convert(config, format, data));
   }
 
-  // await fs.copyStyles();
+  await fs.copyStyles();
   await db.persist();
 }

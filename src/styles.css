@@ -1,10 +1,11 @@
 body {
-  width: 100%;
+  width: 99vw;
   height: 100%;
-  margin: 0;
+  margin: 0 .5vw;
   display: flex;
   flex-direction: column;
   font-family: Consolas;
+  --t-border: #ccc;
 }
 
 .title {
@@ -20,30 +21,33 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  margin-bottom: 5em;
 }
 
 .axis {
   flex: none;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-end; */
-  /* justify-content: ; */
-  /* position: relative; */
+  border-bottom: solid 1px var(--t-border);
 }
 
 .axis-item {
   position: relative;
-  height: 20%;
   box-sizing: border-box;
-  border-bottom: solid 1px #ccc;
+  border-top: solid 1px var(--t-border);
+  width: 100%;
+  text-align: right;
+  height: 25%;
+  padding: 0 4px;
 }
 
 .axis-item::after {
   content: '';
   position: absolute;
-  bottom: -1px;
+  left: 0;
+  top: -1px;
   width: 99vw;
-  border-bottom: dashed 1px #ccc;
+  border-bottom: dashed 1px var(--t-border);
 }
 
 .plot {
@@ -51,7 +55,10 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-wrap: none;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  border-left: solid 1px var(--t-border);
+  border-bottom: solid 1px var(--t-border);
 }
 
 .period {
@@ -60,12 +67,27 @@ body {
   flex-direction: row;
   transition: background 250ms;
   align-items: flex-end;
+  justify-content: center;
   position: relative;
+  margin: 0 .25vw;
+}
+
+.period::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 100%;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  padding: 4px 0;
 }
 
 .series {
   flex: auto;
+  margin: 0 0.5px;
+  max-width: 40vw;
+  position: relative;
 }
+
 
 .point {
   background-color: var(--item-color);
@@ -73,21 +95,13 @@ body {
 
 .legend {
   display: flex;
-}
-
-.legend::before {
-  content: attr(data-label);
-}
-
-.legend-items {
-  display: flex;
   flex-wrap: wrap;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   /* opacity:.5; */
   /* transition: opacity 250ms; */
   margin: 5px;
@@ -101,52 +115,3 @@ body {
   width: 16px;
   margin-right: 5px;
 }
-
-.point:nth-child(6n+1),
-.legend-item:nth-child(6n+1) {
-  --item-color: #f99;
-}
-
-.point:nth-child(6n+2),
-.legend-item:nth-child(6n+2) {
-  --item-color: #9f9;
-}
-
-.point:nth-child(6n+3),
-.legend-item:nth-child(6n+3) {
-  --item-color: #99f;
-}
-
-.point:nth-child(6n+4),
-.legend-item:nth-child(6n+4) {
-  --item-color: #ff9;
-}
-
-.point:nth-child(6n+5),
-.legend-item:nth-child(6n+5) {
-  --item-color: #f9f;
-}
-
-.point:nth-child(6n+6),
-.legend-item:nth-child(6n+6) {
-  --item-color: #9ff;
-}
-
-
-/*
-export const colors = [
-  '#999',
-  '#9ff',
-  '#99f',
-  '#f9f',
-  '#f99',
-  '#ff9',
-  '#9f9',
-  '#fff'
-];
-
-// const AVAILABLE_COLORS = [
-//   '#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff',
-//   '#f99', '#9f9', '#99f', '#ff9', '#f9f', '#9ff'
-// ];
-*/

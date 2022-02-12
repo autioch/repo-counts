@@ -1,7 +1,7 @@
 import binaryExtensions from 'binary-extensions';
 import child_process, { execSync } from 'child_process';
 import pLimit from 'p-limit';
-import { basename, extname } from 'path';
+import { basename, extname, resolve } from 'path';
 import ProgressBar from 'progress';
 import { promisify } from 'util';
 
@@ -39,7 +39,9 @@ export default class Repo {
   constructor(dir, db) {
     this.db = db;
     this.dir = dir;
-    this.dirBase = basename(dir);
+
+    // TODO Maybe use https://github.com/luftywiranda13/git-root-dir/blob/master/index.js
+    this.dirBase = basename(resolve(dir));
   }
 
   static isDirGitRepository(dir) {
@@ -65,7 +67,8 @@ export default class Repo {
 
       return stdout.trim();
     } catch (err) {
-      false && console.log(`Failed to execute command`, commandString, '\n', err.message);
+      // TODO - make this log to a file
+      // console.error(/* `Command error: `, commandString, '\n', */err.message);
 
       return '';
     }
@@ -142,8 +145,6 @@ export default class Repo {
 
     // TODO add bar interrupt if something goes wrong
     if (!fileContents) {
-      // console.log(`FAIL blame ${filePath}`);
-
       return [];
     }
 

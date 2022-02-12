@@ -2,14 +2,17 @@
 import { FORMAT, PERIOD } from '../src/consts.mjs';
 import run from '../src/run.mjs';
 
-const repos = ['E:/projects/trial-css-filter', '.'];
+const repos = [
+  'E:/projects/trial-css-filter',
+  '.'
+];
 const output = './spec/mock';
 
 const configs = [false, true].flatMap((detail) =>
   [false, PERIOD.YEAR, PERIOD.MONTH].flatMap((periodAndChronicle) =>
     [
-      // FORMAT.JSON,
-      // FORMAT.CSV,
+      FORMAT.JSON,
+      FORMAT.CSV,
       FORMAT.HTML
     ].flatMap((format) =>
       ({
@@ -20,7 +23,7 @@ const configs = [false, true].flatMap((detail) =>
         formats: [format],
         output,
         dry: false,
-        cache: true
+        cache: false
       })
     )
   )

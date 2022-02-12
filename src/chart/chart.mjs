@@ -1,4 +1,4 @@
-import { e, getMax, getRoundingFn, getSum, getTitle, itemAttr, uniqDataItems } from './utils.mjs';
+import { colors, e, getMax, getMaxCount, getRoundingFn, getSum, getTitle, itemAttr, uniqDataItems } from './utils.mjs';
 
 function ePoint(data, maxValue) {
   return e('.point', '', [
@@ -23,31 +23,35 @@ function eLegendItem(data) {
   return e('.legend-item', data.label, itemAttr(data));
 }
 
-function eLegend(legendLabel, items) {
-  return items.length > 1 ? e('.legend', e('.legend-items', items.map(([id, label]) => eLegendItem({
+function eLegend(items) {
+  return e('.legend', items.map(([id, label]) => eLegendItem({
     id,
     label
-  }))), itemAttr({
-    label: legendLabel
-  })) : false;
+  })));
 }
 
 function eAxis(maxVal) {
   const roundingFn = getRoundingFn(maxVal);
 
-  return e('.axis', [maxVal, maxVal / 4 * 3, maxVal / 2, maxVal / 4, 0].map((value) => e('.axis-item', roundingFn(value), itemAttr({
+  return e('.axis', [maxVal, maxVal / 4 * 3, maxVal / 2, maxVal / 4].map((value) => e('.axis-item', roundingFn(value), itemAttr({
     value
   }))));
+}
+
+function buildColorStyles(points) {
+  const total = colors.length;
+  const className = points.length > 1 ? 'point' : 'series';
+
+  return colors.map((color, i) => `.${className}:nth-child(${total}n+${i + 1}),.legend-item:nth-child(${total}n+${i + 1}) {--item-color: ${color};}`).join('\n');
 }
 
 export default function chart(data) {
   const periods = uniqDataItems(data.items);
   const series = uniqDataItems(data.items.flatMap(({ items }) => items));
   const points = uniqDataItems(data.items.flatMap(({ items }) => items.flatMap(({ items: ites }) => ites)));
-  const maxVal = getMax(data.items, ({ items }) => getMax(items, (item) => getSum(item.items, (item2) => item2.value)));
-  const periodLegend = eLegend('Period', periods);
-  const seriesLegend = eLegend('Series', series);
-  const pointsLegend = eLegend('Point', points);
+  const maxValue = getMax(data.items, ({ items }) => getMax(items, (item) => getSum(item.items, (item2) => item2.value)));
+  const maxVal = getMaxCount(maxValue);
+
   const axis = eAxis(maxVal);
   const plot = ePlot(data, maxVal);
   const title = getTitle(periods, series, points);
@@ -55,12 +59,13 @@ export default function chart(data) {
   return e('html', [
     e('head', [
       e('title', title),
+      e('style', buildColorStyles(points), [ ['type', 'text/css'] ]),
       e('link', '', [ ['href', 'styles.css'], ['rel', 'stylesheet'] ])
     ]),
     e('body', [
-      e('.title', title),
+      e('h1.title', title),
       e('.chart', [axis, plot]),
-      e('.footer', [periodLegend, seriesLegend, pointsLegend].filter(Boolean))
+      e('.footer', [series, points].filter((items) => items.length > 1).map(eLegend))
     ])
   ]);
 }

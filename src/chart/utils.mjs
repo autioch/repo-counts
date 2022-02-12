@@ -27,11 +27,11 @@ export function itemAttr({ id, label, value }) {
 }
 
 export function getTitle(periods, series, points) {
-  const periodDesc = periods.length === 1 ? periods[0][1] : `${periods[0][1]} - ${periods[periods.length - 1][1]}`;
+  const periodDesc = periods.length === 1 ? periods[0][1] : `${periods[0][1]}-${periods[periods.length - 1][1]}`;
   const seriesDesc = series.length === 1 ? series[0][1] : `${series.length} repositories`;
-  const pointsDesc = points.length === 1 ? `${points[0][1]} file type` : `${points.length} file types`;
+  const pointsDesc = points.length === 1 ? `summary` : `detailed`;
 
-  return `${periodDesc} counts of ${seriesDesc} for ${pointsDesc}`;
+  return `${periodDesc} ${pointsDesc} counts of ${seriesDesc}`;
 }
 
 const roundM = (num) => `${Math.round(num / 100000) / 10}M`;
@@ -39,3 +39,23 @@ const roundK = (num) => `${Math.round(num / 100) / 10}K`;
 const round0 = (num) => `${Math.round(num)}`;
 
 export const getRoundingFn = (maxValue) => maxValue > 1000000 ? roundM : (maxValue > 1000 ? roundK : round0); // eslint-disable-line no-nested-ternary, no-extra-parens
+
+export function getMaxCount(maxValue) {
+  const rounding = '1';
+  const roundingAmount = parseInt(rounding.padEnd((maxValue.toString().length / 2) + 1, '0'), 10);
+
+  return Math.ceil(maxValue / roundingAmount) * roundingAmount;
+}
+
+export const colors = [
+  '#5CBAE6',
+  '#B6D957',
+  '#E9707B',
+  '#FAC364',
+  '#98AAFB',
+  '#80B877',
+  '#D998CB',
+  '#F2D249',
+  '#93B9C6',
+  '#CCC5A8'
+];

@@ -26,8 +26,24 @@ body {
   flex: none;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
+  /* align-items: flex-end; */
+  /* justify-content: ; */
+  /* position: relative; */
+}
+
+.axis-item {
+  position: relative;
+  height: 20%;
+  box-sizing: border-box;
+  border-bottom: solid 1px #ccc;
+}
+
+.axis-item::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  width: 99vw;
+  border-bottom: dashed 1px #ccc;
 }
 
 .plot {
@@ -55,8 +71,11 @@ body {
   background-color: var(--item-color);
 }
 
-.legend::before {
+.legend {
   display: flex;
+}
+
+.legend::before {
   content: attr(data-label);
 }
 

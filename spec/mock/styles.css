@@ -1,11 +1,14 @@
 body {
   width: 99vw;
-  height: 100%;
-  margin: 0 .5vw;
+  height: 99vh;
+  margin: .5vh .5vw;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   font-family: Consolas;
   --t-border: #ccc;
+  --t-bg: #f8f8f8;
+  --t-shadow: #666;
 }
 
 .control {
@@ -25,7 +28,10 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  margin-bottom: 5em;
+}
+
+.chart.description {
+  margin-bottom: 3em;
 }
 
 .axis {
@@ -76,13 +82,10 @@ body {
   margin: 0 .25vw;
 }
 
-.period::after {
+.period[data-label]::after {
   content: attr(data-label);
   position: absolute;
   top: 100%;
-  writing-mode: vertical-rl;
-  white-space: nowrap;
-  padding: 4px 0;
 }
 
 .series {
@@ -91,7 +94,6 @@ body {
   position: relative;
   width: 0;
   height: 100%;
-  overflow: hidden;
   transition: width 250ms;
   flex-direction: column;
   display: flex;
@@ -105,6 +107,7 @@ body {
   transition: max-height 250ms;
   max-width: 10vw;
   width: 100%;
+  position: relative;
 }
 
 .legend {
@@ -128,4 +131,83 @@ body {
   height: 16px;
   width: 16px;
   margin-right: 5px;
+}
+
+.tooltip--left::after {
+  z-index: 1;
+  content: attr(data-label);
+  background: var(--t-bg);
+  box-shadow: 0 0 3px var(--t-shadow);
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.tooltip--left::before {
+  z-index: 2;
+  content: '\25B8';
+  color: var(--t-bg);
+  font-size: 30px;
+  width: 16px;
+  line-height: 30px;
+  clip-path: inset(0 0 0 5px);
+  text-shadow: 2px 0 3px #999;
+}
+
+.tooltip--bottom::after {
+  z-index: 1;
+  content: attr(data-label);
+  background: var(--t-bg);
+  box-shadow: 0 0 3px var(--t-shadow);
+  padding: 3px;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+.tooltip--bottom::before {
+  z-index: 2;
+  content: '\25B4';
+  color: var(--t-bg);
+  font-size: 30px;
+  height: 11px;
+  line-height: 10px;
+  clip-path: inset(0 0 0 0);
+  text-shadow: 0 -2px 3px #999;
+}
+
+.tooltip--bottom::after,
+.tooltip--bottom::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--left::after,
+.tooltip--left::before {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--bottom::after,
+.tooltip--bottom::before,
+.tooltip--left::after,
+.tooltip--left::before {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.tooltip--bottom:hover::after,
+.tooltip--bottom:hover::before,
+.tooltip--left:hover::after,
+.tooltip--left:hover::before {
+  opacity: 1;
+}
+
+
+.desc--bottom::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 100%;
 }

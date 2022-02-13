@@ -24,8 +24,12 @@ Not supported yet - this tool uses node.js api that isn't available in `std/node
 ## TODO
 1. Allow skipping first n commits. This is helpful when initial commits are more of a POS or setting up stuff.
 2. Allow specifying a time period instead of a whole timeline.
-3. Display more data in html output (on hover?).
+3. ~Display more data in html output (on hover?).~ - done
 4. Allow configuring colors.
 5. Allow defyining config file, that can hold repeatable congfiguration - implemented, not tested.
 6. Implement option for ignoring extensions and folder names.
 7. Allow probing repositories not on disk - using github API or other services.
+8. Check quantity queries and media queries to move more logic to CSS.
+9. All errors should be reported to a separate file
+10. CSV output should not use ids for authors and dates, but labels.
+11. Series/periods descriptions under the chart should adapt to their amount and sreen size.

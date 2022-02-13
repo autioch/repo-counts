@@ -35,13 +35,9 @@ function e(tagAndClassName, children, attributes = []) {
   return `<${[tagName, classAttr, attrs].filter(Boolean).join(' ')}>${tested}</${tagName}>`;
 }
 
-function itemAttr({ id, label, value }) {
-  return [
-    id ? ['data-id', id] : false,
-    value ? ['data-value', value] : false,
-    ['data-label', label]
-  ].filter(notFalse);
-}
+// const SERIES_DESC_MODE = {
+//   'period'
+// };
 
 export default class Chart {
   constructor(data) {
@@ -83,6 +79,10 @@ export default class Chart {
     this.periods = uniqDataItems(data.items);
     this.series = uniqDataItems(data.items.flatMap(({ items }) => items));
     this.points = uniqDataItems(data.items.flatMap(({ items }) => items.flatMap(({ items: ites }) => ites)));
+    this.isManyPeriods = this.periods.length > 1;
+    this.isManySeries = this.series.length > 1;
+    this.isManyPoints = this.points.length > 1;
+    this.descriptionMode = this.isManyPeriods ? 'period' : (this.isManySeries ? 'series' : '');// eslint-disable-line no-nested-ternary, no-extra-parens
 
     return this;
   }
@@ -99,17 +99,24 @@ export default class Chart {
   }
 
   getPeriod(data) {
-    return e('.period', data.items.map(this.getSeries));
+    return e(`.period${this.isManyPeriods ? ' desc-bottom' : ''}`, data.items.map(this.getSeries), [this.isManyPeriods ? ['data-label', data.label] : false]);
   }
 
   getSeries(data) {
-    return e('.series', data.items.map(this.getPoint), itemAttr(data));
+    const withTooltip = this.isManyPeriods && data.items.some((item) => item.value > 0);
+    const withDescription = !this.isManyPeriods && this.isManySeries;
+
+    return e(`.series${withTooltip ? ' tooltip--bottom' : (withDescription ? ' desc--bottom' : '')}`, data.items.map(this.getPoint), [// eslint-disable-line no-nested-ternary, no-extra-parens
+      ['data-id', data.id],
+      withTooltip || withDescription ? ['data-label', data.label] : false
+    ]);
   }
 
   getPoint(data) {
-    return e('.point', '', [
+    return e(`.point${this.isManyPoints ? ' tooltip--left' : ''}`, '', [
       ['style', `height:${(data.value / this.maxVal * 100).toFixed(5)}%`],
-      ...itemAttr(data)
+      ['data-id', data.id],
+      this.isManyPoints ? ['data-label', `${data.label} ${data.value}`] : false
     ]);
   }
 
@@ -126,21 +133,20 @@ export default class Chart {
   }
 
   getLegend(data) { // eslint-disable-line class-methods-use-this
-    return e('.legend', data.map((item) => e('label.legend-item', item.label, [ ['for', item.id], ...itemAttr(item)])));
+    return e('.legend', data.map((item) => e('label.legend-item', item.label, [ ['for', item.id], ['data-id', item.id] ])));
   }
 
   getColorStyles() {
     const total = colors.length;
-    const className = this.points.length > 1 ? 'point' : 'series';
+    const className = this.isManyPoints ? 'point' : 'series';
 
     return colors.map((color, i) => `.${className}:nth-child(${total}n+${i + 1}),.legend-item:nth-child(${total}n+${i + 1}) {--item-color: ${color};}`).join('\n');
   }
 
   getTitle() {
-    const { periods, series, points } = this;
-    const periodDesc = periods.length === 1 ? periods[0].label : `${periods[0].label}-${periods[periods.length - 1].label}`;
-    const seriesDesc = series.length === 1 ? series[0].label : `${series.length} repositories`;
-    const pointsDesc = points.length === 1 ? `summary` : `detailed`;
+    const periodDesc = this.isManyPeriods ? `${this.periods[0].label}-${this.periods[this.periods.length - 1].label}` : this.periods[0].label;
+    const seriesDesc = this.isManySeries ? `${this.series.length} repositories` : this.series[0].label;
+    const pointsDesc = this.isManyPoints ? `summary` : `detailed`;
 
     return `${periodDesc} ${pointsDesc} counts of ${seriesDesc}`;
   }
@@ -162,7 +168,7 @@ export default class Chart {
         e('h1.title', title),
         ...this.getControl(this.series),
         ...this.getControl(this.points),
-        e('.chart', [axis, plot]),
+        e(`.chart${this.isManyPeriods || this.isManySeries ? ' description' : ''}`, [axis, plot]),
         e('.footer', [this.series, this.points].filter(isMulti).map(this.getLegend))
       ])
     ]);

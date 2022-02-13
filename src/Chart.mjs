@@ -2,7 +2,10 @@ import { colors } from './consts.mjs';
 
 const notFalse = (val) => val !== false;
 const isMulti = (arr) => arr.length > 1;
-const hashItemAttr = ({ id, label }) => JSON.stringify([id, label]);
+const hashItemAttr = ({ id, label }) => JSON.stringify({
+  id,
+  label
+});
 const parseItemAttr = JSON.parse.bind(JSON);
 const identity = (item) => item;
 
@@ -63,9 +66,7 @@ export default class Chart {
     const { maxVal } = this;
     const roundingFn = maxVal > 1000000 ? roundM : (maxVal > 1000 ? roundK : round0); // eslint-disable-line no-nested-ternary, no-extra-parens
 
-    return e('.axis', [maxVal, maxVal / 4 * 3, maxVal / 2, maxVal / 4].map((value) => e('.axis-item', roundingFn(value), itemAttr({
-      value
-    }))));
+    return e('.axis', [maxVal, maxVal / 4 * 3, maxVal / 2, maxVal / 4].map((value) => e('.axis-item', roundingFn(value))));
   }
 
   getPlot() {
@@ -88,10 +89,7 @@ export default class Chart {
   }
 
   getLegend(data) { // eslint-disable-line class-methods-use-this
-    return e('.legend', data.map(([id, label]) => e('.legend-item', label, itemAttr({
-      id,
-      label
-    }))));
+    return e('.legend', data.map((item) => e('.legend-item', item.label, itemAttr(item))));
   }
 
   getColorStyles() {
@@ -103,8 +101,8 @@ export default class Chart {
 
   getTitle() {
     const { periods, series, points } = this;
-    const periodDesc = periods.length === 1 ? periods[0][1] : `${periods[0][1]}-${periods[periods.length - 1][1]}`;
-    const seriesDesc = series.length === 1 ? series[0][1] : `${series.length} repositories`;
+    const periodDesc = periods.length === 1 ? periods[0].label : `${periods[0].label}-${periods[periods.length - 1].label}`;
+    const seriesDesc = series.length === 1 ? series[0].label : `${series.length} repositories`;
     const pointsDesc = points.length === 1 ? `summary` : `detailed`;
 
     return `${periodDesc} ${pointsDesc} counts of ${seriesDesc}`;

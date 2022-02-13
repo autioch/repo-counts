@@ -4,9 +4,6 @@ Tool for reporting amount of a code in repositories, with an option of generatin
 ## Warning
 This tool can generate very, very large amounts of data. Be careful when using `chronicle` together with `detail`.
 
-## Installation
-This package is currently _unavailable_ on `npm`. To use it clone or download repository.
-
 ## Usage
 
 ### Node.js

@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "description": "Count the code in your repo(s)",
   "main": "src/index.mjs",
-  "bin": {
-    "repo-counts": "cli.js"
-  },
+  "bin": "bin/cli.js",
   "type": "module",
   "scripts": {
     "help": "node src/index.mjs -h",

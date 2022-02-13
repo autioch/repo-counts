@@ -11,7 +11,7 @@ function normalizeDates(data) {
   const forAllYear = new Array(1 + parseInt(highYear, 10) - parseInt(lowYear, 10)).fill(parseInt(lowYear, 10));
 
   if (highDate.includes('-')) {
-    const allDates = forAllYear.flatMap((low, i) => new Array(12).fill(`${low + i}-`).map((prefix, j) => prefix + j.toString().padStart(2, '0')));
+    const allDates = forAllYear.flatMap((low, i) => new Array(12).fill(`${low + i}-`).map((prefix, j) => prefix + (j + 1).toString().padStart(2, '0')));
 
     return allDates.slice(allDates.indexOf(lowDate), allDates.indexOf(highDate) + 1);
   }

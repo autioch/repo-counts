@@ -68,7 +68,7 @@ export default class Repo {
       return stdout.trim();
     } catch (err) {
       // TODO - make this log to a file
-      // console.error(/* `Command error: `, commandString, '\n', */err.message);
+      false && console.error(/* `Command error: `, commandString, '\n', */err.message);
 
       return '';
     }

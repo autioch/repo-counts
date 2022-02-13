@@ -1,4 +1,4 @@
-import chart from './chart/chart.mjs';
+import Chart from './chart.mjs';
 import { FORMAT } from './consts.mjs';
 
 function normalizeDates(data) {
@@ -35,6 +35,10 @@ function countByExtension(files) {
   }, {});
 }
 
+const chart = new Chart({
+  items: []
+});
+
 export default class Converter {
   static currentSimpleCsv(data) {
     return [
@@ -44,7 +48,7 @@ export default class Converter {
   }
 
   static currentSimpleHtml(data) {
-    return chart({
+    const chartData = {
       items: [{
         label: 'Current',
         items: data.map(([repoName, count]) => ({
@@ -55,7 +59,9 @@ export default class Converter {
           }]
         }))
       }]
-    });
+    };
+
+    return chart.setData(chartData).toHtmlString();
   }
 
   static currentDetailCsv(data) {
@@ -68,7 +74,7 @@ export default class Converter {
   static currentDetailHtml(data) {
     const fileTypes = [...new Set(data.flatMap(([, files]) => files.flatMap(([, ext]) => ext)))].sort();
 
-    return chart({
+    const chartData = {
       items: [{
         label: 'Current',
         items: data.map(([repoName, files]) => {
@@ -83,7 +89,9 @@ export default class Converter {
           };
         })
       }]
-    });
+    };
+
+    return chart.setData(chartData).toHtmlString();
   }
 
   static chronicleSimpleCsv(data) {
@@ -97,8 +105,7 @@ export default class Converter {
 
   static chronicleSimpleHtml(data) {
     const dates = normalizeDates(data);
-
-    return chart({
+    const chartData = {
       items: dates.map((date, i) => ({
         id: i,
         label: date,
@@ -110,7 +117,9 @@ export default class Converter {
           }]
         }))
       }))
-    });
+    };
+
+    return chart.setData(chartData).toHtmlString();
   }
 
   static chronicleDetailCsv(data) {
@@ -131,8 +140,7 @@ export default class Converter {
   static chronicleDetailHtml(data) {
     const dates = normalizeDates(data);
     const fileTypes = [...new Set(data.flatMap(([, counts]) => Object.values(counts).flatMap((files) => files.map(([, ext]) => ext))))].sort();
-
-    return chart({
+    const chartData = {
       items: dates.map((date, i) => ({
         id: i,
         label: date,
@@ -151,7 +159,9 @@ export default class Converter {
           };
         })
       }))
-    });
+    };
+
+    return chart.setData(chartData).toHtmlString();
   }
 
   static convert(config, format, data) {

@@ -3,8 +3,9 @@ import { FORMAT, PERIOD } from '../src/consts.mjs';
 import run from '../src/run.mjs';
 
 const repos = [
-  'E:/projects/trial-css-filter',
-  '.'
+  'E:/projects/trial-css-filter'
+
+  // '.'
 ];
 const output = './spec/mock';
 

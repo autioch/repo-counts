@@ -1,6 +1,9 @@
 # Repo Counts
 Tool for reporting amount of a code in repositories, with an option of generating counts over time.
 
+## Warning
+This tool can generate very, very large amounts of data. Be careful when using `chronicle` together with `detail`.
+
 ## Installation
 This package is currently _unavailable_ on `npm`. To use it clone or download repository.
 

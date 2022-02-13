@@ -46,15 +46,40 @@ function itemAttr({ id, label, value }) {
 export default class Chart {
   constructor(data) {
     this.setData(data);
+    this.getControl = this.getControl.bind(this);
     this.getPeriod = this.getPeriod.bind(this);
     this.getSeries = this.getSeries.bind(this);
     this.getPoint = this.getPoint.bind(this);
     this.getLegend = this.getLegend.bind(this);
   }
 
+  static makePoint(id, label, value = 0) {
+    return {
+      id: `p${id}`,
+      label,
+      value
+    };
+  }
+
+  static makeSeries(id, label, items) {
+    return {
+      id: `s${id}`,
+      label,
+      items
+    };
+  }
+
+  static makePeriod(id, label, items) {
+    return {
+      id: `p${id}`,
+      label,
+      items
+    };
+  }
+
   setData(data) {
     this.data = data;
-    this.maxVal = roundUp(getMax(data.items, ({ items }) => getMax(items, (item) => getSum(item.items, (item2) => item2.value))));
+    this.maxVal = roundUp(getMax(data.items, (period) => getMax(period.items, (series) => getSum(series.items, (point) => point.value))));
     this.periods = uniqDataItems(data.items);
     this.series = uniqDataItems(data.items.flatMap(({ items }) => items));
     this.points = uniqDataItems(data.items.flatMap(({ items }) => items.flatMap(({ items: ites }) => ites)));
@@ -74,7 +99,7 @@ export default class Chart {
   }
 
   getPeriod(data) {
-    return e('.period', data.items.map(this.getSeries), itemAttr(data));
+    return e('.period', data.items.map(this.getSeries));
   }
 
   getSeries(data) {
@@ -88,8 +113,20 @@ export default class Chart {
     ]);
   }
 
+  getControl(data) { // eslint-disable-line class-methods-use-this
+    return data.map(({ id }) => e('input.control', '', [ ['type', 'checkbox'], ['id', id], ['checked'] ]));
+  }
+
+  getSeriesStyles() {
+    return this.series.map(({ id }) => `#${id}:checked ~ .footer .legend .legend-item[data-id="${id}"]{opacity:1}\n#${id}:checked ~ .chart .period .series[data-id="${id}"]{width:100%}`);
+  }
+
+  getPointStyles() {
+    return this.points.map(({ id }) => `#${id}:checked ~ .footer .legend .legend-item[data-id="${id}"]{opacity:1}\n#${id}:checked ~ .chart .period .series .point[data-id="${id}"]{max-height:100%}`);
+  }
+
   getLegend(data) { // eslint-disable-line class-methods-use-this
-    return e('.legend', data.map((item) => e('.legend-item', item.label, itemAttr(item))));
+    return e('.legend', data.map((item) => e('label.legend-item', item.label, [ ['for', item.id], ...itemAttr(item)])));
   }
 
   getColorStyles() {
@@ -117,10 +154,14 @@ export default class Chart {
       e('head', [
         e('title', title),
         e('style', this.getColorStyles(), [ ['type', 'text/css'] ]),
+        e('style', this.getSeriesStyles(), [ ['type', 'text/css'] ]),
+        e('style', this.getPointStyles(), [ ['type', 'text/css'] ]),
         e('link', '', [ ['href', 'styles.css'], ['rel', 'stylesheet'] ])
       ]),
       e('body', [
         e('h1.title', title),
+        ...this.getControl(this.series),
+        ...this.getControl(this.points),
         e('.chart', [axis, plot]),
         e('.footer', [this.series, this.points].filter(isMulti).map(this.getLegend))
       ])

@@ -49,16 +49,7 @@ export default class Converter {
 
   static currentSimpleHtml(data) {
     const chartData = {
-      items: [{
-        label: 'Current',
-        items: data.map(([repoName, count]) => ({
-          label: repoName,
-          items: [{
-            label: 'all',
-            value: count
-          }]
-        }))
-      }]
+      items: [Chart.makePeriod('Current', 'Current', data.map(([repoName, count], si) => Chart.makeSeries(si, repoName, [Chart.makePoint('all', 'all', count)])))]
     };
 
     return chart.setData(chartData).toHtmlString();
@@ -75,20 +66,11 @@ export default class Converter {
     const fileTypes = [...new Set(data.flatMap(([, files]) => files.flatMap(([, ext]) => ext)))].sort();
 
     const chartData = {
-      items: [{
-        label: 'Current',
-        items: data.map(([repoName, files]) => {
-          const byExtension = countByExtension(files);
+      items: [Chart.makePeriod('Current', 'Current', data.map(([repoName, files], si) => {
+        const byExtension = countByExtension(files);
 
-          return {
-            label: repoName,
-            items: fileTypes.map((fileType) => ({
-              label: fileType,
-              value: byExtension[fileType] || 0
-            }))
-          };
-        })
-      }]
+        return Chart.makeSeries(si, repoName, fileTypes.map((fileType, pi) => Chart.makePoint(pi, fileType, byExtension[fileType])));
+      }))]
     };
 
     return chart.setData(chartData).toHtmlString();
@@ -106,17 +88,7 @@ export default class Converter {
   static chronicleSimpleHtml(data) {
     const dates = normalizeDates(data);
     const chartData = {
-      items: dates.map((date, i) => ({
-        id: i,
-        label: date,
-        items: data.map(([repoName, counts]) => ({
-          label: repoName,
-          items: [{
-            label: 'all',
-            value: getMatchingCounts(counts, dates, i) || 0
-          }]
-        }))
-      }))
+      items: dates.map((date, di) => Chart.makePeriod(di, date, data.map(([repoName, counts], si) => Chart.makeSeries(si, repoName, [Chart.makePoint('all', 'all', getMatchingCounts(counts, dates, di))]))))
     };
 
     return chart.setData(chartData).toHtmlString();
@@ -141,24 +113,11 @@ export default class Converter {
     const dates = normalizeDates(data);
     const fileTypes = [...new Set(data.flatMap(([, counts]) => Object.values(counts).flatMap((files) => files.map(([, ext]) => ext))))].sort();
     const chartData = {
-      items: dates.map((date, i) => ({
-        id: i,
-        label: date,
-        items: data.map(([repoName, counts], i2) => {
-          const files = getMatchingCounts(counts, dates, i) || [];
-          const byExtension = countByExtension(files);
+      items: dates.map((date, i) => Chart.makePeriod(i, date, data.map(([repoName, counts], si) => {
+        const byExtension = countByExtension(getMatchingCounts(counts, dates, i) || []);
 
-          return {
-            id: i2,
-            label: repoName,
-            items: fileTypes.map((fileType, i3) => ({
-              id: i3,
-              label: fileType,
-              value: byExtension[fileType] || 0
-            }))
-          };
-        })
-      }))
+        return Chart.makeSeries(si, repoName, fileTypes.map((fileType, pi) => Chart.makePoint(pi, fileType, byExtension[fileType])));
+      })))
     };
 
     return chart.setData(chartData).toHtmlString();

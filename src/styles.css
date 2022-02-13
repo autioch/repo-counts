@@ -8,6 +8,10 @@ body {
   --t-border: #ccc;
 }
 
+.control {
+  display: none;
+}
+
 .title {
   flex: none;
 }
@@ -86,11 +90,14 @@ body {
   margin: 0 0.5px;
   max-width: 40vw;
   position: relative;
+  width: 0;
+  transition: width 250ms;
 }
-
 
 .point {
   background-color: var(--item-color);
+  max-height: 0;
+  transition: max-height 250ms;
 }
 
 .legend {
@@ -101,9 +108,9 @@ body {
 .legend-item {
   display: flex;
   align-items: center;
-  /* cursor: pointer; */
-  /* opacity:.5; */
-  /* transition: opacity 250ms; */
+  cursor: pointer;
+  opacity:.5;
+  transition: opacity 250ms;
   margin: 5px;
 }
 

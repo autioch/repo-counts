@@ -50,9 +50,9 @@ export default class Repo {
         cwd: dir
       });
 
-      return dir;
+      return true;
     } catch (err) { // eslint-disable-line no-unused-vars
-      console.log(`Invalid git dir provided, skipping - ${dir}`);
+      console.log(`Non-git dir provided, skipping - ${dir}`);
 
       return false;
     }

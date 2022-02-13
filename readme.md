@@ -33,3 +33,4 @@ Not supported yet - this tool uses node.js api that isn't available in `std/node
 9. All errors should be reported to a separate file
 10. CSV output should not use ids for authors and dates, but labels.
 11. Series/periods descriptions under the chart should adapt to their amount and sreen size.
+12. Allow details to specify author, date, extension or fileName instead of always being extension.

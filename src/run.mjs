@@ -7,7 +7,7 @@ export default async function run(config) { // eslint-disable-line max-statement
   console.log(Object.entries(config).filter(([key]) => key !== 'repo').map(([key, value]) => `${key}=${value.toString()}`).join('   '));
 
   const { repos, chronicle, detail, period, formats, output, dry, cache } = config;
-  const validRepos = repos.map(Repo.isDirGitRepository);
+  const validRepos = repos.filter(Repo.isDirGitRepository);
 
   console.log(`Run for ${validRepos.length} repos`);
   const fs = new Fs(output, dry);

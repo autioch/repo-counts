@@ -1,6 +1,6 @@
 {
   "name": "repo-counts",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Count the code in your repo(s)",
   "main": "src/index.mjs",
   "bin": {

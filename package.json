@@ -1,16 +1,17 @@
 {
   "name": "repo-counts",
   "version": "0.0.1",
-  "description": "Count the code in your repository",
+  "description": "Count the code in your repo(s)",
   "main": "src/index.mjs",
-  "bin": "bin/cli.js",
-  "author": "autioch@gmail.com",
-  "license": "ISC",
+  "bin": {
+    "repo-counts": "cli.js"
+  },
   "type": "module",
   "scripts": {
     "help": "node src/index.mjs -h",
     "test:config": "node spec/run.mjs",
-    "test": "mocha ./spec/*.spec.mjs -R min"
+    "test": "mocha ./spec/*.spec.mjs -R min",
+    "postversion": "git push origin HEAD --follow-tags && npm publish"
   },
   "dependencies": {
     "binary-extensions": "2.2.0",
@@ -25,5 +26,23 @@
     "eslint-config-qb": "1.0.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "mocha": "^9.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autioch/repo-counts.git"
+  },
+  "keywords": [
+    "git",
+    "counter",
+    "repository",
+    "report",
+    "cloc",
+    "loc"
+  ],
+  "author": "autioch@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/autioch/repo-counts/issues"
+  },
+  "homepage": "https://github.com/autioch/repo-counts#readme"
 }

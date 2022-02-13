@@ -88,16 +88,23 @@ body {
 .series {
   flex: auto;
   margin: 0 0.5px;
-  max-width: 40vw;
   position: relative;
   width: 0;
+  height: 100%;
+  overflow: hidden;
   transition: width 250ms;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .point {
   background-color: var(--item-color);
   max-height: 0;
   transition: max-height 250ms;
+  max-width: 10vw;
+  width: 100%;
 }
 
 .legend {

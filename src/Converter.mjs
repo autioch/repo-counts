@@ -1,8 +1,12 @@
 import Chart from './chart.mjs';
 import { FORMAT } from './consts.mjs';
 
-function normalizeDates(data) {
+export function normalizeDates(data) {
   const dates = [...new Set(data.flatMap(([, counts]) => Object.keys(counts)))].sort();
+
+  if (!dates.length) {
+    return [];
+  }
   const [lowDate] = dates;
   const highDate = dates.pop();
   const [lowYear] = lowDate.split('-');

@@ -17,11 +17,17 @@ const roundM = (num) => `${Math.round(num / 100000) / 10}M`;
 const roundK = (num) => `${Math.round(num / 100) / 10}K`;
 const round0 = (num) => `${Math.round(num)}`;
 
-function roundUp(maxValue) {
+export function roundUp(maxValue) {
   const rounding = '1';
   const roundingAmount = parseInt(rounding.padEnd((maxValue.toString().length / 2) + 1, '0'), 10);
 
   return Math.ceil(maxValue / roundingAmount) * roundingAmount;
+}
+
+export function getAxisValues(maxVal) {
+  const roundingFn = maxVal > 1000000 ? roundM : (maxVal > 1000 ? roundK : round0); // eslint-disable-line no-nested-ternary, no-extra-parens
+
+  return [maxVal, maxVal / 4 * 3, maxVal / 2, maxVal / 4].map(roundingFn);
 }
 
 function e(tagAndClassName, children, attributes = []) {
@@ -34,10 +40,6 @@ function e(tagAndClassName, children, attributes = []) {
 
   return `<${[tagName, classAttr, attrs].filter(Boolean).join(' ')}>${tested}</${tagName}>`;
 }
-
-// const SERIES_DESC_MODE = {
-//   'period'
-// };
 
 export default class Chart {
   constructor(data) {
@@ -67,7 +69,7 @@ export default class Chart {
 
   static makePeriod(id, label, items) {
     return {
-      id: `p${id}`,
+      id: `g${id}`,
       label,
       items
     };
@@ -88,10 +90,9 @@ export default class Chart {
   }
 
   getAxis() {
-    const { maxVal } = this;
-    const roundingFn = maxVal > 1000000 ? roundM : (maxVal > 1000 ? roundK : round0); // eslint-disable-line no-nested-ternary, no-extra-parens
+    const axisValues = getAxisValues(this.maxVal);
 
-    return e('.axis', [maxVal, maxVal / 4 * 3, maxVal / 2, maxVal / 4].map((value) => e('.axis-item', roundingFn(value))));
+    return e('.axis', axisValues.map((value) => e('.axis-item', value)));
   }
 
   getPlot() {
@@ -146,7 +147,7 @@ export default class Chart {
   getTitle() {
     const periodDesc = this.isManyPeriods ? `${this.periods[0].label}-${this.periods[this.periods.length - 1].label}` : this.periods[0].label;
     const seriesDesc = this.isManySeries ? `${this.series.length} repositories` : this.series[0].label;
-    const pointsDesc = this.isManyPoints ? `summary` : `detailed`;
+    const pointsDesc = this.isManyPoints ? `detailed` : `summary`;
 
     return `${periodDesc} ${pointsDesc} counts of ${seriesDesc}`;
   }

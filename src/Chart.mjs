@@ -77,7 +77,10 @@ export default class Chart {
 
   setData(data) {
     this.data = data;
-    this.maxVal = roundUp(getMax(data.items, (period) => getMax(period.items, (series) => getSum(series.items, (point) => point.value))));
+    data.items.forEach((period) => period.items.forEach((series) => {
+      series.value = getSum(series.items, (point) => point.value);
+    }));
+    this.maxVal = roundUp(getMax(data.items, (period) => getMax(period.items, ({ value }) => value)));
     this.periods = uniqDataItems(data.items);
     this.series = uniqDataItems(data.items.flatMap(({ items }) => items));
     this.points = uniqDataItems(data.items.flatMap(({ items }) => items.flatMap(({ items: ites }) => ites)));
@@ -104,12 +107,12 @@ export default class Chart {
   }
 
   getSeries(data) {
-    const withTooltip = this.isManyPeriods && data.items.some((item) => item.value > 0);
+    const withTooltip = this.isManyPeriods && data.value > 0;
     const withDescription = !this.isManyPeriods && this.isManySeries;
 
     return e(`.series${withTooltip ? ' tooltip--bottom' : (withDescription ? ' desc--bottom' : '')}`, data.items.map(this.getPoint), [// eslint-disable-line no-nested-ternary, no-extra-parens
       ['data-id', data.id],
-      withTooltip || withDescription ? ['data-label', data.label] : false
+      withTooltip || withDescription ? ['data-label', `${data.label} ${data.value}`] : false
     ]);
   }
 

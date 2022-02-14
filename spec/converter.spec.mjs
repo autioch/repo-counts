@@ -113,11 +113,11 @@ describe.skip('Convert to html', () => {
   });
 });
 
-const prepareData = (dates) => [ [null, Object.fromEntries(dates.map((date) => [date, true]))] ];
-
 describe('Converter', () => {
   describe('utils', () => {
     describe('normalizeDates', () => {
+      const prepareData = (dates) => [ [null, Object.fromEntries(dates.map((date) => [date, true]))] ];
+
       it('handles no dates', () => {
         const input = prepareData([]);
         const output = normalizeDates(input);

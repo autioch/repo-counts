@@ -2,6 +2,7 @@ import binaryExtensions from 'binary-extensions';
 import child_process, { execSync } from 'child_process';
 import pLimit from 'p-limit';
 import { basename, extname, resolve } from 'path';
+import { platform } from 'process';
 import ProgressBar from 'progress';
 import { promisify } from 'util';
 
@@ -21,6 +22,7 @@ const binarySet = new Set(binaryExtensions.map((ext) => `.${ext}`));
 const trim = (item) => item.trim();
 const isBinary = (fileName) => !binarySet.has(extname(fileName));
 const dig2 = (num) => num.toString().padStart(2, '0');
+const isAlwaysTrue = () => true;
 
 const exec = promisify(child_process.exec);
 const execOptions = {
@@ -33,6 +35,14 @@ function getExt(fileName) {
   const ext = extname(fileName);
 
   return ext.length && basename(fileName, ext).length ? ext : 'other';
+}
+
+const winQuote = `"`;
+const linuxQuote = `'`;
+const quote = platform.startsWith('win') ? winQuote : linuxQuote;
+
+function pathspecExclude(extensions) {
+  return extensions.map((ext) => `:(exclude)*.${ext}`).map((pathspec) => `${quote}${pathspec}${quote}`).join(' ');
 }
 
 export default class Repo {
@@ -56,6 +66,16 @@ export default class Repo {
 
       return false;
     }
+  }
+
+  static getAllowedExtFn(excludeExtension) {
+    if (!excludeExtension.length) {
+      return isAlwaysTrue;
+    }
+
+    const excludeExtensionSet = new Set(excludeExtension.map((ext) => ext.startsWith('.') ? ext : `.${ext}`));
+
+    return (fileName) => !excludeExtensionSet.has(extname(fileName));
   }
 
   async command(commandString) {
@@ -116,27 +136,26 @@ export default class Repo {
     });
   }
 
-  async getCountFromDiff(commitHash, compareCommitHash) {
-    const countedLines = await this.command(`git diff --shortstat --ignore-all-space ${compareCommitHash}..${commitHash}`);
+  async getCountFromDiff(commitHash, compareCommitHash, excludePathspec) {
+    const countedLines = await this.command(`git diff --shortstat --ignore-all-space ${compareCommitHash}..${commitHash} ${excludePathspec}`);
     const [, insertions] = countedLines.split(',');
     const [lineCount] = insertions.trim().split(' ');
 
     return parseInt(lineCount, 10);
   }
 
-  async getCountFromBlame(commitHash, label) {
-    const files = await this.getFileList(commitHash);
+  async getCountFromBlame(commitHash, label, allowedExtFn) {
+    const files = await this.getFileList(commitHash, allowedExtFn);
     const tickBar = getBar(label, files.length);
     const getFileInfo = async (filePath) => [filePath, getExt(filePath), await this.blameFile(filePath, commitHash, tickBar())];
 
     return Promise.all(files.map((filePath) => limit(getFileInfo, filePath)));
   }
 
-  async getFileList(commitHash, includeBinary = false) {
+  async getFileList(commitHash, allowedExtFn) {
     const fileList = await this.command(`git ls-tree -r ${commitHash} --name-only --full-tree`);
-    const allFiles = fileList.split('\n');
 
-    return includeBinary ? allFiles : allFiles.filter(isBinary);
+    return fileList.split('\n').filter(allowedExtFn).filter(isBinary);
   }
 
   async blameFile(filePath, commitHash) {
@@ -194,48 +213,48 @@ export default class Repo {
     return Object.values(yearDict);
   }
 
-  getCommitsForPeriod(period) {
-    return period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getLastCommitsPerMonth();
-  }
-
   /* API for the app */
 
-  async getCurrentSimple() {
-    return this.getCountFromDiff('HEAD', await this.getHashForEmptyRepo());
-  }
-
-  getCurrentDetail() {
-    return this.getCountFromBlame('HEAD', this.dirBase);
-  }
-
-  async getChronicleSimple(period) {
-    const commitsToVisit = await this.getCommitsForPeriod(period);
+  async getChronicleSimple(commitsToVisit, labelProp, excludePathspec) {
     const emptyRepoHash = await this.getHashForEmptyRepo();
     const tickBar = getBar(this.dirBase, commitsToVisit.length);
-    const labelProp = PERIOD_LABELS[period];
     const result = {};
 
     for (let j = 0; j < commitsToVisit.length; j++) {
       const commit = commitsToVisit[j];
 
-      result[commit[labelProp]] = await this.getCountFromDiff(commit.hash, emptyRepoHash);
+      result[commit[labelProp]] = await this.getCountFromDiff(commit.hash, emptyRepoHash, excludePathspec);
       tickBar();
     }
 
     return result;
   }
 
-  async getChronicleDetail(period) {
-    const commitsToVisit = await this.getCommitsForPeriod(period);
-    const labelProp = PERIOD_LABELS[period];
+  async getChronicleDetail(commitsToVisit, labelProp, allowedExtFn) {
     const result = {};
 
     for (let j = 0; j < commitsToVisit.length; j++) {
       const commit = commitsToVisit[j];
 
-      result[commit[labelProp]] = await this.getCountFromBlame(commit.hash, `${this.dirBase} ${commit[labelProp]}`);
+      result[commit[labelProp]] = await this.getCountFromBlame(commit.hash, `${this.dirBase} ${commit[labelProp]}`, allowedExtFn);
     }
 
     return result;
+  }
+
+  async gatherData(config, excludeExtension) {
+    const { chronicle, detail, period } = config;
+
+    const allowedExtFn = Repo.getAllowedExtFn(excludeExtension);
+    const excludePathspec = pathspecExclude(excludeExtension);
+
+    if (chronicle) {
+      const commitsToVisit = await (period === PERIOD.YEAR ? this.getLastCommitsPerYear() : this.getLastCommitsPerMonth());
+      const labelProp = PERIOD_LABELS[period];
+
+      return detail ? this.getChronicleDetail(commitsToVisit, labelProp, allowedExtFn) : this.getChronicleSimple(commitsToVisit, labelProp, excludePathspec);
+    }
+
+    return detail ? this.getCountFromBlame('HEAD', this.dirBase, allowedExtFn) : this.getCountFromDiff('HEAD', await this.getHashForEmptyRepo(), excludePathspec);
   }
 }

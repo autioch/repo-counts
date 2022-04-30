@@ -12,6 +12,7 @@ program
   .addOption(new Option('-c, --cache', 'if there is already cached json, use it instead of probing repo').default(false))
   .addOption(new Option('-o, --output <dir>', 'path to a directory holding cache and data, absolute or relative to execution dir').default('.repo-counts'))
   .addOption(new Option('-dr, --dry', 'run without saving').default(false))
+  .addOption(new Option('-ee, --exclude-extension <ext...>', 'ignore files with specified extensions').default([]))
   .version('1.0.0'); // todo add it from package.json
 
 program.parse();

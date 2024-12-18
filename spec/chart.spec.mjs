@@ -2,7 +2,7 @@
 /* eslint-disable max-nested-callbacks */
 import assert from 'assert';
 
-import Chart, { getAxisValues, roundUp } from '../src/chart.mjs';
+import Chart, { getAxisValues, roundUp } from '../src/Chart.mjs';
 
 const roundUpTestCases = [
   [0, 0],

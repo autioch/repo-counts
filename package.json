@@ -7,8 +7,14 @@
   "type": "module",
   "scripts": {
     "help": "node src/index.mjs -h",
-    "test:config": "node spec/run.mjs",
+    "ci:lint": "eslint --ext .mjs,.js,.cjs .",
+    "ci:test": "mocha ./spec/*.spec.mjs -R min",
+    "ci": "npm run ci:lint && npm run ci:test",
     "test": "mocha ./spec/*.spec.mjs -R min",
+    "test:config": "node spec/run.mjs",
+    "fix:lint": "eslint --ext .mjs,.js,.cjs . --fix",
+    "fix": "npm run fix:lint",
+    "verify": "npm run fix && npm run ci",
     "postversion": "git push origin HEAD --follow-tags && npm publish"
   },
   "dependencies": {
@@ -24,6 +30,13 @@
     "eslint-config-qb": "1.0.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "mocha": "^9.2.0"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.11.1",
+      "onFail": "error"
+    }
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,10 @@
 import { Option, program } from 'commander'; // eslint-disable-line no-shadow
+import { readFileSync } from 'fs';
 
 import { FORMAT, PERIOD } from './consts.mjs';
 import run from './run.mjs';
+
+const { version } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
 program
   .addOption(new Option('-r, --repos <dirs...>', 'path(s) to the repositories').default(['.']))
@@ -13,7 +16,7 @@ program
   .addOption(new Option('-o, --output <dir>', 'path to a directory holding cache and data, absolute or relative to execution dir').default('.repo-counts'))
   .addOption(new Option('-dr, --dry', 'run without saving').default(false))
   .addOption(new Option('-ee, --exclude-extension <ext...>', 'ignore files with specified extensions').default([]))
-  .version('1.0.0'); // todo add it from package.json
+  .version(version);
 
 program.parse();
 

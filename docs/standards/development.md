@@ -5,6 +5,20 @@ rules; [architecture.md](architecture.md) owns the layering, data flow, and sour
 [security.md](security.md) owns the security posture. Read this before writing code for **how to
 write it here**.
 
+## Git first
+
+The product rule every change is judged against
+([domain/README.md](../domain/README.md#the-product)):
+
+- **Compute with git.** Line counts, file lists, binary detection, exclusions and snapshot choice come
+  from git — diffs and `--numstat`, pathspecs, `.gitattributes`, `rev-list --before` /
+  `--first-parent`, `--date=format:`. JavaScript only aggregates git's output and formats it.
+- **Re-implementing something git already does is a review finding** — a JS line counter, a binary
+  sniffer or extension list, date bucketing from raw timestamps, walking history to pick a commit.
+- **Prefer the git call whose cost follows what changed** (a diff between snapshots) over one that
+  re-reads the whole tree per data point.
+- **Data reaches git as arguments, never as a shell string** ([security.md](security.md#rules)).
+
 ## Conventions
 
 Follow what is already there rather than modernising:

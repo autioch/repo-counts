@@ -5,8 +5,11 @@ the roadmap of record is the readme's numbered TODO list.
 
 ## The product
 
-A zero-config CLI, published to npm as `repo-counts` (`npx repo-counts`), that answers **"how much
-code is in these repositories — now, and over time?"** for local git repos. Output is JSON (the raw
+A zero-config CLI, published to npm as `repo-counts` (`npx repo-counts`), whose purpose is
+**meaningful information about how a repository grows** — how much code there is now, and how that
+changed over time — for local git repos. **Git does the computing**; JavaScript only aggregates and
+formats ([development.md § git first](../standards/development.md#git-first)). A number is only
+useful if it reflects the code a reader cares about, at the moment it claims to. Output is JSON (the raw
 data, reused by `--cache`), CSV (for spreadsheets), and a self-contained HTML bar chart.
 
 Lines are counted by git, not by a language parser: simple mode counts inserted lines from the empty
@@ -37,6 +40,17 @@ Run each with `-o` pointing at a temp dir.
 
 ## Known issues
 
+Current behavior that undercuts meaningful results — verified on `master`:
+
+- **Generated and vendored files dominate the count.** Nothing is excluded by default: on this repo
+  the total is 107,984 lines, of which `src/` + `bin/` are 1,028 — the rest is test fixtures and
+  `package-lock.json`. `.gitattributes` (`linguist-generated`, `-diff`) is not honoured.
+- **Snapshots can miss mainline work.** Chronicle picks among `--no-merges` commits by **author**
+  date, so the "last commit of a year" can be a feature-branch commit that lacks work already merged
+  on the main line.
+- **Period boundaries depend on the runner's time zone** — dates are bucketed with JavaScript `Date`
+  in local time, not by git.
+- **The current period is partial** and isn't marked as such.
 - **Detail CSV header is one column short** — rows carry the extension after `FileName`, the header
   doesn't name it (6 headers / 7 values in `CurrentDetail.csv`; same in chronicle detail).
 - Security open issues: [security.md § open issues](../standards/security.md#open-issues).

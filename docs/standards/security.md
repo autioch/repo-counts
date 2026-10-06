@@ -43,6 +43,14 @@ hostile-input-unsafe.
   pathspecs are interpolated the same way.
 - **HTML injection in the chart** — `Chart.mjs`'s `e()` concatenates labels unescaped; a file named
   `y.<b>bold<i>` puts raw markup into `CurrentDetail.html` (legend text and `data-label`).
+- **CSV fields are unquoted** — `Fs.writeCsv` joins with `;`. A file name containing `;`, `"` or a
+  newline shifts columns, and a text cell starting with `=`, `+`, `-` or `@` can be evaluated as a
+  formula by a spreadsheet.
+- **Git failures are silent** — `Repo.command` returns `''` on any error, including output over the
+  50 MB `maxBuffer`, so a file can be counted as empty without notice. A report that can be silently
+  wrong is an integrity issue.
+- **Unbounded resource use** — up to 50 concurrent git processes (`pLimit(50)`), each able to buffer
+  50 MB of output.
 
 ## Publishing
 

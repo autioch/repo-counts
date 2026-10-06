@@ -13,7 +13,7 @@ export default class Fs {
   }
 
   async ensureDir() {
-    if (existsSync(this.dir)) {
+    if (this.dry || existsSync(this.dir)) {
       return;
     }
     console.warn(`Path ${this.dir} doesnt't exist - will be created.`);
@@ -64,6 +64,10 @@ export default class Fs {
   }
 
   async copyStyles() {
+    if (this.dry) {
+      return;
+    }
+
     const curDir = dirname(fileURLToPath(import.meta.url));
 
     await fs.copyFile(join(curDir, 'styles.css'), join(this.dir, 'styles.css'));

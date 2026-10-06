@@ -15,6 +15,8 @@ module.exports = {
     }
   },
   rules: {
+    // eslint-config-qb wants CRLF; the repo stores LF everywhere (see .gitattributes).
+    'linebreak-style': ['error', 'unix'],
     'id-length': ['off'],
     'max-len': ['off'],
     'id-blacklist': ['off'],

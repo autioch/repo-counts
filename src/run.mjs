@@ -1,5 +1,3 @@
-import { join } from 'path';
-
 import Converter from './Converter.mjs';
 import Db from './Db.mjs';
 import Fs from './Fs.mjs';

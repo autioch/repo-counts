@@ -5,3 +5,10 @@ readme.md
 .repo-counts
 spec
 AGENTS.md
+CLAUDE.md
+docs
+.github
+.claude
+.vscode
+.gitattributes
+.nvmrc

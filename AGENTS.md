@@ -28,8 +28,8 @@ hyperbole. Don't reach for it in a quick verification loop.
 Node 24 works. ESM throughout (`"type": "module"`, `.mjs` sources, `.cjs` for the eslint config).
 
 ```bash
-npm install            # NOT `npm ci` — see Traps below
-npm test               # mocha ./spec/*.spec.mjs -R min  → 26 passing, 12 pending
+npm ci
+npm test               # mocha ./spec/*.spec.mjs -R min  → 33 passing, 12 pending
 npm run help           # dump the CLI option list
 
 # run the tool; always point -o somewhere disposable
@@ -112,48 +112,41 @@ Follow what is already there rather than modernising:
 
 Verified against this checkout; expect to hit these.
 
-1. **`npm ci` fails.** `package-lock.json` is `lockfileVersion: 2` and out of sync with
-   `package.json` (`Missing: fsevents@2.3.3 from lock file`). Use `npm install`. That rewrites
-   the lockfile to v3 (≈140 lines of churn) — revert it unless updating the lockfile is the task.
-
-2. **`--chronicle` crashes on a shallow clone.** CI and cloud sessions often clone with
+1. **`--chronicle` crashes on a shallow clone.** CI and cloud sessions often clone with
    `--depth`. `git rev-list --max-parents=0 HEAD` then returns *several* grafted boundary
    commits, the interpolated `git log` command is malformed, `Repo.command` swallows the error
    and returns `''`, and `Repo.mjs:142` dies with
    `TypeError: Cannot read properties of undefined (reading 'trim')`. Run
    `git fetch --unshallow` before testing any chronicle path.
 
-3. **`linebreak-style` is unsatisfiable.** `eslint-config-qb` requires CRLF; every file is
+2. **`linebreak-style` is unsatisfiable.** `eslint-config-qb` requires CRLF; every file is
    committed with LF and there is no `.gitattributes`. On Linux that is ~1200 errors, all of
    them noise. Filter them out (`| grep -v linebreak-style`) and **never** run `eslint --fix`
    over the tree — it would rewrite every line of every file. The only real lint error today is
    an unused `join` import at `src/run.mjs:1`.
 
-4. **`Db.restore()` silently discards the cache.** `Column extends Map` but its constructor
-   calls `super()` with no arguments (`src/Db.mjs:5`), so the entries read from
-   `authors.json` / `dates.json` are dropped. `nextId` also restarts at 0, so a genuinely
-   restored column would re-issue colliding ids. The files are written every run and never
-   actually read back.
-
-5. **`--dry` is not side-effect free.** `Fs.writeFile` respects it, but `ensureDir()` and
-   `copyStyles()` do not — a dry run still creates the output directory and writes
-   `styles.css` into it.
-
-6. **`isBinary` is inverted.** `src/Repo.mjs:23` returns `true` for files that are *not*
+3. **`isBinary` is inverted.** `src/Repo.mjs:23` returns `true` for files that are *not*
    binary. Call sites (`.filter(isBinary)`) rely on that, so the behaviour is correct and the
    name is wrong. Don't "fix" the name without fixing both ends.
 
-7. **`Repo.command` swallows every git failure**, returning `''` (the `console.error` is dead
+4. **`Repo.command` swallows every git failure**, returning `''` (the `console.error` is dead
    code behind `false &&`). Parse errors downstream are usually a failed git command upstream.
    When debugging, temporarily enable that log instead of guessing.
 
-8. **`--version` reports `1.0.0`** (hardcoded at `src/index.mjs:16`) while `package.json` says
-   `0.3.1`. There is a `// todo` for it.
+### Invariants to keep
+
+- **`--dry` writes nothing.** Every disk write goes through `Fs`, and every `Fs` method that
+  writes checks `this.dry`. A new write path must do the same; `spec/fs.spec.mjs` asserts an
+  empty output directory after a dry run.
+- **Db ids are stable across runs.** `authors.json` / `dates.json` are the lookup tables for
+  the ids stored in every output file, so ids must never be renumbered or reused.
+  `spec/db.spec.mjs` covers restore and id continuation.
 
 ## Testing
 
-`spec/*.spec.mjs` run under mocha and cover only the pure helpers — `Chart`'s `roundUp`,
-`getAxisValues` and `getTitle`, and `Converter`'s `normalizeDates`. Plain `assert.deepEqual`,
+`spec/*.spec.mjs` run under mocha: `Chart`'s `roundUp`, `getAxisValues` and `getTitle`,
+`Converter`'s `normalizeDates`, `Db` restore/persist (against an in-memory fake `fs`), and
+`Fs` dry/non-dry writes (against a temp directory). Plain `assert.deepEqual`, often
 table-driven via `forEach` over a test-case array.
 
 The snapshot suites in `spec/converter.spec.mjs` that compare against `spec/mock/*.{csv,html}`
@@ -165,7 +158,7 @@ nothing, writes into `spec/mock/`, and hardcodes a Windows path
 (`E:/projects/trial-css-filter`) that silently skips elsewhere. Don't wire it into CI and don't
 treat a clean exit as a pass.
 
-When adding tests, prefer extending the pure-helper suites — anything touching `Repo` needs a
+When adding tests, prefer extending the existing suites — anything touching `Repo` needs a
 real git repository and is slow.
 
 ## Shipping changes
@@ -174,7 +167,10 @@ real git repository and is slow.
   eslint command yourself.
 - Don't run `npm version` / `npm publish`. `postversion` is
   `git push origin HEAD --follow-tags && npm publish`, so a version bump publishes to the npm
-  registry immediately. Releases are the maintainer's call.
+  registry immediately. Releases are the maintainer's call. `--version` reads the version
+  from `package.json`, so there is no second place to bump.
+- `.npmignore` is a denylist. A new top-level file ships to npm unless you add it there;
+  check with `npm pack --dry-run`.
 - Keep `.repo-counts/` (the default output dir) out of commits; it is gitignored.
 - Deno is aspirational: `import_map.json` maps the four deps to esm.sh and the readme documents
   a `deno run --compat` invocation, but the tool uses node APIs Deno's compat layer doesn't

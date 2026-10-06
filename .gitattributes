@@ -1,0 +1,5 @@
+# Force LF line endings in the working tree on every platform, overriding core.autocrlf.
+# ESLint's linebreak-style is set to "unix"; without this, a Windows checkout (core.autocrlf=true)
+# gets CRLF on disk and `npm run ci` fails, blocking every push.
+# text=auto keeps git's binary auto-detection, so any future binary files stay untouched.
+* text=auto eol=lf

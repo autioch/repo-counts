@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Gate and smoke run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # --chronicle walks the whole history; a shallow clone breaks it.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint and test
+        run: npm run ci
+
+      - name: Smoke run (current, every format)
+        run: node bin/cli.js -r . -f json csv html -o "$RUNNER_TEMP/current"
+
+      - name: Smoke run (chronicle)
+        run: node bin/cli.js -r . -ch -p year -f json -o "$RUNNER_TEMP/chronicle"
+
+      - name: Package contents
+        run: npm pack --dry-run

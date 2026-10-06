@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "node bin/cli.js -r . -f json csv html -o .repo-counts",
+      "name": "Count this repo",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm test",
+      "name": "Unit tests",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
+}

@@ -1,10 +1,13 @@
 const inverseKeys = ([key, value]) => [value, key];
 
-class Column extends Map {
-  constructor() {
-    super();
+const getMaxId = (max, id) => Math.max(max, id);
 
-    this.nextId = 0;
+class Column extends Map {
+  constructor(entries = []) {
+    super(entries);
+
+    // Continue numbering after restored ids, so new labels never reuse one.
+    this.nextId = [...this.values()].reduce(getMaxId, 0);
   }
 
   toJSON() {

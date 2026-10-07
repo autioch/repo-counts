@@ -66,5 +66,6 @@ restore continues numbering, never renumbers or reuses (`spec/db.spec.mjs`).
 
 ## Design goals
 
-Zero config · git is the only data source · local repos only · output viewable with no server and no
-JavaScript.
+Meaningful growth information · git does the computing, JavaScript aggregates
+([git first](development.md#git-first)) · zero config · local repos only · output viewable with no
+server and no JavaScript.

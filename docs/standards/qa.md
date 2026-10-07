@@ -100,6 +100,10 @@ Each entry is a check that once silently passed without being exercised:
 
 - **`Repo.command` swallows every git failure**, returning `''` — a broken command looks like "no
   data", and the crash surfaces later in parsing. Debug by enabling its `console.error`.
+- **Output over `maxBuffer` (50 MB) is a silent empty result**, same path as above — a very large
+  file blames to zero lines.
+- **This repo's own count is mostly fixtures** — `spec/mock/*.csv` and the lockfile outweigh `src/`
+  ~100:1, so a smoke run on `-r .` proves the pipeline, not that the numbers are meaningful.
 - **A shallow clone breaks `--chronicle`** (several root commits → a malformed `git log`). CI checks
   out with full history; a local `--depth` clone does not.
 - **`--cache` skips gathering** — a run with `-c` proves the converters, not `Repo`.

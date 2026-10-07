@@ -7,5 +7,5 @@ done.
   `latest` is still 0.3.1. Run the [release runbook](standards/development.md#releasing) with
   `npm version patch`.
 - **Fix the shell-injection open issue before or with the next release** —
-  [security.md § open issues](standards/security.md#open-issues). Until then, `--detail` is unsafe on
+  [TODO.md T1](../TODO.md#security). Until then, `--detail` is unsafe on
   repositories you didn't write.

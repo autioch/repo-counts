@@ -150,7 +150,7 @@ Docs drifted, or code just changed.
 The same ending for Bounded and Feature:
 
 1. **Gate green.** Stage the change **and every durable doc it affects**.
-2. **If it resolves a readme TODO**, strike it through the way the readme already does
+2. **If it fixes a [TODO.md](../TODO.md) entry, remove the entry. If it resolves a readme TODO**, strike it through the way the readme already does
    (`~…~ - done`). The PR is the durable record: what and why in a line or two, the headline decision
    when one was made, any owed check.
 3. **If the change is user-facing**, update the readme's usage in plain copy. Internal work gets no

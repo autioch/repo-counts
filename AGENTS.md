@@ -8,7 +8,10 @@ path.
 
 **repo-counts** — a zero-config CLI that counts lines of code in local git repositories, now or over
 time, and writes JSON, CSV, or a self-contained HTML bar chart. Published to npm (`npx repo-counts`).
-Product: [domain/README.md](docs/domain/README.md). Stack: **Node (ESM `.mjs`) · commander · git via
+Its purpose is **meaningful information about how a repository grows**, and **git does the
+computing** — JavaScript only aggregates and formats
+([development.md § git first](docs/standards/development.md#git-first)). Product:
+[domain/README.md](docs/domain/README.md). Stack: **Node (ESM `.mjs`) · commander · git via
 child_process · mocha · ESLint 7**. It's a **live package** — every merge to `master` ships with the
 next release.
 
@@ -87,7 +90,7 @@ push once at close-out, open a lean PR, merge on green CI. Mechanics:
 ## Environment
 
 No env vars and no secrets — the CLI reads local repos only. Node version: `.nvmrc`, enforced for
-development by `devEngines`. Owner-owed steps: [owner-tasks.md](docs/owner-tasks.md).
+development by `devEngines`. Owner-owed steps: [owner-tasks.md](docs/owner-tasks.md). Known issues: [TODO.md](TODO.md).
 
 ## Gotchas
 

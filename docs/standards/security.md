@@ -34,15 +34,8 @@ didn't write.
 
 ## Open issues
 
-Verified on `master`, not yet fixed. Each violates a rule above; until fixed, treat the paths as
-hostile-input-unsafe.
-
-- **Command injection via file names** — `Repo.command()` runs `child_process.exec` on interpolated
-  strings; `blameFile` quotes `filePath` in double quotes, so a committed file named
-  `x$(touch PWNED).txt` runs `touch PWNED` during any `--detail` run. Commit hashes and `-ee`
-  pathspecs are interpolated the same way.
-- **HTML injection in the chart** — `Chart.mjs`'s `e()` concatenates labels unescaped; a file named
-  `y.<b>bold<i>` puts raw markup into `CurrentDetail.html` (legend text and `data-label`).
+Rule violations still on `master` are tracked in [TODO.md](../../TODO.md#security) (T1–T7). Until
+T1 is fixed, `--detail` is unsafe on repositories you didn't write.
 
 ## Publishing
 

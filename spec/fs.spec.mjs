@@ -1,6 +1,6 @@
 /* eslint-env mocha  */
 import assert from 'assert';
-import { existsSync, mkdtempSync, readdirSync, rmSync } from 'fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 
@@ -44,6 +44,16 @@ describe('Fs', () => {
       await fs.copyStyles();
 
       assert.deepEqual(readdirSync(root), []);
+    });
+  });
+
+  describe('csv', () => {
+    it('quotes every field and doubles inner quotes, keeping ";"', async () => {
+      const fs = new Fs(root);
+
+      await fs.writeOutput(FORMAT.CSV, 'data', [ ['a;b', 'say "hi"', 1], ['x\ny', 2] ]);
+
+      assert.deepEqual(readFileSync(join(root, 'data.csv'), 'utf8'), '"a;b";"say ""hi""";"1"\n"x\ny";"2"');
     });
   });
 

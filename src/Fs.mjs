@@ -3,8 +3,9 @@ import { dirname, isAbsolute, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import { FORMAT } from './consts.mjs';
+import { quoteCsv } from './escape.mjs';
 
-const joinRow = (row) => row.join(';');
+const joinRow = (row) => row.map(quoteCsv).join(';');
 
 export default class Fs {
   constructor(dir, dry = false) {

@@ -18,6 +18,7 @@ git; only `Chart` knows about markup.
 | `src/Converter.mjs` | Gathered data → CSV rows or HTML, one static method per mode × format    | Shell out or write files                       |
 | `src/Chart.mjs`     | HTML/CSS bar chart generator — emits no `<script>`                       | Know about git                                 |
 | `src/Fs.mjs`        | Output dir, json/csv/html writers, `styles.css` copy; owns `--dry`       | Be bypassed — every disk write goes through it |
+| `src/escape.mjs`    | `escapeHtml`, `quoteCsv` — the only way untrusted text enters HTML / CSV  | Be bypassed for labels or CSV fields           |
 | `src/consts.mjs`    | `FORMAT`, `PERIOD`, period label keys, chart palette                     | Import anything                                |
 | `src/styles.css`    | Copied next to generated HTML; the chart's entire runtime                | Depend on a script                             |
 

@@ -1,4 +1,5 @@
 import { colors } from './consts.mjs';
+import { escapeHtml } from './escape.mjs';
 
 const notFalse = (val) => val !== false;
 const isMulti = (arr) => arr.length > 1;
@@ -33,7 +34,7 @@ export function getAxisValues(maxVal) {
 function e(tagAndClassName, children, attributes = []) {
   const [tag, className = ''] = tagAndClassName.split('.');
   const tagName = tag || 'div';
-  const attrs = attributes.filter(notFalse).map(([key, value]) => value ? `${key}=${typeof value === 'string' ? `"${value}"` : value}` : key).join(' ');
+  const attrs = attributes.filter(notFalse).map(([key, value]) => value ? `${key}=${typeof value === 'string' ? `"${escapeHtml(value)}"` : value}` : key).join(' ');
   const classAttr = className ? `class="${className}"` : '';
   const content = Array.isArray(children) ? children.filter(notFalse).join('') : children;
   const tested = content ?? '';
@@ -137,7 +138,7 @@ export default class Chart {
   }
 
   getLegend(data) { // eslint-disable-line class-methods-use-this
-    return e('.legend', data.map((item) => e('label.legend-item', item.label, [ ['for', item.id], ['data-id', item.id] ])));
+    return e('.legend', data.map((item) => e('label.legend-item', escapeHtml(item.label), [ ['for', item.id], ['data-id', item.id] ])));
   }
 
   getColorStyles() {
@@ -162,14 +163,14 @@ export default class Chart {
 
     return e('html', [
       e('head', [
-        e('title', title),
+        e('title', escapeHtml(title)),
         e('style', this.getColorStyles(), [ ['type', 'text/css'] ]),
         e('style', this.getSeriesStyles(), [ ['type', 'text/css'] ]),
         e('style', this.getPointStyles(), [ ['type', 'text/css'] ]),
         e('link', '', [ ['href', 'styles.css'], ['rel', 'stylesheet'] ])
       ]),
       e('body', [
-        e('h1.title', title),
+        e('h1.title', escapeHtml(title)),
         ...this.getControl(this.series),
         ...this.getControl(this.points),
         e(`.chart${this.isManyPeriods || this.isManySeries ? ' description' : ''}`, [axis, plot]),

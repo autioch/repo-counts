@@ -10,16 +10,6 @@ Remove an entry in the commit that fixes it. Product roadmap: the readme's TODO 
 - Result: `--detail` on an untrusted repo runs commands embedded in a file name.
 - Fix: `execFile`/`spawn` with an args array; `--` before path arguments.
 
-**T2 · HTML injection in the chart** — medium
-- Why: `Chart.mjs` `e()` inserts labels (extensions, repo names) unescaped.
-- Result: a crafted file name injects markup or script into the report.
-- Fix: an `escapeHtml` util applied to text and attribute values.
-
-**T3 · CSV fields unquoted** — medium
-- Why: `Fs.writeCsv` joins raw values with `;`.
-- Result: a name containing `;`, `"` or a newline shifts columns.
-- Fix: wrap every field in `"…"`, double inner quotes; keep `;`.
-
 **T4 · Git failures are silent** — medium
 - Why: `Repo.command` returns `''` on any error, including output over the 50 MB `maxBuffer`.
 - Result: a file or period is counted as 0 with no warning — a silently wrong report.

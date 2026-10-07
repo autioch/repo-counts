@@ -28,4 +28,4 @@ The only UI is the generated report: markup from `src/Chart.mjs`, styles from `s
 ## Known gaps
 
 Current shortfalls against the ground rules are tracked in [TODO.md](../../TODO.md#chart-accessibility)
-(A1–A5) and [T2](../../TODO.md#security) (unescaped labels) — fix on touch, don't extend.
+(A1–A5) — fix on touch, don't extend.

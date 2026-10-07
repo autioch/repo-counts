@@ -25,6 +25,31 @@ const makeTitle = (items) => new Chart({
 }).getTitle();
 
 describe('Chart', () => {
+  describe('escaping', () => {
+    const html = new Chart({
+      items: [
+        Chart.makePeriod(1, '2022', [
+          Chart.makeSeries(1, 'repo"<a>', [
+            Chart.makePoint(1, '.<b>x', 3),
+            Chart.makePoint(2, '.js&', 1)
+          ])
+        ])
+      ]
+    }).toHtmlString();
+
+    it('leaves no raw markup from labels', () => {
+      assert.deepEqual(html.includes('<b>'), false);
+      assert.deepEqual(html.includes('<a>'), false);
+    });
+
+    it('escapes labels in text and attributes', () => {
+      assert.deepEqual(html.includes('>.&lt;b&gt;x<'), true);
+      assert.deepEqual(html.includes('data-label=".&lt;b&gt;x 3"'), true);
+      assert.deepEqual(html.includes('.js&amp; 1'), true);
+      assert.deepEqual(html.includes('repo&quot;&lt;a&gt;'), true);
+    });
+  });
+
   describe('roundUp', () => {
     roundUpTestCases.forEach(([input, expected]) => it(`${input} to ${expected}`, () => assert.deepEqual(roundUp(input), expected)));
   });

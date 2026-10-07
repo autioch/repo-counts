@@ -23,9 +23,12 @@ didn't write.
   (`execFile` / `spawn` with an args array), never interpolated into a command line run by a shell —
   quoting is not a defence, since `$(…)` expands inside double quotes. Pass `--` before path arguments
   so a name starting with `-` can't become an option.
-- **Escape everything placed in generated HTML.** Labels (repo names, extensions) go through an HTML
-  escape for both text and attribute values. The report must be safe to open even when the counted
+- **Escape everything placed in generated HTML.** Labels (repo names, extensions) go through
+  `escapeHtml` (`src/escape.mjs`) — `Chart`'s `e()` escapes every attribute value; text labels are
+  escaped at the call site. The report must be safe to open even when the counted
   repo is hostile.
+- **Quote every CSV field** — `quoteCsv` wraps each value in `"…"` and doubles inner quotes; the
+  delimiter stays `;`. Values are not otherwise altered (no formula-prefix neutralising).
 - **`--dry` writes nothing**, and every disk write goes through `Fs`, which enforces it
   (`spec/fs.spec.mjs`).
 - **Never mutate the counted repository.** The tool reads git state only. `Repo.cleanRepo()`
@@ -34,7 +37,7 @@ didn't write.
 
 ## Open issues
 
-Rule violations still on `master` are tracked in [TODO.md](../../TODO.md#security) (T1–T7). Until
+Rule violations still on `master` are tracked in [TODO.md](../../TODO.md#security) (T1, T4–T7). Until
 T1 is fixed, `--detail` is unsafe on repositories you didn't write.
 
 ## Publishing

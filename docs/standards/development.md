@@ -61,7 +61,8 @@ Follow what is already there rather than modernising:
 | Disk write                | `Fs.writeOutput` / `Fs.copyStyles`             |
 | Unit test with fake deps  | `spec/db.spec.mjs`                             |
 | Test against a temp dir   | `spec/fs.spec.mjs`                             |
-| Table-driven test         | `spec/chart.spec.mjs`                          |
+| Table-driven test         | `spec/chart.spec.mjs`, `spec/escape.spec.mjs`  |
+| Untrusted text into HTML / CSV | `escapeHtml` / `quoteCsv` in `src/escape.mjs` |
 
 ## Keeping docs in sync
 

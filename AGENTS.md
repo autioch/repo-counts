@@ -90,7 +90,7 @@ push once at close-out, open a lean PR, merge on green CI. Mechanics:
 ## Environment
 
 No env vars and no secrets — the CLI reads local repos only. Node version: `.nvmrc`, enforced for
-development by `devEngines`. Owner-owed steps: [owner-tasks.md](docs/owner-tasks.md).
+development by `devEngines`. Owner-owed steps: [owner-tasks.md](docs/owner-tasks.md). Known issues: [TODO.md](TODO.md).
 
 ## Gotchas
 

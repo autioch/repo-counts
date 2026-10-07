@@ -27,12 +27,5 @@ The only UI is the generated report: markup from `src/Chart.mjs`, styles from `s
 
 ## Known gaps
 
-Current behavior that falls short of the ground rules — fix on touch, don't extend:
-
-- The toggle checkboxes are `display: none`, so they're **not keyboard reachable**; toggling is
-  mouse-only.
-- Values are in **hover-only** tooltips — no keyboard or touch path to them.
-- Transitions (250 ms) ignore `prefers-reduced-motion`.
-- A deselected legend item is shown only by `opacity: .5`.
-- The palette's contrast is **unaudited**; there is no dark scheme.
-- Labels are not escaped ([security.md § open issues](security.md#open-issues)).
+Current shortfalls against the ground rules are tracked in [TODO.md](../../TODO.md#chart-accessibility)
+(A1–A5) and [T2](../../TODO.md#security) (unescaped labels) — fix on touch, don't extend.

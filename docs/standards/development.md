@@ -75,7 +75,8 @@ repo-wide reconcile as the backstop.
 | Change                                  | Sync these durable docs                                              |
 | --------------------------------------- | -------------------------------------------------------------------- |
 | Module, data flow, or output shape      | `architecture.md`; this guide (Copy-from)                            |
-| Git invocation / HTML output / writes   | `security.md` (rules, open issues); `qa.md` traps if a new one bit   |
+| Git invocation / HTML output / writes   | `security.md` (rules); `qa.md` traps if a new one bit                |
+| Issue found, or an issue fixed          | `TODO.md` — add the entry, or remove it in the fixing commit         |
 | CLI option added / changed / removed    | readme.md (usage); `architecture.md` if a mode changed               |
 | New / renamed / removed script          | this guide (command reference); AGENTS.md (Commands)                 |
 | Chart look or palette                   | `styling.md`                                                         |
